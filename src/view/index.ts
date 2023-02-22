@@ -7,6 +7,7 @@ export class View {
 
   renderUI() {
     this.renderBG();
+    this.renderSpace();
   }
 
   renderBG() {
@@ -17,10 +18,10 @@ export class View {
 
       // how close next node must be to activate connection (in px)
       // shorter distance == better connection (line width)
-      const SENSITIVITY = 100;
+      const SENSITIVITY = 50; //100
       // note that siblings limit is not 'accurate' as the node can actually have more connections than this value that's because the node accepts sibling nodes with no regard to their current connections this is acceptable because potential fix would not result in significant visual difference
       // more siblings == bigger node
-      const SIBLINGS_LIMIT = 10;
+      const SIBLINGS_LIMIT = 50;
       // default node margin
       const DENSITY = 50;
       // total number of nodes used (incremented after creation)
@@ -197,6 +198,40 @@ export class View {
       initNodes();
       redrawScene();
 
+
+  }
+
+  renderSpace() {
+    const space = document.createElement('div');
+    space.classList.add('space');
+    document.body.append(space);
+
+    const limit = 500; //1001
+
+   const stars = {
+  rand: function () {
+    return Math.random();
+  },
+
+  createStar: function () {
+    let star = document.createElement("div");
+    star.className = "star";
+
+    return star;
+  },
+
+  create: function () {
+    for (let i = 0; i <= limit; i++) {
+      let star = this.createStar();
+      star.style.top = `${this.rand() * 100}%`;
+      star.style.left = `${this.rand() * 100}%`;
+      star.style.animationDelay = `${this.rand() * 8}s`;
+      space.appendChild(star);
+    }
+  }
+};
+
+stars.create();
 
   }
 }
