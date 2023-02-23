@@ -8,10 +8,10 @@ export class View {
   renderUI() {
     this.renderBG();
     this.renderSpace();
+    this.createContent();
   }
 
   renderBG() {
-
 
       let canvas, ctx, circ, nodes, mouse;
       //const SENSITIVITY, SIBLINGS_LIMIT, DENSITY, NODES_QTY, ANCHOR_LENGTH, MOUSE_RADIUS;
@@ -181,7 +181,7 @@ export class View {
 
       function initHandlers() {
         document.addEventListener('resize', resizeWindow, false);
-        canvas.addEventListener('mousemove', mousemoveHandler, false);
+        document.addEventListener('mousemove', mousemoveHandler, false);
       }
 
       function resizeWindow() {
@@ -233,5 +233,17 @@ export class View {
 
 stars.create();
 
+  }
+
+  createContent() {
+    const content = document.createElement('div');
+    content.classList.add('content');
+    content.innerHTML = `
+      <section class="info__wrapper">
+        <div class="info__photo"></div>
+
+      </section>
+    `;
+    document.body.append(content);
   }
 }

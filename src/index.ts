@@ -13,5 +13,6 @@ class App {
 const app = new App(new View(), new Controller());
 
 app.view.renderUI();
+app.controller.control();
 
 //export { app };
