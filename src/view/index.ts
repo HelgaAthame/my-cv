@@ -13,7 +13,11 @@ export class View {
 
   renderBG() {
 
-      let canvas, ctx, circ, nodes, mouse;
+      let canvas: HTMLCanvasElement,
+          ctx: CanvasRenderingContext2D | null,
+          circ: number,
+          nodes: any[],
+          mouse: { x: number; y: number; };
       //const SENSITIVITY, SIBLINGS_LIMIT, DENSITY, NODES_QTY, ANCHOR_LENGTH, MOUSE_RADIUS;
 
       // how close next node must be to activate connection (in px)
@@ -46,40 +50,102 @@ export class View {
         alert("Ooops! Your browser does not support canvas :'(");
       }
 
-      function Node(x, y) {
-        this.anchorX = x;
-        this.anchorY = y;
-        this.x = Math.random() * (x - (x - ANCHOR_LENGTH)) + (x - ANCHOR_LENGTH);
-        this.y = Math.random() * (y - (y - ANCHOR_LENGTH)) + (y - ANCHOR_LENGTH);
-        this.vx = Math.random() * 2 - 1;
-        this.vy = Math.random() * 2 - 1;
-        this.energy = Math.random() * 100;
-        this.radius = Math.random();
-        this.siblings = [];
-        this.brightness = 0;
+      class NodeAth{
+        siblings: any;
+        anchorX: number;
+        x: number;
+        y: number;
+        vx: number;
+        vy: number;
+        energy: number;
+        radius: number;
+        brightness: number;
+        anchorY: number;
+        constructor (x: number, y: number) {
+          this.anchorX = x;
+          this.anchorX = y;
+          this.x = Math.random() * (x - (x - ANCHOR_LENGTH)) + (x - ANCHOR_LENGTH);
+          this.y = Math.random() * (y - (y - ANCHOR_LENGTH)) + (y - ANCHOR_LENGTH);
+          this.vx = Math.random() * 2 - 1;
+          this.vy = Math.random() * 2 - 1;
+          this.energy = Math.random() * 100;
+          this.radius = Math.random();
+          this.siblings = [];
+          this.brightness = 0;
+        }
+        drawNode () {
+          var color = "rgba(200, 220, 250, " + this.brightness + ")";
+          if (ctx) {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, 2 * this.radius + 2 * this.siblings.length / SIBLINGS_LIMIT, 0, circ);
+            ctx.fillStyle = color;
+            ctx.fill();
+          }
+        }
+
+        drawConnections () {
+          for (var i = 0; i < this.siblings.length; i++) {
+            var color = "rgba(200, 220, 250, " + this.brightness + ")";
+            if (ctx) {
+              ctx.beginPath();
+              ctx.moveTo(this.x, this.y);
+              ctx.lineTo(this.siblings[i].x, this.siblings[i].y);
+              ctx.lineWidth = 1 - calcDistance(this, this.siblings[i]) / SENSITIVITY;
+              ctx.strokeStyle = color;
+              ctx.stroke();
+            }
+          }
+        }
+
+        moveNode () {
+          this.energy -= 2;
+          if (this.energy < 1) {
+            this.energy = Math.random() * 100;
+            if (this.x - this.anchorX < -ANCHOR_LENGTH) {
+              this.vx = Math.random() * 2;
+            } else if (this.x - this.anchorX > ANCHOR_LENGTH) {
+              this.vx = Math.random() * -2;
+            } else {
+              this.vx = Math.random() * 4 - 2;
+            }
+            if (this.y - this.anchorY < -ANCHOR_LENGTH) {
+              this.vy = Math.random() * 2;
+            } else if (this.y - this.anchorY > ANCHOR_LENGTH) {
+              this.vy = Math.random() * -2;
+            } else {
+              this.vy = Math.random() * 4 - 2;
+            }
+          }
+          this.x += this.vx * this.energy / 100;
+          this.y += this.vy * this.energy / 100;
+        }
       }
 
-      Node.prototype.drawNode = function() {
+      /*Node.prototype.drawNode = function() {
         var color = "rgba(200, 220, 250, " + this.brightness + ")";
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, 2 * this.radius + 2 * this.siblings.length / SIBLINGS_LIMIT, 0, circ);
-        ctx.fillStyle = color;
-        ctx.fill();
-      };
+        if (ctx) {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, 2 * this.radius + 2 * this.siblings.length / SIBLINGS_LIMIT, 0, circ);
+          ctx.fillStyle = color;
+          ctx.fill();
+        }
+      };*/
 
-      Node.prototype.drawConnections = function() {
+      /*Node.prototype.drawConnections = function() {
         for (var i = 0; i < this.siblings.length; i++) {
           var color = "rgba(200, 220, 250, " + this.brightness + ")";
-          ctx.beginPath();
-          ctx.moveTo(this.x, this.y);
-          ctx.lineTo(this.siblings[i].x, this.siblings[i].y);
-          ctx.lineWidth = 1 - calcDistance(this, this.siblings[i]) / SENSITIVITY;
-          ctx.strokeStyle = color;
-          ctx.stroke();
+          if (ctx) {
+            ctx.beginPath();
+            ctx.moveTo(this.x, this.y);
+            ctx.lineTo(this.siblings[i].x, this.siblings[i].y);
+            ctx.lineWidth = 1 - calcDistance(this, this.siblings[i]) / SENSITIVITY;
+            ctx.strokeStyle = color;
+            ctx.stroke();
+          }
         }
-      };
+      };*/
 
-      Node.prototype.moveNode = function() {
+      /*Node.prototype.moveNode = function() {
         this.energy -= 2;
         if (this.energy < 1) {
           this.energy = Math.random() * 100;
@@ -100,20 +166,20 @@ export class View {
         }
         this.x += this.vx * this.energy / 100;
         this.y += this.vy * this.energy / 100;
-      };
+      };*/
 
       function initNodes() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
         nodes = [];
         for (var i = DENSITY; i < canvas.width; i += DENSITY) {
           for (var j = DENSITY; j < canvas.height; j += DENSITY) {
-            nodes.push(new Node(i, j));
+            nodes.push(new NodeAth(i, j));
             NODES_QTY++;
           }
         }
       }
 
-      function calcDistance(node1, node2) {
+      function calcDistance(node1: any, node2: any) {
         return Math.sqrt(Math.pow(node1.x - node2.x, 2) + (Math.pow(node1.y - node2.y, 2)));
       }
 
@@ -153,7 +219,7 @@ export class View {
 
       function redrawScene() {
         resizeWindow();
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
         findSiblings();
         var i, node, distance;
         for (i = 0; i < NODES_QTY; i++) {
@@ -189,7 +255,7 @@ export class View {
         canvas.height = window.innerHeight;
       }
 
-      function mousemoveHandler(e) {
+      function mousemoveHandler(e: MouseEvent) {
         mouse.x = e.clientX;
         mouse.y = e.clientY;
       }
@@ -231,7 +297,7 @@ export class View {
   }
 };
 
-stars.create();
+  stars.create();
 
   }
 
@@ -239,10 +305,57 @@ stars.create();
     const content = document.createElement('div');
     content.classList.add('content');
     content.innerHTML = `
+      <div class="block">
+        <p class="p5">Firebase</p>
+        <p class="p3">Vite</p>
+        <p class="p5">VSCode</p>
+        <p class="p4">GitHub</p>
+        <p class="p5">MVC</p>
+        <p class="p4">ESLint</p>
+        <p class="p5">SEO</p>
+        <p class="p3">SASS</p>
+        <p class="p5">DevTools</p>
+        <p class="p5">Tilewind</p>
+        <p class="p1">MY SKILLS</p>
+        <p class="p5">OOP</p>
+        <p class="p3">TypeScript</p>
+        <p class="p5">Photoshop</p>
+        <p class="p4">Webpack</p>
+        <p class="p5">Figma</p>
+        <p class="p3">Node.js</p>
+        <p class="p5">Agile</p>
+        <p class="p2">JavaScript</p2>
+        <p class="p5">Scrum</p>
+        <p class="p3">CSS</p>
+        <p class="p5">Kanban</p>
+        <p class="p3">HTML</p>
+        <p class="p5">Markdown</p>
+        <p class="p4">Netlify</p>
+        <p class="p5">Performance<br>Optimization</p>
+      </div>
+      <div class="block"></div>
+      <div class="block">
+        <p class="p4 file-manager">File Manager</p>
+        <p class="p4 gem-puzzle">Gem Puzzle</p>
+        <p class="p5 crud-api">CRUD API</p>
+        <p class="p2 bomberman">Bomberman</p>
+        <p class="p5 websocket">Websocket Backend</p>
+        <p class="p5 medical-center">Medical Center</p>
+        <p class="p3 online-store">Online Store</p>
+        <p class="p5 async-race">Async Race</p>
+        <p class="p1">MY PROJECTS</p>
+        <p class="p5 news-api">News Api</p>
+        <p class="p3 song-bird">Song Bird</p>
+        <p class="p4 online-zoo">Online Zoo</p>
+      </div>
+      <div class="block"></div>
       <section class="info__wrapper">
         <div class="info__photo"></div>
-
       </section>
+      <div class="block"></div>
+      <div class="block"></div>
+      <div class="block"></div>
+      <div class="block"></div>
     `;
     document.body.append(content);
   }

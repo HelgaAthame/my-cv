@@ -1,4 +1,4 @@
-import selectorChecker from "../utils/selectorChecker";
+import selectorChecker from "../utils/selectorChecker.js";
 
 export class Controller {
   constructor () {
@@ -10,9 +10,33 @@ export class Controller {
   }
 
   addListeners() {
-    const photo = selectorChecker(document, '.info__photo');
-    photo.addEventListener('mouseover', () => {
-      console.log('kuku');
-    })
+    this.projectLinks();
+  }
+
+  projectLinks() {
+    const gemPuzzle = selectorChecker(document, '.gem-puzzle');
+    const bomberman = selectorChecker(document, '.bomberman');
+    const medicalCenter = selectorChecker(document, '.medical-center');
+    const onlineStore = selectorChecker(document, '.online-store');
+    const onlineZoo = selectorChecker(document, '.online-zoo');
+    const songBird = selectorChecker(document, '.song-bird');
+    const fileManager = selectorChecker(document, '.file-manager');
+    const websocket = selectorChecker(document, '.websocket');
+    const crudApi = selectorChecker(document, '.crud-api');
+    const asyncRace = selectorChecker(document, '.async-race');
+    const newsApi = selectorChecker(document, '.news-api');
+
+    gemPuzzle.addEventListener('click', () => window.open('https://rolling-scopes-school.github.io/helgaathame-JSFE2022Q3/src/', '_blank'));
+    bomberman.addEventListener('click', () => window.open('https://bomberman2d.netlify.app/', '_blank'));
+    medicalCenter.addEventListener('click', () => window.open('https://medcine-ath.netlify.app/', '_blank'));
+    onlineStore.addEventListener('click', () => window.open('https://cadence-musical-instruments.netlify.app/home', '_blank'));
+    onlineZoo.addEventListener('click', () => window.open('https://rolling-scopes-school.github.io/helgaathame-JSFE2022Q3/online-zoo/', '_blank'));
+    songBird.addEventListener('click', () => window.open('https://rolling-scopes-school.github.io/helgaathame-JSFE2022Q3/my-app/dist/', '_blank'));
+    fileManager.addEventListener('click', () => window.open('https://github.com/HelgaAthame/file-manager/tree/file-manager', '_blank'));
+    websocket.addEventListener('click', () => window.open('https://github.com/HelgaAthame/websocket/tree/websocket', '_blank'));
+    crudApi.addEventListener('click', () => window.open('https://github.com/HelgaAthame/CRUD-api/tree/crud-api', '_blank'));
+    asyncRace.addEventListener('click', () => window.open('https://github.com/rolling-scopes-school/helgaathame-JSFE2022Q3/pull/45', '_blank'));
+    newsApi.addEventListener('click', () => window.open('https://github.com/rolling-scopes-school/helgaathame-JSFE2022Q3/pull/43', '_blank'));
+
   }
 }
