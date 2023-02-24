@@ -121,53 +121,6 @@ export class View {
         }
       }
 
-      /*Node.prototype.drawNode = function() {
-        var color = "rgba(200, 220, 250, " + this.brightness + ")";
-        if (ctx) {
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, 2 * this.radius + 2 * this.siblings.length / SIBLINGS_LIMIT, 0, circ);
-          ctx.fillStyle = color;
-          ctx.fill();
-        }
-      };*/
-
-      /*Node.prototype.drawConnections = function() {
-        for (var i = 0; i < this.siblings.length; i++) {
-          var color = "rgba(200, 220, 250, " + this.brightness + ")";
-          if (ctx) {
-            ctx.beginPath();
-            ctx.moveTo(this.x, this.y);
-            ctx.lineTo(this.siblings[i].x, this.siblings[i].y);
-            ctx.lineWidth = 1 - calcDistance(this, this.siblings[i]) / SENSITIVITY;
-            ctx.strokeStyle = color;
-            ctx.stroke();
-          }
-        }
-      };*/
-
-      /*Node.prototype.moveNode = function() {
-        this.energy -= 2;
-        if (this.energy < 1) {
-          this.energy = Math.random() * 100;
-          if (this.x - this.anchorX < -ANCHOR_LENGTH) {
-            this.vx = Math.random() * 2;
-          } else if (this.x - this.anchorX > ANCHOR_LENGTH) {
-            this.vx = Math.random() * -2;
-          } else {
-            this.vx = Math.random() * 4 - 2;
-          }
-          if (this.y - this.anchorY < -ANCHOR_LENGTH) {
-            this.vy = Math.random() * 2;
-          } else if (this.y - this.anchorY > ANCHOR_LENGTH) {
-            this.vy = Math.random() * -2;
-          } else {
-            this.vy = Math.random() * 4 - 2;
-          }
-        }
-        this.x += this.vx * this.energy / 100;
-        this.y += this.vy * this.energy / 100;
-      };*/
-
       function initNodes() {
         if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
         nodes = [];
@@ -305,6 +258,7 @@ export class View {
     const content = document.createElement('div');
     content.classList.add('content');
     content.innerHTML = `
+    <section class="column">
       <div class="block">
         <p class="p5">Firebase</p>
         <p class="p3">Vite</p>
@@ -334,6 +288,25 @@ export class View {
         <p class="p5">Performance<br>Optimization</p>
       </div>
       <div class="block"></div>
+    </section>
+
+
+    <section class="column">
+      <div class="block"><p class="p6">Hi!</div>
+      <div class="block"><p class="p7">My name is</p></div>
+      <div class="block"><p class="p9">OLGA Khmaruk</p></div>
+      <div class="block"><p class="p7">I'm from </p></div>
+      <div class="block"><p class="p6">Minsk</p></div>
+      <div class="block"><p class="p7">I'm looking for a full time job as a</p></div>
+      <div class="block"><p class="p8">JavaScript Front-End Developer</p></div>
+      <section class="info__wrapper">
+        <div class="info__photo"></div>
+      </section>
+      <div class="block"></div>
+    </section>
+
+
+    <section class="column">
       <div class="block">
         <p class="p4 file-manager">File Manager</p>
         <p class="p4 gem-puzzle">Gem Puzzle</p>
@@ -348,14 +321,20 @@ export class View {
         <p class="p3 song-bird">Song Bird</p>
         <p class="p4 online-zoo">Online Zoo</p>
       </div>
-      <div class="block"></div>
-      <section class="info__wrapper">
-        <div class="info__photo"></div>
-      </section>
-      <div class="block"></div>
-      <div class="block"></div>
-      <div class="block"></div>
-      <div class="block"></div>
+
+      <div class="block">
+        <p class="p4 seo-course">Pro SEO course</p>
+        <p class="p3 node-js-course">Node.JS RS School</p>
+        <p class="p5 university">University</p>
+        <p class="p2 javascript-course">JS Front End RS School</p>
+        <p class="p5 academy-of-science">Magistracy of the National Academy of Sciences</p>
+        <p class="p1 education">EDUCATION</p>
+        <p class="p5 design">Web Design course</p>
+        <p class="p3 react-course">React RS School</p>
+        <p class="p4 performance-optimization-course">Performance Optimization course</p>
+      </div>
+    </section>
+
     `;
     document.body.append(content);
   }
