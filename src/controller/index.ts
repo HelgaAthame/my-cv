@@ -12,6 +12,7 @@ export class Controller {
   addListeners() {
     this.projectLinks();
     this.educationLinks();
+    this.animatePhoto();
   }
 
   projectLinks() {
@@ -55,5 +56,44 @@ export class Controller {
     academyOfScience.addEventListener('click', () => window.open('https://www.ipnk.basnet.by/', '_blank'));
     reactCourse.addEventListener('click', () => window.open('https://rs.school/react/', '_blank'));
     performanceOptimization.addEventListener('click', () => window.open('https://training.by/', '_blank'));
+  }
+
+  animatePhoto() {
+    const photoWrapper = selectorChecker(document, '.info__wrapper') as HTMLElement;
+    const photo = selectorChecker(document, '.info__photo') as HTMLElement;
+
+    let requestId: number;
+
+    photo.addEventListener('mouseover', () => {
+
+      requestId = requestAnimationFrame(() => {
+        photoWrapper.style.borderWidth = '3.2rem';
+        photoWrapper.style.margin = '-3rem';
+        photoWrapper.style.borderColor = 'rgba(200, 220, 250, 0)';
+
+        photo.style.filter = 'none';
+        photo.style.width = '12rem';
+        photo.style.height = '12rem';
+        photoWrapper.style.width = '12rem';
+        photoWrapper.style.height = '12rem';
+        photo.style.backgroundSize = '12rem';
+      });
+    });
+
+    photo.addEventListener('mouseleave', () => {
+      requestId = requestAnimationFrame(() => {
+        photoWrapper.style.borderWidth = '0.2rem';
+        photoWrapper.style.margin = '1rem';
+        photoWrapper.style.borderColor = 'rgba(200, 220, 250, 1)';
+
+        photo.style.filter = 'grayscale(50%) opacity(0.3) contrast(2)';
+        photo.style.width = '10rem';
+        photo.style.height = '10rem';
+        photoWrapper.style.width = '10rem';
+        photoWrapper.style.height = '10rem';
+        photo.style.backgroundSize = '10rem';
+      });
+    });
+
   }
 }
