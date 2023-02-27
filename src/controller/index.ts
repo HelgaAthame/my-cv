@@ -13,6 +13,9 @@ export class Controller {
     this.projectLinks();
     this.educationLinks();
     this.animatePhoto();
+    this.animateText();
+    this.visabilityText();
+    this.tooltips();
   }
 
   projectLinks() {
@@ -95,5 +98,110 @@ export class Controller {
       });
     });
 
+  }
+
+  animateText() {
+    const paragraphs: NodeListOf<HTMLElement> = document.querySelectorAll('.flying');
+
+    paragraphs.forEach( p => {
+
+      let up: boolean = true;
+
+      (function setAnim() {
+
+        const time: number = Math.floor(Math.random() * 1000);
+
+        let marg = Number(Math.random().toFixed(2));
+
+        const multiplier = p.classList.contains('p1') ? 3
+          : p.classList.contains('p2') ? 3.5
+          : p.classList.contains('p3') ? 4
+          : p.classList.contains('p4') ? 4.5
+          : p.classList.contains('p5') ? 5
+          : 1;
+
+        setTimeout(anim, time);
+        function anim() {
+          p.style.paddingTop = `${marg}rem`;
+          //p.style.paddingBottom = `${1 - marg}rem`;
+          if (marg > 1.5) up = false;
+          if (marg < 0) up = true;
+          marg = Number((up ? marg + 0.01 * multiplier : marg - 0.01 * multiplier).toFixed(2));
+          requestAnimationFrame(anim);
+        }
+      })();
+
+    })
+  }
+
+  visabilityText() {
+    const blocks: NodeListOf<HTMLElement> = document.querySelectorAll('.block');
+
+    blocks.forEach( block => {
+      console.log('block');
+      const childs = Array.from(block.children);
+
+      const p1 = childs.find( child => child.classList.contains('p1'));
+
+      if (p1) {
+        block.addEventListener('mouseover', () => {
+          console.log('mouse over');
+          childs.forEach( child => child.classList.remove('dontDisplay'));
+        })
+
+        block.addEventListener('mouseout', () => {
+          console.log('mouse out');
+          childs.forEach( child => child.classList.contains('p1') ? child.classList.add('displayIt') : child.classList.add('dontDisplay'));
+        })
+      }
+
+    });
+
+  }
+
+  tooltips() {
+    const skills: NodeListOf<HTMLParagraphElement> = document.querySelectorAll('.skill');
+
+    skills.forEach( p => p.addEventListener('mouseover', () => {
+      const tooltipElem = document.createElement('div');
+      tooltipElem.className = 'tooltip';
+      const innerData = p.dataset.tooltip;
+      if (innerData) tooltipElem.innerHTML = innerData;
+      tooltipElem.style.opacity = '0';
+      document.body.append(tooltipElem);
+
+      let x = 0;
+      (function anim() {
+        x = x + 0.1;
+        tooltipElem.style.opacity = x.toString();
+        if ( x < 1 ) requestAnimationFrame(anim);
+      })();
+
+      let coords = p.getBoundingClientRect();
+
+      let left = coords.left + (p.offsetWidth - tooltipElem.offsetWidth) / 2;
+      if (left < 0) left = 0; // не заезжать за левый край окна
+
+      let top = coords.top - tooltipElem.offsetHeight - 5;
+      if (top < 0) { // если подсказка не помещается сверху, то отображать её снизу
+        top = coords.top + p.offsetHeight + 5;
+      }
+
+      tooltipElem.style.left = left + 'px';
+      tooltipElem.style.top = top + 'px';
+
+      p.addEventListener('mouseout', () => {
+        let x = 1;
+        (function anim() {
+          x = x - 0.1;
+          tooltipElem.style.opacity = x.toString();
+          if ( x > 0 ) {
+            requestAnimationFrame(anim)
+          } else {
+            tooltipElem.remove();
+          }
+        })();
+      });
+    }))
   }
 }

@@ -260,32 +260,33 @@ export class View {
     content.innerHTML = `
     <section class="column">
       <div class="block">
-        <p class="p5">Firebase</p>
-        <p class="p3">Vite</p>
-        <p class="p5">VSCode</p>
-        <p class="p4">GitHub</p>
-        <p class="p5">MVC</p>
-        <p class="p4">ESLint</p>
-        <p class="p5">SEO</p>
-        <p class="p3">SASS</p>
-        <p class="p5">DevTools</p>
-        <p class="p5">Tilewind</p>
-        <p class="p1">MY SKILLS</p>
-        <p class="p5">OOP</p>
-        <p class="p3">TypeScript</p>
-        <p class="p5">Photoshop</p>
-        <p class="p4">Webpack</p>
-        <p class="p5">Figma</p>
-        <p class="p3">Node.js</p>
-        <p class="p5">Agile</p>
-        <p class="p2">JavaScript</p2>
-        <p class="p5">Scrum</p>
-        <p class="p3">CSS</p>
-        <p class="p5">Kanban</p>
-        <p class="p3">HTML</p>
-        <p class="p5">Markdown</p>
-        <p class="p4">Netlify</p>
-        <p class="p5">Performance<br>Optimization</p>
+        <p class="p5 flying dontDisplay skill" data-tooltip="">Firebase</p>
+        <p class="p2 flying dontDisplay skill" data-tooltip="">React</p2>
+        <p class="p5 flying dontDisplay skill" data-tooltip="">VSCode</p>
+        <p class="p3 flying dontDisplay skill" data-tooltip="">Vite</p>
+        <p class="p4 flying dontDisplay skill" data-tooltip="">GitHub</p>
+        <p class="p5 flying dontDisplay skill" data-tooltip="">MVC</p>
+        <p class="p4 flying dontDisplay skill" data-tooltip="">ESLint</p>
+        <p class="p5 flying dontDisplay skill" data-tooltip="">SEO</p>
+        <p class="p3 flying dontDisplay skill" data-tooltip="">SASS</p>
+        <p class="p5 flying dontDisplay skill" data-tooltip="">DevTools</p>
+        <p class="p5 flying dontDisplay skill" data-tooltip="">Tilewind</p>
+        <p class="p1 flying">MY&nbsp;SKILLS</p>
+        <p class="p5 flying dontDisplay skill" data-tooltip="">OOP</p>
+        <p class="p3 flying dontDisplay skill" data-tooltip="">TypeScript</p>
+        <p class="p5 flying dontDisplay skill" data-tooltip="">Photoshop</p>
+        <p class="p4 flying dontDisplay skill" data-tooltip="">Webpack</p>
+        <p class="p5 flying dontDisplay skill" data-tooltip="">Figma</p>
+        <p class="p3 flying dontDisplay skill" data-tooltip="">Node.js</p>
+        <p class="p5 flying dontDisplay skill" data-tooltip="">Agile</p>
+        <p class="p2 flying dontDisplay skill" data-tooltip="">JavaScript</p2>
+        <p class="p5 flying dontDisplay skill" data-tooltip="">Scrum</p>
+        <p class="p3 flying dontDisplay skill" data-tooltip="">CSS</p>
+        <p class="p5 flying dontDisplay skill" data-tooltip="">Kanban</p>
+        <p class="p3 flying dontDisplay skill" data-tooltip="">HTML</p>
+        <p class="p5 flying dontDisplay skill" data-tooltip="">Markdown</p>
+        <p class="p4 flying dontDisplay skill" data-tooltip="">Netlify</p>
+        <p class="p5 flying dontDisplay skill" data-tooltip="">Performance<br>Optimization</p>
       </div>
       <div class="block"></div>
     </section>
@@ -308,30 +309,30 @@ export class View {
 
     <section class="column">
       <div class="block">
-        <p class="p4 file-manager">File Manager</p>
-        <p class="p4 gem-puzzle">Gem Puzzle</p>
-        <p class="p5 crud-api">CRUD API</p>
-        <p class="p2 bomberman">Bomberman</p>
-        <p class="p5 websocket">Websocket Backend</p>
-        <p class="p5 medical-center">Medical Center</p>
-        <p class="p3 online-store">Online Store</p>
-        <p class="p5 async-race">Async Race</p>
-        <p class="p1">MY PROJECTS</p>
-        <p class="p5 news-api">News Api</p>
-        <p class="p3 song-bird">Song Bird</p>
-        <p class="p4 online-zoo">Online Zoo</p>
+        <p class="p4 file-manager flying dontDisplay">File Manager</p>
+        <p class="p4 gem-puzzle flying dontDisplay">Gem Puzzle</p>
+        <p class="p5 crud-api flying dontDisplay">CRUD API</p>
+        <p class="p2 bomberman flying dontDisplay">Bomberman</p>
+        <p class="p5 websocket flying dontDisplay">Websocket Backend</p>
+        <p class="p5 medical-center flying dontDisplay">Medical Center</p>
+        <p class="p3 online-store flying dontDisplay">Online Store</p>
+        <p class="p5 async-race flying dontDisplay">Async Race</p>
+        <p class="p1 flying">MY&nbsp;PROJECTS</p>
+        <p class="p5 news-api flying dontDisplay">News Api</p>
+        <p class="p3 song-bird flying dontDisplay">Song Bird</p>
+        <p class="p4 online-zoo flying dontDisplay">Online Zoo</p>
       </div>
 
       <div class="block">
-        <p class="p4 seo-course">Pro SEO course</p>
-        <p class="p3 node-js-course">Node.JS RS School</p>
-        <p class="p5 university">University</p>
-        <p class="p2 javascript-course">JS Front End RS School</p>
-        <p class="p5 academy-of-science">Magistracy of the National Academy of Sciences</p>
-        <p class="p1 education">EDUCATION</p>
-        <p class="p5 design">Web Design course</p>
-        <p class="p3 react-course">React RS School</p>
-        <p class="p4 performance-optimization-course">Performance Optimization course</p>
+        <p class="p4 seo-course flying dontDisplay">Pro SEO course</p>
+        <p class="p3 node-js-course flying dontDisplay">Node.JS RS School</p>
+        <p class="p5 university flying dontDisplay">University</p>
+        <p class="p2 javascript-course flying dontDisplay">JS Front End RS School</p>
+        <p class="p5 academy-of-science flying dontDisplay">Magistracy of the National Academy of Sciences</p>
+        <p class="p1 education flying">EDUCATION</p>
+        <p class="p5 design flying dontDisplay">Web Design course</p>
+        <p class="p3 react-course flying dontDisplay">React RS School</p>
+        <p class="p4 performance-optimization-course flying dontDisplay">Performance Optimization course</p>
       </div>
     </section>
 

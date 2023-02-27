@@ -11,6 +11,7 @@ body {
   width: 100%;
   height: 100%;
   font-family: Onset;
+  transition: 1s;
   canvas {
     position: relative;
     top: 0;
@@ -69,31 +70,35 @@ body {
       margin: 0;
       padding:0;
       p {
+        box-sizing: border-box;
         cursor: pointer;
         padding: 0;
-        margin: 0;
+        margin: 0 1rem;
         text-align: center;
+        background-color: brown;
+        transition: 1s;
       }
       .p1 {
         cursor: default;
         font-size: 3.5rem;
-        margin: 0.5rem;
+        height: 5rem;
+
       }
       .p2 {
         font-size: 2.5rem;
-        margin: 1rem 1rem 0.5rem;
+        height: 4.5rem;
       }
       .p3 {
         font-size: 1.5rem;
-        margin: 0.5rem 1rem 1rem;
+        height: 3.5rem;
       }
       .p4 {
         font-size: 1rem;
-        margin: 1.25rem 1rem 0.5rem;
+        height: 3rem;
       }
       .p5 {
         font-size: 1rem;
-        margin: 0.5rem 1rem 1.25rem;
+        height: 2.5rem;
       }
       .p6 {
         font-size: 2rem;
@@ -110,6 +115,12 @@ body {
       }
       .education, .university, .design {
         cursor: default;
+      }
+      .displayIt {
+        opacity: 1;
+      }
+      .dontDisplay {
+        opacity: 0;
       }
     }
 
@@ -130,57 +141,25 @@ body {
         border-radius: 50%;
         filter: grayscale(50%) opacity(0.3) contrast(2);
         transition: 1000ms;
-        /*&:hover {
-          animation-name: photo-anim;
-          animation-iteration-count: 1;
-          animation-duration: 1s;
-          animation-fill-mode: forwards;
-        }*/
-        /*&:hover {
-          filter: none;
-          box-shadow: 0 0 5rem 0.5rem $text, 0 0 2rem 0.5rem $color inset;
-        }*/
-      }
-      /*&:hover {
-        animation-name: border-anim;
-        animation-iteration-count: 1;
-        animation-duration: 1s;
-        animation-fill-mode: forwards;
-      }*/
-      /*&:hover {
-        margin: 0;
-        border-width: 1.5rem;
-        border-color: rgba(200, 220, 250, 0);
-      }*/
-      @keyframes border-anim {
-        from {
-          margin: 1rem;
-          border-width: 0.2rem;
-          border-color: $text;
-        }
 
-        to {
-          margin: 0;
-          border-width: 1.5rem;
-          border-color: rgba(200, 220, 250, 0);
-        }
       }
 
-      @keyframes photo-anim {
-        from {
-          box-shadow: none;
-          filter: grayscale(50%) opacity(0.3) contrast(2);
-        }
-
-        to {
-          filter: none;
-          box-shadow: 0 0 5rem 0.5rem $text, 0 0 2rem 0.5rem $color inset;
-        }
-      }
     }
     }
 
+  }
 
+  .tooltip {
+    transition: 1s;
+    background-color: rgba($color, 0.75);
+    position: fixed;
+      padding: 10px 20px;
+      border: 1px solid $text;
+      border-radius: 4px;
+      text-align: center;
+      font-size: $basic-padding;
+      color: $text;
+      box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
   }
 }
 
@@ -192,38 +171,6 @@ body {
   box-sizing: border-box;
 }*/
 
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes glitter {
-  0% {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-  25% {
-    transform: scale(1.6);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-  75% {
-    transform: scale(1.6);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-}
 
 @font-face {
   font-family: Onset;
