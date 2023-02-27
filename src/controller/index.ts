@@ -7,15 +7,21 @@ export class Controller {
 
   control() {
     this.addListeners();
+    this.addAnimation();
+    this.tooltips();
   }
 
   addListeners() {
     this.projectLinks();
     this.educationLinks();
+    this.contactLinks();
+  }
+
+  addAnimation() {
     this.animatePhoto();
     this.animateText();
     this.visabilityText();
-    this.tooltips();
+    this.highlightPargs();
   }
 
   projectLinks() {
@@ -61,15 +67,27 @@ export class Controller {
     performanceOptimization.addEventListener('click', () => window.open('https://training.by/', '_blank'));
   }
 
+  contactLinks() {
+    const codewars = selectorChecker(document, '.codewars');
+    codewars.addEventListener('click', () => window.open('https://www.codewars.com/users/rsschool_9ece1d706006f744', '_blank'));
+    const github = selectorChecker(document, '.github');
+    github.addEventListener('click', () => window.open('https://github.com/HelgaAthame', '_blank'));
+
+    const linkedin = selectorChecker(document, '.linkedin');
+    //linkedin.addEventListener('click', () => window.open('#', '_blank'));
+
+    const telegram = selectorChecker(document, '.telegram');
+    telegram.addEventListener('click', () => window.open('https://t.me/HelgaAthame', '_blank'));
+
+  }
+
   animatePhoto() {
     const photoWrapper = selectorChecker(document, '.info__wrapper') as HTMLElement;
     const photo = selectorChecker(document, '.info__photo') as HTMLElement;
 
-    let requestId: number;
-
     photo.addEventListener('mouseover', () => {
 
-      requestId = requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
         photoWrapper.style.borderWidth = '3.2rem';
         photoWrapper.style.margin = '-3rem';
         photoWrapper.style.borderColor = 'rgba(200, 220, 250, 0)';
@@ -77,6 +95,7 @@ export class Controller {
         photo.style.filter = 'none';
         photo.style.width = '12rem';
         photo.style.height = '12rem';
+        photo.style.boxShadow = '0 0 15px 1px rgba(50, 55, 65, 0.5), 0 0 4rem 0.5rem rgba(200, 220, 250, 0.5), -1rem -1rem 4rem 1rem #040812 inset, -2px -2px 10px 2px #040812 inset ';
         photoWrapper.style.width = '12rem';
         photoWrapper.style.height = '12rem';
         photo.style.backgroundSize = '12rem';
@@ -84,7 +103,7 @@ export class Controller {
     });
 
     photo.addEventListener('mouseleave', () => {
-      requestId = requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
         photoWrapper.style.borderWidth = '0.2rem';
         photoWrapper.style.margin = '1rem';
         photoWrapper.style.borderColor = 'rgba(200, 220, 250, 1)';
@@ -95,6 +114,7 @@ export class Controller {
         photoWrapper.style.width = '10rem';
         photoWrapper.style.height = '10rem';
         photo.style.backgroundSize = '10rem';
+        photo.style.boxShadow = 'none';
       });
     });
 
@@ -160,9 +180,9 @@ export class Controller {
   }
 
   tooltips() {
-    const skills: NodeListOf<HTMLParagraphElement> = document.querySelectorAll('.skill');
+    const withTooltips: NodeListOf<HTMLParagraphElement> = document.querySelectorAll('.with-tooltip');
 
-    skills.forEach( p => p.addEventListener('mouseover', () => {
+    withTooltips.forEach( p => p.addEventListener('mouseover', () => {
       const tooltipElem = document.createElement('div');
       tooltipElem.className = 'tooltip';
       const innerData = p.dataset.tooltip;
@@ -172,7 +192,7 @@ export class Controller {
 
       let x = 0;
       (function anim() {
-        x = x + 0.1;
+        x = x + 0.2;
         tooltipElem.style.opacity = x.toString();
         if ( x < 1 ) requestAnimationFrame(anim);
       })();
@@ -193,7 +213,7 @@ export class Controller {
       p.addEventListener('mouseout', () => {
         let x = 1;
         (function anim() {
-          x = x - 0.1;
+          x = x - 0.2;
           tooltipElem.style.opacity = x.toString();
           if ( x > 0 ) {
             requestAnimationFrame(anim)
@@ -203,5 +223,18 @@ export class Controller {
         })();
       });
     }))
+  }
+
+  highlightPargs() {
+    const parags = document.querySelectorAll('p');
+
+    parags.forEach( p => {
+      p.addEventListener('mouseover', () => {
+        p.style.textShadow = '1px 1px 2px midnightblue, 0 0 1em rgb(200, 220, 250), 0 0 0.2em rgb(200, 220, 250) ';
+      })
+      p.addEventListener('mouseout', () => {
+        p.style.textShadow = 'none';
+      })
+    })
   }
 }

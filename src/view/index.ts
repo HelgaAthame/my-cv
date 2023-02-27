@@ -74,7 +74,7 @@ export class View {
           this.brightness = 0;
         }
         drawNode () {
-          var color = "rgba(200, 220, 250, " + this.brightness + ")";
+          var color = "rgba(100, 110, 125, " + this.brightness + ")";
           if (ctx) {
             ctx.beginPath();
             ctx.arc(this.x, this.y, 2 * this.radius + 2 * this.siblings.length / SIBLINGS_LIMIT, 0, circ);
@@ -85,7 +85,7 @@ export class View {
 
         drawConnections () {
           for (var i = 0; i < this.siblings.length; i++) {
-            var color = "rgba(200, 220, 250, " + this.brightness + ")";
+            var color = "rgba(100, 110, 125, " + this.brightness + ")";
             if (ctx) {
               ctx.beginPath();
               ctx.moveTo(this.x, this.y);
@@ -260,49 +260,58 @@ export class View {
     content.innerHTML = `
     <section class="column">
       <div class="block">
-        <p class="p5 flying dontDisplay skill" data-tooltip="">Firebase</p>
-        <p class="p2 flying dontDisplay skill" data-tooltip="">React</p2>
-        <p class="p5 flying dontDisplay skill" data-tooltip="">VSCode</p>
-        <p class="p3 flying dontDisplay skill" data-tooltip="">Vite</p>
-        <p class="p4 flying dontDisplay skill" data-tooltip="">GitHub</p>
-        <p class="p5 flying dontDisplay skill" data-tooltip="">MVC</p>
-        <p class="p4 flying dontDisplay skill" data-tooltip="">ESLint</p>
-        <p class="p5 flying dontDisplay skill" data-tooltip="">SEO</p>
-        <p class="p3 flying dontDisplay skill" data-tooltip="">SASS</p>
-        <p class="p5 flying dontDisplay skill" data-tooltip="">DevTools</p>
-        <p class="p5 flying dontDisplay skill" data-tooltip="">Tilewind</p>
+        <p class="p5 flying dontDisplay with-tooltip" data-tooltip="database in projects">Firebase</p>
+        <p class="p2 flying dontDisplay with-tooltip" data-tooltip="studying in process">React</p2>
+        <p class="p5 flying dontDisplay with-tooltip" data-tooltip="more then 20 projects">VSCode</p>
+        <p class="p3 flying dontDisplay with-tooltip" data-tooltip="develop and build my apps with Vite">Vite</p>
+        <p class="p4 flying dontDisplay with-tooltip" data-tooltip="work with console">GitHub</p>
+        <p class="p5 flying dontDisplay with-tooltip" data-tooltip="use always">MVC</p>
+        <p class="p4 flying dontDisplay with-tooltip" data-tooltip="helps to write good code">ESLint</p>
+        <p class="p5 flying dontDisplay with-tooltip" data-tooltip="worked with real website">SEO</p>
+        <p class="p3 flying dontDisplay with-tooltip" data-tooltip="use to write styles">SASS</p>
+        <p class="p5 flying dontDisplay with-tooltip" data-tooltip="everyday using">DevTools</p>
+        <p class="p5 flying dontDisplay with-tooltip" data-tooltip="tried it in one project">Tilewind</p>
         <p class="p1 flying">MY&nbsp;SKILLS</p>
-        <p class="p5 flying dontDisplay skill" data-tooltip="">OOP</p>
-        <p class="p3 flying dontDisplay skill" data-tooltip="">TypeScript</p>
-        <p class="p5 flying dontDisplay skill" data-tooltip="">Photoshop</p>
-        <p class="p4 flying dontDisplay skill" data-tooltip="">Webpack</p>
-        <p class="p5 flying dontDisplay skill" data-tooltip="">Figma</p>
-        <p class="p3 flying dontDisplay skill" data-tooltip="">Node.js</p>
-        <p class="p5 flying dontDisplay skill" data-tooltip="">Agile</p>
-        <p class="p2 flying dontDisplay skill" data-tooltip="">JavaScript</p2>
-        <p class="p5 flying dontDisplay skill" data-tooltip="">Scrum</p>
-        <p class="p3 flying dontDisplay skill" data-tooltip="">CSS</p>
-        <p class="p5 flying dontDisplay skill" data-tooltip="">Kanban</p>
-        <p class="p3 flying dontDisplay skill" data-tooltip="">HTML</p>
-        <p class="p5 flying dontDisplay skill" data-tooltip="">Markdown</p>
-        <p class="p4 flying dontDisplay skill" data-tooltip="">Netlify</p>
-        <p class="p5 flying dontDisplay skill" data-tooltip="">Performance<br>Optimization</p>
+        <p class="p5 flying dontDisplay with-tooltip" data-tooltip="I like to work with classes">OOP</p>
+        <p class="p3 flying dontDisplay with-tooltip" data-tooltip="develop all my project with TS">TypeScript</p>
+        <p class="p5 flying dontDisplay with-tooltip" data-tooltip="15 years of using">Photoshop</p>
+        <p class="p4 flying dontDisplay with-tooltip" data-tooltip="able to write proper config">Webpack</p>
+        <p class="p5 flying dontDisplay with-tooltip" data-tooltip="pixel perfect HTML writing">Figma</p>
+        <p class="p3 flying dontDisplay with-tooltip" data-tooltip="course in progress">Node.js</p>
+        <p class="p5 flying dontDisplay with-tooltip" data-tooltip="my credo">Agile</p>
+        <p class="p2 flying dontDisplay with-tooltip" data-tooltip="more 20&nbsp;000 lines of code">JavaScript</p2>
+        <p class="p5 flying dontDisplay with-tooltip" data-tooltip="nice practice">Scrum</p>
+        <p class="p3 flying dontDisplay with-tooltip" data-tooltip="up-to-date knowledge">CSS</p>
+        <p class="p5 flying dontDisplay with-tooltip" data-tooltip="use trello">Kanban</p>
+        <p class="p3 flying dontDisplay with-tooltip" data-tooltip="up-to-date knowledge">HTML</p>
+        <p class="p5 flying dontDisplay with-tooltip" data-tooltip="use in readme.md and pull requests">Markdown</p>
+        <p class="p4 flying dontDisplay with-tooltip" data-tooltip="able to deploy project using CLI">Netlify</p>
+        <p class="p5 flying dontDisplay with-tooltip" data-tooltip="finished course">Performance<br>Optimization</p>
       </div>
-      <div class="block"></div>
+      <div class="block">
+        <p data-tooltip="3 kyu" class="p5 codewars flying dontDisplay with-tooltip">CodeWars</p>
+        <p data-tooltip="athamethedarkest@gmail.com" class="p3 email flying dontDisplay with-tooltip">E-MAIL</p>
+        <p class="p4 github flying dontDisplay">GitHub</p>
+        <p class="p1 contacts flying">MY&nbsp;CONTACTS</p>
+        <p data-tooltip="creating profile in process" class="p5 linkedin flying dontDisplay with-tooltip">LinkedIn</p>
+        <p data-tooltip="+375(29)601-71-88" class="p2 phone flying dontDisplay with-tooltip">Phone</p>
+        <p data-tooltip="#1561" class="p5 design flying dontDisplay with-tooltip">Discord</p>
+        <p data-tooltip="https://t.me/HelgaAthame" class="p4 telegram flying dontDisplay">Telegram</p>
+      </div>
     </section>
 
 
     <section class="column">
       <div class="block"><p class="p6">Hi!</div>
       <div class="block"><p class="p7">My name is</p></div>
-      <div class="block"><p class="p9">OLGA Khmaruk</p></div>
+      <div class="block"><p class="p9">OLGA Khmaruk</p>
+      </div><section class="info__wrapper">
+        <div class="info__photo"></div>
+      </section>
       <div class="block"><p class="p7">I'm from </p></div>
       <div class="block"><p class="p6">Minsk</p></div>
       <div class="block"><p class="p7">I'm looking for a full time job as a</p></div>
       <div class="block"><p class="p8">JavaScript Front-End Developer</p></div>
-      <section class="info__wrapper">
-        <div class="info__photo"></div>
-      </section>
       <div class="block"></div>
     </section>
 
@@ -314,10 +323,10 @@ export class View {
         <p class="p5 crud-api flying dontDisplay">CRUD API</p>
         <p class="p2 bomberman flying dontDisplay">Bomberman</p>
         <p class="p5 websocket flying dontDisplay">Websocket Backend</p>
+        <p class="p1 flying">MY&nbsp;PROJECTS</p>
         <p class="p5 medical-center flying dontDisplay">Medical Center</p>
         <p class="p3 online-store flying dontDisplay">Online Store</p>
         <p class="p5 async-race flying dontDisplay">Async Race</p>
-        <p class="p1 flying">MY&nbsp;PROJECTS</p>
         <p class="p5 news-api flying dontDisplay">News Api</p>
         <p class="p3 song-bird flying dontDisplay">Song Bird</p>
         <p class="p4 online-zoo flying dontDisplay">Online Zoo</p>
@@ -326,10 +335,10 @@ export class View {
       <div class="block">
         <p class="p4 seo-course flying dontDisplay">Pro SEO course</p>
         <p class="p3 node-js-course flying dontDisplay">Node.JS RS School</p>
-        <p class="p5 university flying dontDisplay">University</p>
         <p class="p2 javascript-course flying dontDisplay">JS Front End RS School</p>
-        <p class="p5 academy-of-science flying dontDisplay">Magistracy of the National Academy of Sciences</p>
+        <p class="p5 university flying dontDisplay">University</p>
         <p class="p1 education flying">EDUCATION</p>
+        <p class="p5 academy-of-science flying dontDisplay">Magistracy of the National Academy of Sciences</p>
         <p class="p5 design flying dontDisplay">Web Design course</p>
         <p class="p3 react-course flying dontDisplay">React RS School</p>
         <p class="p4 performance-optimization-course flying dontDisplay">Performance Optimization course</p>
