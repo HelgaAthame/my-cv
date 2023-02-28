@@ -241,9 +241,10 @@ export class Controller {
 
   mediaScreen() {
     window.addEventListener(`resize`, () => {
-      this.mediaScreen();
+      requestAnimationFrame(this.mediaScreen);
     }, false);
 
+    const canvas = selectorChecker(document, 'canvas') as HTMLDivElement;
     const content = selectorChecker(document, '.content') as HTMLDivElement;
     const cols: NodeListOf<HTMLDivElement> = document.querySelectorAll('.column');
     const one = selectorChecker(document, '.one') as HTMLDivElement;
@@ -252,11 +253,9 @@ export class Controller {
     const blocks: NodeListOf<HTMLDivElement> = document.querySelectorAll('.block');
     const mediaSmall = window.matchMedia('(max-width: 1200px)');
     const mediaBig = window.matchMedia('(min-width: 1200px)');
+
     if (mediaSmall.matches) {
       document.body.style.overflowY = 'scroll';
-      const h = getComputedStyle(content).height;
-      const space = selectorChecker(document, '.space') as HTMLDivElement;
-      space.style.height = h;
       content.innerHTML = ``;
       cols.forEach( col => col.style.width = '95vw' );
       blocks.forEach( block => block.style.width = '95vw' );
@@ -275,5 +274,10 @@ export class Controller {
       content.append(two);
       content.append(three);
     }
+    const { height, width } = getComputedStyle(content);
+    const space = selectorChecker(document, '.space') as HTMLDivElement;
+    space.style.height = height;
+    canvas.style.height = height;
+    canvas.style.width = width;
   }
 }

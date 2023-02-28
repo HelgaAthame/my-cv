@@ -23,7 +23,7 @@ export class View {
 
       // how close next node must be to activate connection (in px)
       // shorter distance == better connection (line width)
-      const SENSITIVITY = 50; //100
+      const SENSITIVITY = 55; //100
       // note that siblings limit is not 'accurate' as the node can actually have more connections than this value that's because the node accepts sibling nodes with no regard to their current connections this is acceptable because potential fix would not result in significant visual difference
       // more siblings == bigger node
       const SIBLINGS_LIMIT = 50;
@@ -226,7 +226,7 @@ export class View {
     space.classList.add('space');
     document.body.append(space);
 
-    let limit = 1000; //1001
+    let limit = 1000;
 
    const stars = {
     render: function () {
