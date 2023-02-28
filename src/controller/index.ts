@@ -9,6 +9,7 @@ export class Controller {
     this.addListeners();
     this.addAnimation();
     this.tooltips();
+    this.mediaScreen();
   }
 
   addListeners() {
@@ -73,7 +74,7 @@ export class Controller {
     const github = selectorChecker(document, '.github');
     github.addEventListener('click', () => window.open('https://github.com/HelgaAthame', '_blank'));
 
-    const linkedin = selectorChecker(document, '.linkedin');
+    //const linkedin = selectorChecker(document, '.linkedin');
     //linkedin.addEventListener('click', () => window.open('#', '_blank'));
 
     const telegram = selectorChecker(document, '.telegram');
@@ -95,7 +96,7 @@ export class Controller {
         photo.style.filter = 'none';
         photo.style.width = '12rem';
         photo.style.height = '12rem';
-        photo.style.boxShadow = '0 0 15px 1px rgba(50, 55, 65, 0.5), 0 0 4rem 0.5rem rgba(200, 220, 250, 0.5), -1rem -1rem 4rem 1rem #040812 inset, -2px -2px 10px 2px #040812 inset ';
+        photo.style.boxShadow = '0 0 15px 1px rgba(50, 55, 65, 0.5), 0 0 4rem 0.5rem rgba(200, 220, 250, 0.5), -1rem -1rem 4rem 1rem #040812 inset, -2px -2px 10px 2px #040812 inset';
         photoWrapper.style.width = '12rem';
         photoWrapper.style.height = '12rem';
         photo.style.backgroundSize = '12rem';
@@ -236,5 +237,40 @@ export class Controller {
         p.style.textShadow = 'none';
       })
     })
+  }
+
+  mediaScreen() {
+    window.addEventListener(`resize`, () => {
+      this.mediaScreen();
+    }, false);
+
+    const content = selectorChecker(document, '.content') as HTMLDivElement;
+    const cols: NodeListOf<HTMLDivElement> = document.querySelectorAll('.column');
+    const one = selectorChecker(document, '.one') as HTMLDivElement;
+    const two = selectorChecker(document, '.two') as HTMLDivElement;
+    const three = selectorChecker(document, '.three') as HTMLDivElement;
+    const blocks: NodeListOf<HTMLDivElement> = document.querySelectorAll('.block');
+    const mediaSmall = window.matchMedia('(max-width: 1200px)');
+    const mediaBig = window.matchMedia('(min-width: 1200px)');
+    if (mediaSmall.matches) {
+      document.body.style.overflowY = 'scroll';
+      content.innerHTML = ``;
+      cols.forEach( col => col.style.width = '95vw' );
+      blocks.forEach( block => block.style.width = '95vw' );
+      content.style.flexDirection = 'column';
+      content.append(two);
+      content.append(one);
+      content.append(three);
+    }
+    if (mediaBig.matches) {
+    document.body.style.overflowY = 'hidden';
+      content.innerHTML = ``;
+      cols.forEach( col => col.style.width = '33vw' );
+      blocks.forEach( block => block.style.width = '33vw' );
+      content.style.flexDirection = 'row';
+      content.append(one);
+      content.append(two);
+      content.append(three);
+    }
   }
 }

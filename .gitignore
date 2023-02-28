@@ -1,2 +1,5 @@
 skills.txt
 node_modules
+
+# Local Netlify folder
+.netlify

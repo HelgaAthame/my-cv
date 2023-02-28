@@ -258,7 +258,7 @@ export class View {
     const content = document.createElement('div');
     content.classList.add('content');
     content.innerHTML = `
-    <section class="column">
+    <section class="column one">
       <div class="block">
         <p class="p5 flying dontDisplay with-tooltip" data-tooltip="database in projects">Firebase</p>
         <p class="p2 flying dontDisplay with-tooltip" data-tooltip="studying in process">React</p2>
@@ -301,7 +301,7 @@ export class View {
     </section>
 
 
-    <section class="column">
+    <section class="column two">
       <div class="block"><p class="p6">Hi!</div>
       <div class="block"><p class="p7">My name is</p></div>
       <div class="block"><p class="p9">OLGA Khmaruk</p>
@@ -316,7 +316,7 @@ export class View {
     </section>
 
 
-    <section class="column">
+    <section class="column three">
       <div class="block">
         <p class="p4 file-manager flying dontDisplay">File Manager</p>
         <p class="p4 gem-puzzle flying dontDisplay">Gem Puzzle</p>
