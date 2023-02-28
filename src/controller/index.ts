@@ -80,11 +80,18 @@ export class Controller {
     const telegram = selectorChecker(document, '.telegram');
     telegram.addEventListener('click', () => window.open('https://t.me/HelgaAthame', '_blank'));
 
+    const gitIcon = selectorChecker(document, '.github-icon');
+    gitIcon.addEventListener('click', () => window.open('https://github.com/HelgaAthame', '_blank'));
+
+    const linkedinIcon = selectorChecker(document, '.linkedin-icon');
+    linkedinIcon.addEventListener('click', () => window.open('https://www.linkedin.com/in/olga-k-aa9054220/', '_blank'));
+
   }
 
   animatePhoto() {
     const photoWrapper = selectorChecker(document, '.info__wrapper') as HTMLElement;
     const photo = selectorChecker(document, '.info__photo') as HTMLElement;
+    const icons: NodeListOf<HTMLDivElement> = document.querySelectorAll('.mini-col');
 
     photo.addEventListener('mouseover', () => {
 
@@ -100,6 +107,12 @@ export class Controller {
         photoWrapper.style.width = '12rem';
         photoWrapper.style.height = '12rem';
         photo.style.backgroundSize = '12rem';
+
+        icons.forEach( icon => icon. style.display = 'flex' );
+
+        document.addEventListener('click', () => {
+          icons.forEach( icon => icon. style.display = 'none' );
+        })
       });
     });
 

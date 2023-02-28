@@ -1,5 +1,7 @@
 import selectorChecker from '../utils/selectorChecker.js';
 import './index.scss';
+import linkedin from '../assets/linkedin.png';
+import github from '../assets/github.png';
 
 export class View {
   constructor () {
@@ -315,9 +317,20 @@ export class View {
       <div class="block"><p class="p6">Hi!</div>
       <div class="block"><p class="p7">My name is</p></div>
       <div class="block"><p class="p9">OLGA Khmaruk</p>
-      </div><section class="info__wrapper">
-        <div class="info__photo"></div>
-      </section>
+      </div>
+      <div class="block">
+        <section class="mini-col">
+          <p data-tooltip="+375(29)601-71-88" class="p6 icon with-tooltip phone-icon">📞</p>
+          <p data-tooltip="athamethedarkset@gmail.com" class="p6 icon with-tooltip main-icon">✉</p>
+        </section>
+        <section class="info__wrapper">
+          <div class="info__photo"></div>
+        </section>
+        <section class="mini-col">
+          <p class="p6 icon linkedin-icon"><img src=${linkedin}></p>
+          <p class="p6 icon github-icon"><img src=${github}></p>
+        </section>
+      </div>
       <div class="block"><p class="p7">I'm from </p></div>
       <div class="block"><p class="p6">Minsk</p></div>
       <div class="block"><p class="p7">I'm looking for a full time job as a</p></div>
