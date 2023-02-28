@@ -56,16 +56,16 @@ body {
     overflow: hidden;
   }
 
-  #space {
+  .space {
     position: absolute;
-    height: 99vh;
+    height: 100%;
     width: 99vw;
     left: 0.2rem;
     top: 0.2rem;
     overflow: hidden;
     //background-color: red;
     transform-origin: 50% 50%;
-    animation: spin 500s linear 0s infinite normal;
+    //animation: spin 500s linear 0s infinite normal;
   }
 
   .star {

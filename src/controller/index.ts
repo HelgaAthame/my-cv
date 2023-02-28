@@ -254,6 +254,9 @@ export class Controller {
     const mediaBig = window.matchMedia('(min-width: 1200px)');
     if (mediaSmall.matches) {
       document.body.style.overflowY = 'scroll';
+      const h = getComputedStyle(content).height;
+      const space = selectorChecker(document, '.space') as HTMLDivElement;
+      space.style.height = h;
       content.innerHTML = ``;
       cols.forEach( col => col.style.width = '95vw' );
       blocks.forEach( block => block.style.width = '95vw' );

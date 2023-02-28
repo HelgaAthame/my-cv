@@ -1,3 +1,4 @@
+import selectorChecker from '../utils/selectorChecker.js';
 import './index.scss';
 
 export class View {
@@ -225,9 +226,15 @@ export class View {
     space.classList.add('space');
     document.body.append(space);
 
-    const limit = 500; //1001
+    let limit = 1000; //1001
 
    const stars = {
+    render: function () {
+      const content = selectorChecker(document, '.content') as HTMLDivElement;
+      const h = Math.floor(Number(getComputedStyle(content).height.slice(0,-2)));
+      alert(h);
+    },
+
   rand: function () {
     return Math.random();
   },
@@ -251,6 +258,9 @@ export class View {
 };
 
   stars.create();
+
+
+  document.addEventListener('resize', stars.render, false);
 
   }
 
