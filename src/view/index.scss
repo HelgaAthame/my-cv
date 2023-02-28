@@ -122,13 +122,12 @@ body {
         .p1 {
           cursor: default;
           font-size: 3.5rem;
-          height: 5rem;
-
+          min-height: 5rem;
         }
 
         .p2 {
           font-size: 2.5rem;
-          height: 4.5rem;
+          min-height: 4.5rem;
         }
 
         .p3 {

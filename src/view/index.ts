@@ -281,7 +281,7 @@ export class View {
         <p class="p3 flying dontDisplay with-tooltip" data-tooltip="use to write styles">SASS</p>
         <p class="p5 flying dontDisplay with-tooltip" data-tooltip="everyday using">DevTools</p>
         <p class="p5 flying dontDisplay with-tooltip" data-tooltip="tried it in one project">Tilewind</p>
-        <p class="p1 flying">MY&nbsp;SKILLS</p>
+        <p class="p1 flying">MY SKILLS</p>
         <p class="p5 flying dontDisplay with-tooltip" data-tooltip="I like to work with classes">OOP</p>
         <p class="p3 flying dontDisplay with-tooltip" data-tooltip="develop all my project with TS">TypeScript</p>
         <p class="p5 flying dontDisplay with-tooltip" data-tooltip="15 years of using">Photoshop</p>
@@ -302,7 +302,7 @@ export class View {
         <p data-tooltip="3 kyu" class="p5 codewars flying dontDisplay with-tooltip">CodeWars</p>
         <p data-tooltip="athamethedarkest@gmail.com" class="p3 email flying dontDisplay with-tooltip">E-MAIL</p>
         <p class="p4 github flying dontDisplay">GitHub</p>
-        <p class="p1 contacts flying">MY&nbsp;CONTACTS</p>
+        <p class="p1 contacts flying">MY CONTACTS</p>
         <p class="p5 linkedin flying dontDisplay">LinkedIn</p>
         <p data-tooltip="+375(29)601-71-88" class="p2 phone flying dontDisplay with-tooltip">Phone</p>
         <p data-tooltip="#1561" class="p5 design flying dontDisplay with-tooltip">Discord</p>
@@ -333,7 +333,7 @@ export class View {
         <p class="p5 crud-api flying dontDisplay">CRUD API</p>
         <p class="p2 bomberman flying dontDisplay">Bomberman</p>
         <p class="p5 websocket flying dontDisplay">Websocket Backend</p>
-        <p class="p1 flying">MY&nbsp;PROJECTS</p>
+        <p class="p1 flying">MY PROJECTS</p>
         <p class="p5 medical-center flying dontDisplay">Medical Center</p>
         <p class="p3 online-store flying dontDisplay">Online Store</p>
         <p class="p5 async-race flying dontDisplay">Async Race</p>
