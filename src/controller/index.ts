@@ -74,8 +74,8 @@ export class Controller {
     const github = selectorChecker(document, '.github');
     github.addEventListener('click', () => window.open('https://github.com/HelgaAthame', '_blank'));
 
-    //const linkedin = selectorChecker(document, '.linkedin');
-    //linkedin.addEventListener('click', () => window.open('#', '_blank'));
+    const linkedin = selectorChecker(document, '.linkedin');
+    linkedin.addEventListener('click', () => window.open('https://www.linkedin.com/in/olga-k-aa9054220/', '_blank'));
 
     const telegram = selectorChecker(document, '.telegram');
     telegram.addEventListener('click', () => window.open('https://t.me/HelgaAthame', '_blank'));

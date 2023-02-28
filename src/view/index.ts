@@ -293,7 +293,7 @@ export class View {
         <p data-tooltip="athamethedarkest@gmail.com" class="p3 email flying dontDisplay with-tooltip">E-MAIL</p>
         <p class="p4 github flying dontDisplay">GitHub</p>
         <p class="p1 contacts flying">MY&nbsp;CONTACTS</p>
-        <p data-tooltip="creating profile in process" class="p5 linkedin flying dontDisplay with-tooltip">LinkedIn</p>
+        <p class="p5 linkedin flying dontDisplay">LinkedIn</p>
         <p data-tooltip="+375(29)601-71-88" class="p2 phone flying dontDisplay with-tooltip">Phone</p>
         <p data-tooltip="#1561" class="p5 design flying dontDisplay with-tooltip">Discord</p>
         <p data-tooltip="https://t.me/HelgaAthame" class="p4 telegram flying dontDisplay">Telegram</p>
