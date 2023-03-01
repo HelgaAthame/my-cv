@@ -89,6 +89,15 @@ export class Controller {
   }
 
   animatePhoto() {
+    let x: number;
+    (function resize () {
+      const mediaBig = window.matchMedia('(min-width: 2000px)');
+      x = mediaBig.matches ? 2 : 1;
+      window.addEventListener(`resize`, () => {
+        requestAnimationFrame(resize);
+      }, false);
+    })();
+
     const photoWrapper = selectorChecker(document, '.info__wrapper') as HTMLElement;
     const photo = selectorChecker(document, '.info__photo') as HTMLElement;
     const icons: NodeListOf<HTMLDivElement> = document.querySelectorAll('.mini-col');
@@ -97,16 +106,16 @@ export class Controller {
 
       requestAnimationFrame(() => {
         photoWrapper.style.borderWidth = '3.2rem';
-        photoWrapper.style.margin = '-3rem';
+        photoWrapper.style.margin = `${(-3/x).toFixed(1)}rem`;
         photoWrapper.style.borderColor = 'rgba(200, 220, 250, 0)';
 
         photo.style.filter = 'none';
-        photo.style.width = '12rem';
-        photo.style.height = '12rem';
+        photo.style.width = `${12*x}rem`;
+        photo.style.height = `${12*x}rem`;
         photo.style.boxShadow = '0 0 15px 1px rgba(50, 55, 65, 0.5), 0 0 4rem 0.5rem rgba(200, 220, 250, 0.5), -1rem -1rem 4rem 1rem #040812 inset, -2px -2px 10px 2px #040812 inset';
-        photoWrapper.style.width = '12rem';
-        photoWrapper.style.height = '12rem';
-        photo.style.backgroundSize = '12rem';
+        photoWrapper.style.width = `${12*x}rem`;
+        photoWrapper.style.height = `${12*x}rem`;
+        photo.style.backgroundSize = `${12*x}rem`;
 
         icons.forEach( icon => icon. style.display = 'flex' );
 
@@ -119,15 +128,15 @@ export class Controller {
     photo.addEventListener('mouseleave', () => {
       requestAnimationFrame(() => {
         photoWrapper.style.borderWidth = '0.2rem';
-        photoWrapper.style.margin = '1rem';
+        photoWrapper.style.margin = `${(1/x).toFixed(1)}rem`;
         photoWrapper.style.borderColor = 'rgba(200, 220, 250, 1)';
 
         photo.style.filter = 'grayscale(50%) opacity(0.3) contrast(2)';
-        photo.style.width = '10rem';
-        photo.style.height = '10rem';
-        photoWrapper.style.width = '10rem';
-        photoWrapper.style.height = '10rem';
-        photo.style.backgroundSize = '10rem';
+        photo.style.width = `${10*x}rem`;
+        photo.style.height = `${10*x}rem`;
+        photoWrapper.style.width = `${10*x}rem`;
+        photoWrapper.style.height = `${10*x}rem`;
+        photo.style.backgroundSize =  `${10*x}rem`;
         photo.style.boxShadow = 'none';
       });
     });
@@ -172,19 +181,16 @@ export class Controller {
     const blocks: NodeListOf<HTMLElement> = document.querySelectorAll('.block');
 
     blocks.forEach( block => {
-      console.log('block');
       const childs = Array.from(block.children);
 
       const p1 = childs.find( child => child.classList.contains('p1'));
 
       if (p1) {
         block.addEventListener('mouseover', () => {
-          console.log('mouse over');
           childs.forEach( child => child.classList.remove('dontDisplay'));
         })
 
         block.addEventListener('mouseout', () => {
-          console.log('mouse out');
           childs.forEach( child => child.classList.contains('p1') ? child.classList.add('displayIt') : child.classList.add('dontDisplay'));
         })
       }
@@ -254,7 +260,7 @@ export class Controller {
 
   mediaScreen() {
     window.addEventListener(`resize`, () => {
-      requestAnimationFrame(this.mediaScreen);
+      requestAnimationFrame(this.mediaScreen.bind(this));
     }, false);
 
     const canvas = selectorChecker(document, 'canvas') as HTMLDivElement;
@@ -264,8 +270,16 @@ export class Controller {
     const two = selectorChecker(document, '.two') as HTMLDivElement;
     const three = selectorChecker(document, '.three') as HTMLDivElement;
     const blocks: NodeListOf<HTMLDivElement> = document.querySelectorAll('.block');
+
     const mediaSmall = window.matchMedia('(max-width: 1200px)');
-    const mediaBig = window.matchMedia('(min-width: 1200px)');
+    const mediaMedium = window.matchMedia('(min-width: 1200px) and (max-width: 2000px)');
+    const mediaBig = window.matchMedia('(min-width: 2000px)');
+
+    const imageWrapper = selectorChecker(document, '.info__wrapper') as HTMLDivElement;
+    const image = selectorChecker(document, '.info__photo') as HTMLDivElement;
+
+    const icons: NodeListOf<HTMLDivElement> = document.querySelectorAll('.icon');
+    const miniCols: NodeListOf<HTMLDivElement> = document.querySelectorAll('.mini-col');
 
     if (mediaSmall.matches) {
       document.body.style.overflowY = 'scroll';
@@ -277,7 +291,7 @@ export class Controller {
       content.append(one);
       content.append(three);
     }
-    if (mediaBig.matches) {
+    if (mediaMedium.matches) {
     document.body.style.overflowY = 'hidden';
       content.innerHTML = ``;
       cols.forEach( col => col.style.width = '33vw' );
@@ -287,6 +301,37 @@ export class Controller {
       content.append(two);
       content.append(three);
     }
+    if (mediaBig.matches) {
+      document.body.style.overflowY = 'hidden';
+        content.innerHTML = ``;
+        cols.forEach( col => col.style.width = '33vw' );
+        blocks.forEach( block => block.style.width = '33vw' );
+        content.style.flexDirection = 'row';
+        content.append(one);
+        content.append(two);
+        content.append(three);
+
+        imageWrapper.style.width = '20rem';
+        imageWrapper.style.height = '20rem';
+        image.style.backgroundSize = '20rem';
+        image.style.width = '20rem';
+        image.style.height = '20rem';
+
+        miniCols.forEach( minicol => {
+          minicol.style.height = '24rem';
+        })
+
+        icons.forEach( icon => {
+          icon.style.width = '8rem';
+          icon.style.height = '8rem';
+          const img = icon.querySelector('img') as HTMLImageElement;
+          if (img) {
+            img.style.width = '8rem';
+            img.style.height = '8rem';
+          }
+        })
+
+      }
     const { height, width } = getComputedStyle(content);
     const space = selectorChecker(document, '.space') as HTMLDivElement;
     space.style.height = height;

@@ -318,7 +318,7 @@ export class View {
       <div class="block"><p class="p7">My name is</p></div>
       <div class="block"><p class="p9">OLGA Khmaruk</p>
       </div>
-      <div class="block">
+      <div class="block" id="photo">
         <section class="mini-col">
           <p data-tooltip="+375(29)601-71-88" class="p6 icon with-tooltip phone-icon">📞</p>
           <p data-tooltip="athamethedarkset@gmail.com" class="p6 icon with-tooltip main-icon">✉</p>
