@@ -1,5 +1,5 @@
 import selectorChecker from '../utils/selectorChecker.js';
-import './index.scss';
+import'./index.scss';
 import linkedin from '../assets/linkedin.png';
 import github from '../assets/github.png';
 
@@ -314,7 +314,11 @@ export class View {
 
 
     <section class="column two">
-      <div class="block"><p class="p6">Hi!</div>
+      <div class="block">
+        <p class="p6 day-night">💡</p>
+        <p class="p6">Hi!</p>
+        <p class="p6">&nbsp;</p>
+      </div>
       <div class="block"><p class="p7">My name is</p></div>
       <div class="block"><p class="p9">OLGA Khmaruk</p>
       </div>

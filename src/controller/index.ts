@@ -16,6 +16,25 @@ export class Controller {
     this.projectLinks();
     this.educationLinks();
     this.contactLinks();
+    this.dayNight();
+  }
+
+  dayNight() {
+    let night = true;
+    const root = document.documentElement;
+    const dayNightBtn = selectorChecker(document, '.day-night');
+    dayNightBtn.addEventListener('click', () => {
+      if (night) {
+        dayNightBtn.innerHTML = '🌙';
+        root.style.setProperty('--color', "rgb(200, 220, 250)");
+        root.style.setProperty('--text', "#040812");
+      } else {
+        dayNightBtn.innerHTML = '💡';
+        root.style.setProperty('--color', "#040812");
+        root.style.setProperty('--text', "rgb(200, 220, 250)");
+      }
+      night = !night;
+    })
   }
 
   addAnimation() {
