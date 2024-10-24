@@ -16,11 +16,8 @@ export class View {
 
   renderBG() {
 
-      let canvas: HTMLCanvasElement,
-          ctx: CanvasRenderingContext2D | null,
-          circ: number,
-          nodes: any[],
-          mouse: { x: number; y: number; };
+      let         
+          nodes: NodeAth[];
       //const SENSITIVITY, SIBLINGS_LIMIT, DENSITY, NODES_QTY, ANCHOR_LENGTH, MOUSE_RADIUS;
 
       // how close next node must be to activate connection (in px)
@@ -38,17 +35,17 @@ export class View {
       // highlight radius
       const MOUSE_RADIUS = 200;
 
-      circ = 2 * Math.PI;
+      const circ = 2 * Math.PI;
       nodes = [];
 
-      canvas = document.createElement('canvas');
+      const canvas: HTMLCanvasElement = document.createElement('canvas');
       document.body.append(canvas);
       resizeWindow();
-      mouse = {
+     const mouse: { x: number; y: number; } = {
         x: canvas.width / 2,
         y: canvas.height / 2
       };
-      ctx = canvas.getContext('2d');
+      const ctx: CanvasRenderingContext2D | null = canvas.getContext('2d');
       if (!ctx) {
         alert("Ooops! Your browser does not support canvas :'(");
       }
