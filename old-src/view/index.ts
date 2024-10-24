@@ -282,7 +282,7 @@ export class View {
         <p class="p5 flying dontDisplay with-tooltip" data-tooltip="tried it in one project">Tilewind</p>
         <p class="p1 flying">MY SKILLS</p>
         <p class="p5 flying dontDisplay with-tooltip" data-tooltip="I like to work with classes">OOP</p>
-        <p class="p3 flying dontDisplay with-tooltip" data-tooltip="develop all my project with TS">TypeScript</p>
+        <p class="p3 flying dontDisplay with-tooltip" data-tooltip="develop all my projects with TS">TypeScript</p>
         <p class="p5 flying dontDisplay with-tooltip" data-tooltip="15 years of using">Photoshop</p>
         <p class="p4 flying dontDisplay with-tooltip" data-tooltip="able to write proper config">Webpack</p>
         <p class="p5 flying dontDisplay with-tooltip" data-tooltip="pixel perfect HTML writing">Figma</p>

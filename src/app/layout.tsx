@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { ParallaxBackground } from "./components/canvas";
+import { ParallaxBackground } from "@/components/parallax";
+import { StarBackground } from "@/components/starbg";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,6 +31,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className="relative w-full h-screen">
+          <StarBackground />
           <ParallaxBackground />
           {children}
         </div>

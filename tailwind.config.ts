@@ -12,6 +12,18 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      animation: {
+        glitter: "glitter 8s ease-in infinite",
+      },
+      keyframes: {
+        glitter: {
+          "0%": { transform: "scale(0.8)", opacity: "0" },
+          "25%": { transform: "scale(1.6)", opacity: "1" },
+          "50%": { transform: "scale(0.8)", opacity: "0" },
+          "75%": { transform: "scale(1.6)", opacity: "1" },
+          "100%": { transform: "scale(0.8)", opacity: "0" },
+        },
+      },
     },
   },
   plugins: [],
