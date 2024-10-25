@@ -196,7 +196,7 @@ export const ParallaxBackground: React.FC = () => {
   }, [generatePoints]);
 
   return (
-    <div className="fixed inset-0 z-0 overflow-hidden">
+    <div className="fixed inset-0 -z-10 overflow-hidden">
       <canvas
         ref={canvasRef}
         width={typeof window !== "undefined" ? window.innerWidth : 800}

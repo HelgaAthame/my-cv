@@ -1,18 +1,13 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { ParallaxBackground } from "@/components/parallax";
-import { StarBackground } from "@/components/starbg";
+// import { ParallaxBackground } from "@/components/parallax";
+// import { StarBackground } from "@/components/starbg";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const onest = localFont({
+  src: "./fonts/Onest.ttf",
+  variable: "--font-onest",
+  weight: "100 200 300 400 500 600 700 800 900",
 });
 
 export const metadata: Metadata = {
@@ -27,12 +22,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${onest.variable} antialiased`}>
         <div className="relative w-full h-screen">
-          <StarBackground />
-          <ParallaxBackground />
+          {/* <StarBackground />
+          <ParallaxBackground /> */}
           {children}
         </div>
       </body>

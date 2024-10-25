@@ -24,7 +24,7 @@ export const StarBackground = () => {
 
   return (
     <div
-      className="space absolute h-full w-[99vw] left-[0.2rem] top-[0.2rem] overflow-hidden transform origin-center"
+      className="space -z-20 absolute h-full w-[99vw] left-[0.2rem] top-[0.2rem] overflow-hidden transform origin-center"
       ref={spaceRef}
     >
       {starArr.map((_el, ind) => (
