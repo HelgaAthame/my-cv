@@ -36,8 +36,8 @@ export const ContentBlock = ({ content }: Props) => {
         style={{
           animation: animation,
         }}
-        className={`with-tooltip ${fontSize} ${height}
-        hidden group-hover:flex h-min drop-shadow-smallglow p-4 hover:p-0`}
+        className={`with-tooltip ${fontSize} ${height} flex
+        invisible group-hover:visible h-min drop-shadow-smallglow p-4 hover:p-0`}
         data-tooltip="database in projects"
       >
         {el.text}
@@ -49,7 +49,7 @@ export const ContentBlock = ({ content }: Props) => {
     <div
       className="flex flex-wrap text-slate-300 justify-center content-center
       gap-2 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-10 font-bold items-center
-    duration-1000 group"
+    duration-1000 group min-h-20 msx-h-fit"
     >
       {content.itemsArr.slice(0, halfContent).map(contentFunc)}
       <p className="text-3xl animate-fly5">{content.title}</p>

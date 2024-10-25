@@ -49,12 +49,6 @@ const config: Config = {
         ],
         smallglow: "0 0 5px rgba(255, 255, 255, 0.5)",
       },
-      gridTemplateColumns: {
-        main: "1fr auto 1fr",
-      },
-      gridTemplateRows: {
-        main: "1fr auto 1fr",
-      },
     },
   },
   plugins: [gridAreas],

@@ -1,68 +1,69 @@
+"use client";
 import Image from "next/image";
 import linkedin from "&/linkedin.png";
 import github from "&/github.png";
 import myPhoto from "&/myPhoto.jpg";
+import { Fragment, useState } from "react";
 
-export const PhotoBlock = () => (
-  <section className="group column two flex items-center justify-center md:absolute md:-translate-x-2/4 md:-translate-y-2/4 md:left-2/4 md:top-2/4">
-    <div className="hidden group-hover:block">
-      <p className="p6 day-night">💡</p>
-      <p className="p6">Hi!</p>
-      <p className="p6">&nbsp;</p>
-    </div>
-    <div className="block">
-      <p className="p7">My name is</p>
-    </div>
-    <div className="block">
-      <p className="p9">OLGA Khmaruk</p>
-    </div>
-    <div className="block" id="photo">
-      <section className="mini-col">
-        <p
-          data-tooltip="+375(29)601-71-88"
-          className="p6 icon with-tooltip phone-icon"
-        >
-          📞
-        </p>
-        <p
-          data-tooltip="athamethedarkset@gmail.com"
-          className="p6 icon with-tooltip main-icon"
-        >
-          ✉
-        </p>
-      </section>
-      <section
-        className="info__wrapper w-40 h-40 rounded-full transition-1000 p-2 border-solid border-4 border-sky-200]
-      hover:border-32rem hover:margin-neg-3rem hover:border-[rgba(200,220,250,0)] hover:width-12rem hover:height-12rem"
+export const PhotoBlock = () => {
+  const [show, setShow] = useState(false);
+  return (
+    <section
+      onClick={() => {
+        setShow((prev) => !prev);
+      }}
+      className="info__wrapper w-40 h-40 rounded-full duration-1000 p-2 border-solid
+      border-4 border-sky-200 hover:margin-neg-3rem relative hover:shadow-glow
+      hover:width-12rem hover:height-12rem group
+      cursor-pointer"
+    >
+      <div
+        className="info__photo max-w-full max-h-full bg-red-200 overflow-hidden 
+        rounded-full grayscale-[50%] opacity-40 contrast-200 hover:filter-none duration-200
+        hover:width-12rem hover:height-12rem hover:shadow-smallglow hover:bg-size-12rem
+        hover:opacity-80"
       >
-        <div
-          className="info__photo msx-w-full max-h-full bg-red-200 overflow-hidden rounded-full grayscale-[50%] opacity-40 contrast-200
-        hover:filter-none hover:width-12rem hover:height-12rem hover:shadow-custom hover:bg-size-12rem"
-        >
-          <Image src={myPhoto} alt={"my photo"} width={160} height={160} />
-        </div>
-      </section>
-      <section className="mini-col">
-        <p className="p6 icon linkedin-icon">
-          <Image src={linkedin} alt={"linkedin icon"} width={50} height={50} />
-        </p>
-        <p className="p6 icon github-icon">
-          <Image src={github} alt={"gihub icon"} width={50} height={50} />
-        </p>
-      </section>
-    </div>
-    <div className="block">
-      <p className="p7">I&apos;m from </p>
-    </div>
-    <div className="block">
-      <p className="p6">Minsk</p>
-    </div>
-    <div className="block">
-      <p className="p7">I&apos;m looking for a full time job as a</p>
-    </div>
-    <div className="block">
-      <p className="p8">JavaScript Front-End Developer</p>
-    </div>
-    <div className="block"></div>
-  </section>
-);
+        <Image src={myPhoto} alt={"my photo"} width={160} height={160} />
+      </div>
+      {show && (
+        <Fragment>
+          <div
+            data-tooltip="+375(29)601-71-88"
+            className="text-4xl w-16 h-16 border-sky-200 flex items-center justify-center
+            rounded-full border-4 border-solid with-tooltip phone-icon absolute 
+            -top-6 -left-14 overflow-hidden hover:shadow-smallglow"
+          >
+            📞
+          </div>
+          <div
+            data-tooltip="athamethedarkset@gmail.com"
+            className="text-4xl w-16 h-16 border-sky-200 flex items-center justify-center 
+            rounded-full border-4 border-solid -top-6 -right-14 absolute with-tooltip
+             main-icon overflow-hidden hover:shadow-smallglow"
+          >
+            ✉
+          </div>
+          <div
+            className="text-4xl w-16 h-16 border-sky-200 flex items-center justify-center 
+            rounded-full border-4 border-solid -bottom-6 -right-14 absolute linkedin-icon
+             overflow-hidden hover:shadow-smallglow"
+          >
+            <Image
+              src={linkedin}
+              alt={"linkedin icon"}
+              width={50}
+              height={50}
+            />
+          </div>
+          <div
+            className="text-4xl w-16 h-16 border-sky-200 flex items-center justify-center 
+            rounded-full border-4 border-solid -bottom-6 -left-14 absolute github-icon
+             overflow-hidden hover:shadow-smallglow"
+          >
+            <Image src={github} alt={"gihub icon"} width={50} height={50} />
+          </div>
+        </Fragment>
+      )}
+    </section>
+  );
+};
