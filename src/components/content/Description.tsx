@@ -9,7 +9,7 @@ export const Description = () => (
     </div>
 
     <div className="text-2xl font-normal">
-      (&nbsp;FullStack Developer&nbsp;)
+      (&nbsp;FullStack&nbsp;Developer&nbsp;)
     </div>
     <div className="gap-2 flex flex-col items-center justify-center ">
       <div className="text-xl">I&apos;m from</div>

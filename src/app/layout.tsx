@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-// import { ParallaxBackground } from "@/components/parallax";
-// import { StarBackground } from "@/components/starbg";
+import { ParallaxBackground } from "@/components/parallax";
+import { StarBackground } from "@/components/starbg";
 
 const onest = localFont({
   src: "./fonts/Onest.ttf",
@@ -24,8 +24,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${onest.variable} antialiased`}>
         <div className="relative w-full h-full flex items-center">
-          {/* <StarBackground />
-          <ParallaxBackground /> */}
+          <StarBackground />
+          <ParallaxBackground />
           {children}
         </div>
       </body>
