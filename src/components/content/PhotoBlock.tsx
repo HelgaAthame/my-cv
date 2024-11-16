@@ -2,7 +2,7 @@
 import Image from "next/image";
 import linkedin from "../../../public/linkedIn.png";
 import github from "../../../public/github.png";
-import myPhoto from "../../../public/myPhoto.png";
+import myPhoto from "../../../public/myPhoto.jpg";
 import { Fragment, type ReactNode, useState } from "react";
 import { Modal } from "../Modal";
 
