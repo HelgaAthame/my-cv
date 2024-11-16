@@ -33,9 +33,11 @@ export const ContentBlock = ({ content }: Props) => {
       case 3:
         fontSize = "text-lg";
         height = "min-h-15";
+        break;
       case 4:
-        fontSize = "text-xl";
+        fontSize = "text-2xl";
         height = "min-h-20";
+        break;
       default:
         fontSize = "text-sm";
         height = "min-h-6";

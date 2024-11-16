@@ -14,6 +14,6 @@ export const Description = () => (
     <div className="gap-2 flex flex-col items-center justify-center ">
       <div className="text-xl">I&apos;m from</div>
       <div className="text-3xl">Minsk</div>
-    </div>    
+    </div>
   </div>
 );

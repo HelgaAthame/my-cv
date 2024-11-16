@@ -8,27 +8,72 @@ export type ContentItem = {
   tooltip?: string;
   value: number;
 };
-
-const skillsArr: ContentItem[] = [
+const backSkillArr: ContentItem[] = [
   {
-    text: "JavaScript (ES6+)",
+    text: "Firebase",
     value: 1,
   },
   {
-    text: "TypeScript",
+    text: "MongoDB",
     value: 2,
   },
   {
-    text: "React",
-    value: 1,
-  },
-  {
-    text: "Next.js",
+    text: "Express",
     value: 3,
   },
   {
-    text: "HTML5",
+    text: "Nest.js",
+    value: 4,
+  },
+  {
+    text: "Websockets",
+    value: 3,
+  },
+  {
+    text: "Postrgess",
+    value: 2,
+  },
+  {
+    text: "Node.js",
+    value: 4,
+  },
+  {
+    text: "Mongoose",
     value: 1,
+  },
+  {
+    text: "REST",
+    value: 3,
+  },
+  {
+    text: "Socket.io",
+    value: 2,
+  },
+  {
+    text: "Data Grip",
+    value: 1,
+  },
+  {
+    text: "GraphQL (SDL)",
+    value: 3,
+  },
+  {
+    text: "Swagger/Redoc (OpenAPI)",
+    value: 2,
+  },
+];
+const frontSkillArr: ContentItem[] = [
+  {
+    text: "HTML5",
+    value: 2,
+  },
+  {
+    text: "JavaScript (ES6+)",
+    value: 3,
+  },
+  {
+    text: "Next.js",
+    value: 4,
   },
   {
     text: "CSS3",
@@ -36,11 +81,11 @@ const skillsArr: ContentItem[] = [
   },
   {
     text: "SCSS",
-    value: 1,
+    value: 3,
   },
   {
     text: "Tailwind CSS",
-    value: 3,
+    value: 4,
   },
   {
     text: "Styled Components",
@@ -48,43 +93,104 @@ const skillsArr: ContentItem[] = [
   },
   {
     text: "Redux/Toolkit",
-    value: 2,
+    value: 3,
+  },
+  {
+    text: "React",
+    value: 4,
   },
   {
     text: "RTK Query",
-    value: 1,
+    value: 3,
+  },
+  {
+    text: "TypeScript",
+    value: 4,
   },
   {
     text: "React Query",
-    value: 3,
+    value: 2,
   },
   {
     text: "Zustand",
     value: 1,
   },
   {
-    text: "Axios",
+    text: "AJAX",
     value: 2,
+  },
+  {
+    text: "Vite",
+    value: 3,
   },
   {
     text: "Fetch API",
-    value: 1,
-  },
-  {
-    text: "Git",
-    value: 3,
-  },
-  {
-    text: "Webpack",
-    value: 1,
-  },
-  {
-    text: "GitHub/GitLab",
     value: 2,
   },
   {
-    text: "Docker",
+    text: "Adaptive responsive layout",
     value: 3,
+  },
+  {
+    text: "React Native",
+    value: 2,
+  },
+  {
+    text: "Expo",
+    value: 1,
+  },
+];
+const petProjects: ContentItem[] = [
+  {
+    text: "File Manager",
+    value: 2,
+  },
+  {
+    text: "Gem Puzzle",
+    value: 2,
+  },
+  {
+    text: "CRUD API",
+    value: 2,
+  },
+  {
+    text: "Bomberman",
+    value: 2,
+  },
+  {
+    text: "Websocket Backend",
+    value: 2,
+  },
+  {
+    text: "Medical Center",
+    value: 2,
+  },
+  {
+    text: "Online Store",
+    value: 2,
+  },
+  {
+    text: "Async Race",
+    value: 2,
+  },
+  {
+    text: "News Api",
+    value: 2,
+  },
+  {
+    text: "Song Bird",
+    value: 2,
+  },
+  {
+    text: "Online Zoo",
+    value: 2,
+  },
+];
+
+const otherSkills: ContentItem[] = [
+  {
+    text: "Docker",
+    value: 2,
   },
   {
     text: "CI/CD (GitHub Actions)",
@@ -92,18 +198,38 @@ const skillsArr: ContentItem[] = [
   },
   {
     text: "Postman",
-    value: 3,
+    value: 4,
   },
   {
-    text: "Swagger",
-    value: 2,
-  },
-  {
-    text: "DevTools",
+    text: "Design patterns",
     value: 1,
   },
   {
-    text: "Vite",
+    text: "Netlify/Vercel",
+    value: 2,
+  },
+  {
+    text: "Webpack",
+    value: 3,
+  },
+  {
+    text: "Swagger/Redoc",
+    value: 4,
+  },
+  {
+    text: "Android Studio",
+    value: 1,
+  },
+  {
+    text: "DevTools",
+    value: 4,
+  },
+  {
+    text: "Markdown",
+    value: 2,
+  },
+  {
+    text: "Git (Github/Gitlab)",
     value: 3,
   },
   {
@@ -111,8 +237,12 @@ const skillsArr: ContentItem[] = [
     value: 2,
   },
   {
-    text: "MVC",
+    text: "Babel",
     value: 1,
+  },
+  {
+    text: "Prettier",
+    value: 3,
   },
   {
     text: "ESLint",
@@ -120,109 +250,51 @@ const skillsArr: ContentItem[] = [
   },
   {
     text: "CEO",
-    value: 3,
-  },
-  {
-    text: "Responsice Layout",
     value: 1,
   },
-];
-const otherSkills: ContentItem[] = [
   {
-    text: "WebSockets",
+    text: "Cypress/Playwright",
+    value: 1,
+  },
+  {
+    text: "Mocha/Chai",
+    value: 1,
+  },
+  {
+    text: "React Testiong library",
+    value: 1,
+  },
+  {
+    text: "Jest/Vitest",
     value: 2,
-  },
-  {
-    text: "Socket.io",
-    value: 1,
-  },
-  {
-    text: "Node.js",
-    value: 1,
-  },
-  {
-    text: "Express",
-    value: 1,
-  },
-  {
-    text: "Nest.js",
-    value: 2,
-  },
-  {
-    text: "MongoDB",
-    value: 3,
-  },
-  {
-    text: "Mongoose",
-    value: 1,
-  },
-  {
-    text: "GraphQL",
-    value: 1,
-  },
-  {
-    text: "Postgress",
-    value: 2,
-  },
-  {
-    text: "REST API",
-    value: 3,
-  },
-  {
-    text: "Socket.io",
-    value: 1,
-  },
-  {
-    text: "Jest",
-    value: 2,
-  },
-  {
-    text: "Cypress",
-    value: 3,
-  },
-  {
-    text: "Mocha",
-    value: 2,
-  },
-  {
-    text: "Istanbul",
-    value: 3,
-  },
-  {
-    text: "Firebase",
-    value: 2,
-  },
-  {
-    text: "Vitest",
-    value: 3,
   },
   {
     text: "OOP",
-    value: 2,
+    value: 1,
   },
   {
     text: "Figma",
-    value: 3,
+    value: 4,
   },
   {
-    text: "Agine (Kanban, Scram",
+    text: "Agile (Kanban, Scram",
     value: 2,
   },
 ];
 
 export const content1: ContentType = {
-  title: /*"Core Skills"*/ "collocations",
-  itemsArr: skillsArr,
+  title: "Core Frondend Skills",
+  itemsArr: frontSkillArr,
 };
 export const content2: ContentType = {
-  title: "Emerging Technologies",
-  itemsArr: otherSkills,
+  title: "Backend Skills",
+  itemsArr: backSkillArr,
 };
 export const content3: ContentType = {
-  title: /*"Core Skills"*/ "collocations",
-  itemsArr: skillsArr,
+  title: "Pet Projects",
+  itemsArr: petProjects,
 };
 export const content4: ContentType = {
-  title: "Emerging Technologies",
+  title: "Developer Fundamentals",
   itemsArr: otherSkills,
 };

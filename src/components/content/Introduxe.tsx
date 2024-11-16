@@ -3,6 +3,6 @@ export const Introduce = () => (
     <div className="text-4xl day-night leading-8">💡</div>
     <div className="text-4xl leading-8">Hi!</div>
     <div className="text-base leading-4">My name is</div>
-    <div className="text-7xl  leading-14">QWERTY</div>
+    <div className="text-7xl  leading-14">Olga</div>
   </div>
 );
