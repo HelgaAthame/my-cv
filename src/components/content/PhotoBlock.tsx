@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
-import linkedin from "&/linkedin.png";
-import github from "&/github.png";
-import myPhoto from "&/myPhoto.png";
+import linkedin from "../../../public/linkedIn.png";
+import github from "../../../public/github.png";
+import myPhoto from "../../../public/myPhoto.png";
 import { Fragment, type ReactNode, useState } from "react";
 import { Modal } from "../Modal";
 
