@@ -54,7 +54,17 @@ export const ContentBlock = ({ content }: Props) => {
         invisible group-hover:visible h-min drop-shadow-smallglow p-4`}
         data-tooltip="database in projects"
       >
-        {el.text}
+        {el.link ? (
+          <a
+            href={el.link}
+            target="_blank"
+            className="hover:drop-shadow-smallglow hover:text-blue-300 hover:underline"
+          >
+            {el.text}
+          </a>
+        ) : (
+          el.text
+        )}
       </div>
     );
   };

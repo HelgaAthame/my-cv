@@ -7,6 +7,7 @@ export type ContentItem = {
   text: string;
   tooltip?: string;
   value: number;
+  link?: string;
 };
 const backSkillArr: ContentItem[] = [
   {
@@ -92,6 +93,14 @@ const frontSkillArr: ContentItem[] = [
     value: 1,
   },
   {
+    text: "Hook form",
+    value: 2,
+  },
+  {
+    text: "Yup",
+    value: 1,
+  },
+  {
     text: "Redux/Toolkit",
     value: 3,
   },
@@ -102,6 +111,14 @@ const frontSkillArr: ContentItem[] = [
   {
     text: "RTK Query",
     value: 3,
+  },
+  {
+    text: "Zod",
+    value: 1,
+  },
+  {
+    text: "Formik",
+    value: 2,
   },
   {
     text: "TypeScript",
@@ -142,48 +159,64 @@ const frontSkillArr: ContentItem[] = [
 ];
 const petProjects: ContentItem[] = [
   {
-    text: "File Manager",
-    value: 2,
-  },
-  {
     text: "Gem Puzzle",
-    value: 2,
+    value: 1,
+    link: "https://rolling-scopes-school.github.io/helgaathame-JSFE2022Q3/src/",
   },
   {
-    text: "CRUD API",
-    value: 2,
+    text: "E-commerce with Server-Side Rendering",
+    value: 4,
+    link: "https://store-example7.vercel.app/",
   },
   {
     text: "Bomberman",
-    value: 2,
+    value: 1,
+    link: "https://bomberman2d.netlify.app/",
   },
   {
-    text: "Websocket Backend",
-    value: 2,
+    text: "Music Library (Fullstack)",
+    value: 4,
+    link: "https://nest-next-kappa.vercel.app/",
   },
   {
-    text: "Medical Center",
+    text: "React Store",
     value: 2,
+    link: "https://best-book-store.netlify.app/",
   },
   {
     text: "Online Store",
-    value: 2,
+    value: 1,
+    link: "https://github.com/HelgaAthame/HelgaAthame/tree/main",
   },
   {
-    text: "Async Race",
+    text: "Сards by category",
     value: 2,
+    link: "https://helgaathame.github.io/logic/",
   },
   {
-    text: "News Api",
-    value: 2,
+    text: "News App (Fullstack) for small screens",
+    value: 3,
+    link: "https://news-app-olga.vercel.app/",
   },
   {
     text: "Song Bird",
-    value: 2,
+    value: 1,
+    link: "https://rolling-scopes-school.github.io/helgaathame-JSFE2022Q3/my-app/dist/#",
+  },
+  {
+    text: "GraphQL Playground",
+    value: 3,
+    link: "https://graphiql-app-git-develop-killthecreator.vercel.app/",
   },
   {
     text: "Online Zoo",
-    value: 2,
+    value: 1,
+    link: "https://rolling-scopes-school.github.io/helgaathame-JSFE2022Q3/online-zoo/",
+  },
+  {
+    text: "Portfolio and Resume",
+    value: 3,
+    link: "https://helgaathame.github.io/my-cv/",
   },
 ];
 
