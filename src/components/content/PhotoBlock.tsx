@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
-import linkedin from "../../../public/linkedIn.png";
-import github from "../../../public/github.png";
-import myPhoto from "../../../public/myPhoto.jpg";
+import linkedin from "../../../public/linkedIn.avif";
+import github from "../../../public/github.avif";
+import myPhoto from "../../../public/myPhoto.avif";
 import { Fragment, type ReactNode, useState } from "react";
 import { Modal } from "../Modal";
 
@@ -48,7 +48,12 @@ export const PhotoBlock = () => {
         hover:width-12rem hover:height-12rem hover:bg-size-12rem
         group-hover:opacity-80"
           >
-            <Image src={myPhoto} alt={"my photo"} width={160} height={160} />
+            <Image
+              src={myPhoto.src}
+              alt={"my photo"}
+              width={160}
+              height={160}
+            />
           </div>
         </section>
         {show && (
@@ -87,7 +92,7 @@ export const PhotoBlock = () => {
               }}
             >
               <Image
-                src={linkedin}
+                src={linkedin.src}
                 alt={"linkedin icon"}
                 width={50}
                 height={50}
@@ -102,7 +107,12 @@ export const PhotoBlock = () => {
                 setShowModal((prev) => !prev);
               }}
             >
-              <Image src={github} alt={"gihub icon"} width={50} height={50} />
+              <Image
+                src={github.src}
+                alt={"gihub icon"}
+                width={50}
+                height={50}
+              />
             </div>
           </Fragment>
         )}
