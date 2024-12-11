@@ -10,8 +10,8 @@ import { PhotoBlock } from "./PhotoBlock";
 
 export const Content = () => {
   return (
-    <div className="w-full h-full font-onest flex flex-col lg:flex-row">
-      <div className="flex flex-col h-full lg:min-h-screen justify-evenly">
+    <div className="w-full h-full font-onest flex flex-col lg:flex-row gap-10">
+      <div className="flex flex-col h-full lg:min-h-screen justify-evenly gap-10">
         <ContentBlock content={content1} />
         <ContentBlock content={content2} />
       </div>
@@ -27,7 +27,7 @@ export const Content = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col h-full lg:min-h-screen justify-evenly">
+      <div className="flex flex-col h-full lg:min-h-screen justify-evenly gap-10">
         <ContentBlock content={content3} />
         <ContentBlock content={content4} />
       </div>
