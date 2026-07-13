@@ -10,12 +10,12 @@ export const HrCV = () => {
   const [activeTab, setActiveTab] = useState<"skills" | "projects">("skills");
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-100 p-4 md:p-8">
+    <div className="min-h-screen p-4 md:p-8">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <header className="flex flex-col md:flex-row gap-6 items-center mb-12">
           <div className="relative">
-            <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-sky-400 shadow-lg">
+            <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-gradient shadow-premium-lg">
               <Image
                 src={myPhoto.src}
                 alt="Olga"
@@ -27,22 +27,22 @@ export const HrCV = () => {
           </div>
           
           <div className="flex-1 text-center md:text-left">
-            <h1 className="text-4xl md:text-5xl font-bold text-sky-400 mb-2">Olga</h1>
-            <p className="text-xl md:text-2xl text-slate- mb-4">Frontend Developer</p>
-            <p className="text-slate-300 max-w-2xl mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-gradient mb-2">Olga</h1>
+            <p className="text-xl md:text-2xl text-slate-700 mb-4">Frontend Developer</p>
+            <p className="text-slate-600 max-w-2xl mb-4">
               Frontend developer with 3+ years of experience, including almost 2 years of commercial development.
               Skilled in React, Next.js, TypeScript, Node.js, and modern frontend technologies.
               Passionate about building scalable web applications and continuously learning new technologies.
             </p>
             
-            <div className="flex flex-wrap gap-4 justify-center md:justify-start text-sm">
-              <a href="mailto:athamethedarkset@gmail.com" className="text-sky-400 hover:text-sky-300">
+            <div className="flex flex-wrap gap-4 justify-center md:justify-start text-sm text-slate-600">
+              <a href="mailto:athamethedarkset@gmail.com" className="text-amber-600 hover:text-amber-700 font-medium">
                 athamethedarkset@gmail.com
               </a>
               <span className="text-slate-400">|</span>
-              <span className="text-slate-300">+375 (29) 601-71-88</span>
+              <span className="text-slate-600">+375 (29) 601-71-88</span>
               <span className="text-slate-400">|</span>
-              <span className="text-slate-300">Minsk, Belarus</span>
+              <span className="text-slate-600">Minsk, Belarus</span>
             </div>
             
             <div className="flex gap-4 justify-center md:justify-start mt-4">
@@ -50,7 +50,7 @@ export const HrCV = () => {
                 href="https://www.linkedin.com/in/olga-k-aa9054220"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sky-400 hover:text-sky-300"
+                className="flex items-center gap-2 text-amber-600 hover:text-amber-700 font-medium"
               >
                 <Image src={linkedin.src} alt="LinkedIn" width={24} height={24} />
                 LinkedIn
@@ -59,7 +59,7 @@ export const HrCV = () => {
                 href="https://github.com/HelgaAthame"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sky-400 hover:text-sky-300"
+                className="flex items-center gap-2 text-amber-600 hover:text-amber-700 font-medium"
               >
                 <Image src={github.src} alt="GitHub" width={24} height={24} />
                 GitHub
