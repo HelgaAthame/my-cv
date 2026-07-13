@@ -72,7 +72,7 @@ export const HrCV = () => {
         <section className="mb-12 bg-slate-800/50 rounded-xl p-6">
           <h2 className="text-2xl font-bold text-sky-400 mb-4">Key Skills</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {["React", "Next.js", "TypeScript", "Tailwind CSS", "Redux/Toolkit", "Node.js", "PostgreSQL", "GraphQL"].map((skill) => (
+            {["React", "Next.js", "TypeScript", "Tailwind CSS", "Redux/Toolkit", "Node.js", "Supabase", "Drizzle ORM"].map((skill) => (
               <div key={skill} className="bg-slate-700/50 px-4 py-2 rounded-lg text-center text-sm font-medium">
                 {skill}
               </div>
@@ -285,10 +285,12 @@ export const HrCV = () => {
                 <li>Next.js (SSR, auth, routing)</li>
                 <li>TypeScript, JavaScript ES6+</li>
                 <li>HTML5 (semantic, pixel perfect)</li>
-                <li>CSS (SCSS, Tailwind, modules, styled components)</li>
+                <li>CSS (SCSS, Tailwind v4, modules, styled components)</li>
                 <li>Adaptive & responsive layout (flex, grid)</li>
                 <li>React Query, Zustand, Formik, Hook Form</li>
                 <li>Vite, Webpack, Babel</li>
+                <li>Lucide React, Recharts (data visualization)</li>
+                <li>next-themes, class-variance-authority</li>
               </ul>
             </div>
 
@@ -297,7 +299,9 @@ export const HrCV = () => {
               <ul className="text-slate-300 text-sm space-y-1">
                 <li>Node.js, Express, Nest.js</li>
                 <li>MongoDB, Mongoose</li>
-                <li>PostgreSQL, Firebase (auth, firestore)</li>
+                <li>PostgreSQL (with pg driver)</li>
+                <li>Supabase (auth, realtime, database)</li>
+                <li>Drizzle ORM, Firebase (auth, firestore)</li>
                 <li>REST APIs, GraphQL (SDL)</li>
                 <li>WebSockets, Socket.io</li>
                 <li>Swagger/OpenAPI</li>
@@ -307,13 +311,14 @@ export const HrCV = () => {
             <div className="bg-slate-800/50 rounded-xl p-6">
               <h3 className="font-bold text-slate-100 mb-3">Testing & DevOps</h3>
               <ul className="text-slate-300 text-sm space-y-1">
-                <li>Vitest, Jest, Chai, Mocha, Istanbul</li>
+                <li>Vitest (with coverage), Jest, Chai, Mocha, Istanbul</li>
                 <li>Cypress, Playwright, React Testing Library</li>
                 <li>Git (GitHub, GitLab)</li>
                 <li>Docker, CI/CD (GitHub Actions)</li>
                 <li>Netlify, Vercel</li>
                 <li>Postman, DevTools</li>
                 <li>ESLint, Prettier</li>
+                <li>drizzle-kit (migrations)</li>
               </ul>
             </div>
           </div>
