@@ -325,6 +325,17 @@ export const HrCV = () => {
 
           <div className="grid md:grid-cols-2 gap-6 mt-6">
             <div className="bg-slate-800/50 rounded-xl p-6">
+              <h3 className="font-bold text-slate-100 mb-3">AI Tools & Development</h3>
+              <ul className="text-slate-300 text-sm space-y-1">
+                <li>Claude, GPT, Grok, Gemini</li>
+                <li>Cursor, Windsurf, CodeX</li>
+                <li>Cascade (AI pair programming)</li>
+                <li>AI-assisted development workflow</li>
+                <li>Prompt engineering for code generation</li>
+              </ul>
+            </div>
+
+            <div className="bg-slate-800/50 rounded-xl p-6">
               <h3 className="font-bold text-slate-100 mb-3">Other</h3>
               <ul className="text-slate-300 text-sm space-y-1">
                 <li>Phaser (game development), Unity (C#)</li>
@@ -334,17 +345,18 @@ export const HrCV = () => {
                 <li>Figma, Photoshop</li>
               </ul>
             </div>
+          </div>
 
-            <div className="bg-slate-800/50 rounded-xl p-6">
-              <h3 className="font-bold text-slate-100 mb-3">Soft Skills</h3>
-              <ul className="text-slate-300 text-sm space-y-1">
-                <li>Team development experience</li>
-                <li>Quick learner of new technologies</li>
-                <li>Dedicated and responsible</li>
-                <li>Process optimization mindset</li>
-                <li>Always delivers on time</li>
-              </ul>
-            </div>
+          <div className="bg-slate-800/50 rounded-xl p-6 mt-6">
+            <h3 className="font-bold text-slate-100 mb-3">Soft Skills</h3>
+            <ul className="text-slate-300 text-sm space-y-1 md:grid md:grid-cols-2 md:gap-x-8">
+              <li>Team development experience</li>
+              <li>Quick learner of new technologies</li>
+              <li>Dedicated and responsible</li>
+              <li>Process optimization mindset</li>
+              <li>Always delivers on time</li>
+              <li>Effective communication</li>
+            </ul>
           </div>
         </section>
 
