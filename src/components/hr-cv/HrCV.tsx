@@ -61,7 +61,7 @@ const experience = [
 ];
 
 const education = [
-  { school: "Belarusian State Academy of Sciences", degree: "Master's degree", note: "Grade: 9" },
+  { school: "Belarusian State Academy of Sciences", degree: "Master's degree", note: "GPA: 9/10" },
   { school: "The Rolling Scopes School", degree: "React Course", note: "100% · 1st position" },
   { school: "The Rolling Scopes School", degree: "JS/FE Front-end Developer Course", note: "14th of 9000+" },
   { school: "The Rolling Scopes School", degree: "Node.js Course", note: "Jun – Aug 2021" },
@@ -164,7 +164,7 @@ export const HrCV = () => {
                   </div>
                 </div>
                 <h1 className="mt-4 text-2xl font-bold text-slate-900">Olga</h1>
-                <p className="text-amber-600 font-medium">Frontend Developer</p>
+                <p className="text-amber-600 font-medium">Frontend Developer (Full-Stack)</p>
 
                 <button
                   onClick={() => window.print()}
