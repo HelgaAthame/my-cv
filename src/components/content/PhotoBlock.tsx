@@ -53,6 +53,7 @@ export const PhotoBlock = () => {
               alt={"my photo"}
               width={160}
               height={160}
+              priority
             />
           </div>
         </section>

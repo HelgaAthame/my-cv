@@ -34,3 +34,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# playwright mcp screenshots/snapshots
+/.playwright-mcp/
+
+# claude code runtime state
+.claude/scheduled_tasks.lock

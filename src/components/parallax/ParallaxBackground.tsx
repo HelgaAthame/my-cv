@@ -199,8 +199,8 @@ export const ParallaxBackground: React.FC = () => {
     <div className="fixed inset-0 -z-10 overflow-hidden">
       <canvas
         ref={canvasRef}
-        width={typeof window !== "undefined" ? window.innerWidth : 800}
-        height={typeof window !== "undefined" ? window.innerHeight : 600}
+        width={800}
+        height={600}
         className="absolute top-0 left-0 w-full h-full "
       />
     </div>

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
+import "../globals.css";
 import { ParallaxBackground } from "@/components/parallax";
 import { StarBackground } from "@/components/starbg";
 
 const onest = localFont({
-  src: "./fonts/Onest.ttf",
+  src: "../fonts/Onest.ttf",
   variable: "--font-onest",
   weight: "100 200 300 400 500 600 700 800 900",
 });

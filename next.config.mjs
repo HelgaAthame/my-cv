@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export", // <=== enables static exports
-  // basePath: "/my-cv", // Commented out for local development
+  basePath: process.env.NODE_ENV === "production" ? "/my-cv" : "",
   reactStrictMode: true,
   images: { domains: ["localhost"], unoptimized: true },
 };
