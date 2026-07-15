@@ -273,16 +273,13 @@ export const HrCV = () => {
 
           {/* Main content */}
           <main className="space-y-8 min-w-0">
-            <div className="hidden lg:block">
-              <p className="text-slate-600 max-w-2xl">
-                Frontend developer with 4+ years of commercial development experience.
-                Skilled in React, Next.js, TypeScript, Node.js, and modern frontend technologies. Passionate about
-                building scalable web applications and continuously learning new technologies.
-              </p>
-            </div>
-
             <section className="bg-white rounded-2xl shadow-premium p-6 print-card">
               <SectionHeading>About Me</SectionHeading>
+              <p className="relative pl-5 mb-5 text-lg font-display leading-snug text-slate-800 before:content-[''] before:absolute before:left-0 before:top-1 before:bottom-1 before:w-1 before:rounded-full before:bg-gradient-to-b before:from-amber-500 before:to-orange-500">
+                Frontend developer with <span className="font-bold text-amber-600">4+ years</span> of commercial development experience.
+                Skilled in <span className="font-semibold text-slate-900">React, Next.js, TypeScript, Node.js</span>, and modern frontend technologies.
+                Passionate about building scalable web applications and continuously learning new technologies.
+              </p>
               <ul className="sm:columns-2 gap-x-6 text-sm text-slate-700">
                 {aboutPoints.map((point) => (
                   <li key={point} className="flex items-start gap-2 mb-2 break-inside-avoid">
