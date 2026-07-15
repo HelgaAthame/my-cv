@@ -75,7 +75,8 @@ const skillGroups = [
       "React (hooks, JSX, router)", "Redux (thunk, RTK, RTK Query)", "Next.js (SSR, auth, routing)",
       "TypeScript", "JavaScript ES6+", "HTML5 (semantic, pixel perfect)", "SCSS", "Tailwind v4",
       "CSS Modules", "Styled Components", "Flex & Grid layout", "React Query", "Zustand",
-      "Formik", "React Hook Form", "Zod", "Vite", "Webpack", "Babel", "Lucide React", "Recharts",
+      "Formik", "React Hook Form", "Zod", "shadcn/ui", "React Native", "Expo",
+      "Vite", "Webpack", "Babel", "Lucide React", "Recharts",
     ],
   },
   {
@@ -83,15 +84,15 @@ const skillGroups = [
     icon: Database,
     items: [
       "Node.js", "Express", "Nest.js", "MongoDB", "Mongoose", "PostgreSQL", "Supabase",
-      "Drizzle ORM", "Firebase", "REST APIs", "GraphQL", "WebSockets", "Socket.io", "Swagger/OpenAPI",
+      "Drizzle ORM", "TypeORM", "Firebase", "REST APIs", "GraphQL", "WebSockets", "Socket.io", "Swagger/OpenAPI",
     ],
   },
   {
     title: "Testing & DevOps",
     icon: FlaskConical,
     items: [
-      "Vitest", "Jest", "Chai", "Mocha", "Istanbul", "Cypress", "Playwright",
-      "React Testing Library", "Git", "Docker", "GitHub Actions", "Netlify", "Vercel", "ESLint", "Prettier",
+      "Vitest (with coverage)", "Jest", "Cypress", "Playwright", "React Testing Library",
+      "Git", "Docker", "GitHub Actions", "GitLab CI/CD", "Netlify", "Vercel", "ESLint", "Prettier",
     ],
   },
   {
@@ -136,7 +137,7 @@ const projects = [
 ];
 
 const SectionHeading = ({ children }: { children: React.ReactNode }) => (
-  <h2 className="flex items-center gap-3 text-xl font-bold text-slate-900 mb-4">
+  <h2 className="flex items-center gap-3 text-xl font-bold font-display tracking-tight text-slate-900 mb-4">
     <span className="w-1.5 h-6 bg-gradient-to-b from-amber-500 to-orange-500 rounded-full" />
     {children}
   </h2>
@@ -150,7 +151,7 @@ export const HrCV = () => {
           {/* Sidebar */}
           <aside className="lg:sticky lg:top-8 space-y-6">
             <div className="bg-white rounded-2xl shadow-premium-lg overflow-hidden print-card">
-              <div className="h-20 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600" />
+              <div className="h-20 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 banner-texture" />
               <div className="px-6 pb-6 -mt-12 flex flex-col items-center text-center">
                 <div className="w-36 h-36 rounded-full overflow-hidden ring-4 ring-white shadow-premium">
                   <div className="w-full h-full" style={{ transform: "scale(3.1)", transformOrigin: "47% 27%" }}>
@@ -163,7 +164,7 @@ export const HrCV = () => {
                     />
                   </div>
                 </div>
-                <h1 className="mt-4 text-2xl font-bold text-slate-900">Olga</h1>
+                <h1 className="mt-4 text-3xl font-bold font-display tracking-tight text-gradient">Olga</h1>
                 <p className="text-amber-600 font-medium">Frontend Developer (Full-Stack)</p>
 
                 <button
@@ -291,7 +292,7 @@ export const HrCV = () => {
                     <div className="bg-white rounded-xl shadow-premium p-6 print-card">
                       <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
                         <div>
-                          <h3 className="text-lg font-bold text-slate-900">{job.role}</h3>
+                          <h3 className="text-lg font-bold font-display text-slate-900">{job.role}</h3>
                           <p className="text-amber-600 font-medium">{job.company}</p>
                         </div>
                         <span className="text-slate-500 text-sm mt-1 md:mt-0 whitespace-nowrap">{job.period}</span>
@@ -329,7 +330,7 @@ export const HrCV = () => {
                           Live Demo <ExternalLink size={14} />
                         </a>
                       </div>
-                      <h3 className="text-xl font-bold text-slate-900 mb-2">{project.name}</h3>
+                      <h3 className="text-xl font-bold font-display text-slate-900 mb-2">{project.name}</h3>
                       <p className="text-slate-500 text-sm mb-3">{project.description}</p>
                       <div className="flex flex-wrap gap-2 mb-3">
                         {project.tech.map((tech) => (
@@ -352,7 +353,7 @@ export const HrCV = () => {
                     .map((project) => (
                       <div key={project.name} className="bg-white rounded-xl shadow-premium p-6 print-card">
                         <div className="flex justify-between items-start mb-3">
-                          <h3 className="text-lg font-bold text-slate-900">{project.name}</h3>
+                          <h3 className="text-lg font-bold font-display text-slate-900">{project.name}</h3>
                           <a
                             href={project.link}
                             target="_blank"
