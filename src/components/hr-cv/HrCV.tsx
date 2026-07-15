@@ -145,8 +145,22 @@ const SectionHeading = ({ children }: { children: React.ReactNode }) => (
 
 export const HrCV = () => {
   return (
-    <div className="min-h-screen p-4 md:p-8 lg:p-12">
-      <div className="max-w-6xl mx-auto">
+    <div className="relative min-h-screen overflow-hidden p-4 md:p-8 lg:p-12">
+      <div className="no-print pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+        <div
+          className="bg-blob w-[32rem] h-[32rem] -top-40 -right-40 bg-gradient-to-br from-amber-400 to-orange-500"
+          style={{ animation: "blob-drift-1 22s ease-in-out infinite" }}
+        />
+        <div
+          className="bg-blob w-[26rem] h-[26rem] bottom-[-8rem] -left-32 bg-gradient-to-tr from-orange-300 to-amber-200"
+          style={{ animation: "blob-drift-2 26s ease-in-out infinite" }}
+        />
+        <div
+          className="bg-blob w-96 h-96 top-1/3 left-1/2 bg-gradient-to-br from-slate-300 to-indigo-200"
+          style={{ animation: "blob-drift-3 19s ease-in-out infinite", opacity: 0.2 }}
+        />
+      </div>
+      <div className="max-w-6xl mx-auto relative">
         <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-6 lg:gap-8 items-start">
           {/* Sidebar */}
           <aside className="lg:sticky lg:top-8">
