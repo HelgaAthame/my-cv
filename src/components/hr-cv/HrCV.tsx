@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import linkedinLogo from "../../../public/linkedIn.avif";
 import githubLogo from "../../../public/github.avif";
-import myPhoto from "../../../public/myPhoto2.jpg";
+import myPhoto from "../../../public/myPhoto3.jpg";
 
 const keySkills = ["React", "Next.js", "TypeScript", "Tailwind CSS", "Redux/Toolkit", "Node.js", "Supabase", "JavaScript"];
 
@@ -149,12 +149,11 @@ export const HrCV = () => {
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-6 lg:gap-8 items-start">
           {/* Sidebar */}
-          <aside className="lg:sticky lg:top-8 space-y-6">
-            <div className="bg-white rounded-2xl shadow-premium-lg overflow-hidden print-card">
-              <div className="h-20 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 banner-texture" />
-              <div className="px-6 pb-6 -mt-12 flex flex-col items-center text-center">
-                <div className="w-36 h-36 rounded-full overflow-hidden ring-4 ring-white shadow-premium">
-                  <div className="w-full h-full" style={{ transform: "scale(3.1)", transformOrigin: "47% 27%" }}>
+          <aside className="lg:sticky lg:top-8">
+            <div className="bg-slate-900 rounded-2xl shadow-premium-lg overflow-hidden sidebar-dark print-card">
+              <div className="pt-8 pb-6 px-6 flex flex-col items-center text-center bg-gradient-to-b from-slate-800/80 to-slate-900 banner-texture-dark">
+                <div className="w-32 h-32 rounded-full overflow-hidden ring-4 ring-amber-500/40 shadow-premium">
+                  <div className="w-full h-full" style={{ transform: "scale(2.9)", transformOrigin: "48% 33%" }}>
                     <Image
                       src={myPhoto.src}
                       alt="Olga"
@@ -164,97 +163,97 @@ export const HrCV = () => {
                     />
                   </div>
                 </div>
-                <h1 className="mt-4 text-3xl font-bold font-display tracking-tight text-gradient">Olga</h1>
-                <p className="text-amber-600 font-medium">Frontend Developer (Full-Stack)</p>
+                <h1 className="mt-4 text-3xl font-bold font-display tracking-tight text-white">Olga</h1>
+                <p className="text-amber-400 font-medium">Frontend Developer (Full-Stack)</p>
 
                 <button
                   onClick={() => window.print()}
-                  className="no-print mt-4 inline-flex items-center gap-2 text-sm font-medium text-white bg-amber-600 hover:bg-amber-700 px-4 py-2 rounded-lg transition-colors"
+                  className="no-print mt-4 inline-flex items-center gap-2 text-sm font-semibold text-slate-900 bg-amber-400 hover:bg-amber-300 px-4 py-2 rounded-lg transition-colors"
                 >
                   <Printer size={16} />
                   Save as PDF
                 </button>
+              </div>
 
-                <div className="w-full mt-6 pt-6 border-t border-slate-100 space-y-3 text-left">
-                  <a
-                    href="mailto:olgaivanovna2304@gmail.com"
-                    className="flex items-center gap-3 text-sm text-slate-600 hover:text-amber-600 break-all"
-                  >
-                    <Mail size={16} className="text-amber-500 shrink-0" />
-                    olgaivanovna2304@gmail.com
-                  </a>
-                  <a
-                    href="https://t.me/HelgaAthame"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-sm text-slate-600 hover:text-amber-600"
-                  >
-                    <Send size={16} className="text-amber-500 shrink-0" />
-                    @HelgaAthame
-                  </a>
-                  <div className="flex items-center gap-3 text-sm text-slate-600">
-                    <MapPin size={16} className="text-amber-500 shrink-0" />
-                    Minsk, Belarus
-                  </div>
-                  <a
-                    href="https://www.linkedin.com/in/olga-k-aa9054220"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-sm text-slate-600 hover:text-amber-600"
-                  >
-                    <Image src={linkedinLogo.src} alt="" width={16} height={16} className="shrink-0" />
-                    LinkedIn
-                  </a>
-                  <a
-                    href="https://github.com/HelgaAthame"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-sm text-slate-600 hover:text-amber-600"
-                  >
-                    <Image src={githubLogo.src} alt="" width={16} height={16} className="shrink-0" />
-                    GitHub
-                  </a>
+              <div className="px-6 py-6 border-t border-slate-700/60 space-y-3 text-left">
+                <a
+                  href="mailto:olgaivanovna2304@gmail.com"
+                  className="flex items-center gap-3 text-sm text-slate-300 hover:text-amber-400 break-all"
+                >
+                  <Mail size={16} className="text-amber-400 shrink-0" />
+                  olgaivanovna2304@gmail.com
+                </a>
+                <a
+                  href="https://t.me/HelgaAthame"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-sm text-slate-300 hover:text-amber-400"
+                >
+                  <Send size={16} className="text-amber-400 shrink-0" />
+                  @HelgaAthame
+                </a>
+                <div className="flex items-center gap-3 text-sm text-slate-300">
+                  <MapPin size={16} className="text-amber-400 shrink-0" />
+                  Minsk, Belarus
+                </div>
+                <a
+                  href="https://www.linkedin.com/in/olga-k-aa9054220"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-sm text-slate-300 hover:text-amber-400"
+                >
+                  <Image src={linkedinLogo.src} alt="" width={16} height={16} className="shrink-0 rounded-sm" />
+                  LinkedIn
+                </a>
+                <a
+                  href="https://github.com/HelgaAthame"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-sm text-slate-300 hover:text-amber-400"
+                >
+                  <Image src={githubLogo.src} alt="" width={16} height={16} className="shrink-0 rounded-sm" />
+                  GitHub
+                </a>
+              </div>
+
+              <div className="px-6 py-6 border-t border-slate-700/60">
+                <h2 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-slate-400 mb-4">
+                  <Sparkles size={14} className="text-amber-400" />
+                  Key Skills
+                </h2>
+                <div className="flex flex-wrap gap-2">
+                  {keySkills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="bg-amber-400/10 text-amber-300 border border-amber-400/20 px-3 py-1.5 rounded-full text-xs font-medium"
+                    >
+                      {skill}
+                    </span>
+                  ))}
                 </div>
               </div>
-            </div>
 
-            <div className="bg-white rounded-2xl shadow-premium p-6 print-card">
-              <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-slate-500 mb-4">
-                <Sparkles size={16} className="text-amber-500" />
-                Key Skills
-              </h2>
-              <div className="flex flex-wrap gap-2">
-                {keySkills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="bg-amber-50 text-amber-800 border border-amber-100 px-3 py-1.5 rounded-full text-xs font-medium"
-                  >
-                    {skill}
-                  </span>
-                ))}
+              <div className="px-6 py-6 border-t border-slate-700/60">
+                <h2 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-slate-400 mb-4">
+                  <CheckCircle2 size={14} className="text-amber-400" />
+                  Soft Skills
+                </h2>
+                <ul className="space-y-2 text-sm text-slate-300">
+                  {[
+                    "Team development experience",
+                    "Quick learner of new technologies",
+                    "Dedicated and responsible",
+                    "Process optimization mindset",
+                    "Always delivers on time",
+                    "Effective communication",
+                  ].map((skill) => (
+                    <li key={skill} className="flex items-start gap-2">
+                      <CheckCircle2 size={14} className="text-amber-400 mt-0.5 shrink-0" />
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
-
-            <div className="bg-white rounded-2xl shadow-premium p-6 print-card">
-              <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-slate-500 mb-4">
-                <CheckCircle2 size={16} className="text-amber-500" />
-                Soft Skills
-              </h2>
-              <ul className="space-y-2 text-sm text-slate-700">
-                {[
-                  "Team development experience",
-                  "Quick learner of new technologies",
-                  "Dedicated and responsible",
-                  "Process optimization mindset",
-                  "Always delivers on time",
-                  "Effective communication",
-                ].map((skill) => (
-                  <li key={skill} className="flex items-start gap-2">
-                    <CheckCircle2 size={14} className="text-amber-500 mt-0.5 shrink-0" />
-                    {skill}
-                  </li>
-                ))}
-              </ul>
             </div>
           </aside>
 

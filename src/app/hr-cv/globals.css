@@ -33,6 +33,11 @@
     background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.35) 1px, transparent 0);
     background-size: 16px 16px;
   }
+
+  .banner-texture-dark {
+    background-image: radial-gradient(circle at 1px 1px, rgba(251, 191, 36, 0.15) 1px, transparent 0);
+    background-size: 18px 18px;
+  }
 }
 
 @media print {
@@ -47,6 +52,17 @@
   .print-card {
     box-shadow: none !important;
     border: 1px solid #e2e8f0 !important;
+  }
+
+  /* The dark sidebar is bold on screen, but printing it dark wastes ink
+     and some browsers silently drop background colors anyway — force it
+     back to the same light/bordered look as the rest of the page. */
+  .sidebar-dark,
+  .sidebar-dark * {
+    background: white !important;
+    background-image: none !important;
+    color: #0f172a !important;
+    border-color: #e2e8f0 !important;
   }
 
   * {
