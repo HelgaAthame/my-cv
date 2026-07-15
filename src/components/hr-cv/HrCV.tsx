@@ -163,7 +163,7 @@ export const HrCV = () => {
       <div className="max-w-6xl mx-auto relative">
         <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-6 lg:gap-8 items-start">
           {/* Sidebar */}
-          <aside className="lg:sticky lg:top-8">
+          <aside className="lg:sticky lg:top-0">
             <div className="bg-slate-900 rounded-2xl shadow-premium-lg overflow-hidden sidebar-dark print-card">
               <div className="pt-8 pb-6 px-6 flex flex-col items-center text-center bg-gradient-to-b from-slate-800/80 to-slate-900 banner-texture-dark">
                 <div className="w-32 h-32 rounded-full overflow-hidden ring-4 ring-amber-500/40 shadow-premium">
