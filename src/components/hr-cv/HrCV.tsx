@@ -175,44 +175,10 @@ export const HrCV = () => {
 
   return (
     <div className="relative min-h-screen overflow-hidden p-4 md:p-8 lg:p-12">
-      <div ref={glowRef} className="cursor-glow no-print" />
-      <div className="no-print pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-        <div
-          className="bg-blob w-[32rem] h-[32rem] -top-40 -right-40"
-          style={{
-            animation: "blob-drift-1 22s ease-in-out infinite",
-            background: "radial-gradient(circle at 35% 35%, rgba(251,191,36,0.9), rgba(249,115,22,0.45) 45%, transparent 72%)",
-          }}
-        />
-        <div
-          className="bg-blob w-[26rem] h-[26rem] bottom-[-8rem] -left-32"
-          style={{
-            animation: "blob-drift-2 26s ease-in-out infinite",
-            background: "radial-gradient(circle at 40% 40%, rgba(253,186,116,0.85), rgba(254,215,170,0.4) 50%, transparent 72%)",
-          }}
-        />
-        <div
-          className="bg-blob w-96 h-96 top-1/3 left-1/2"
-          style={{
-            animation: "blob-drift-3 19s ease-in-out infinite",
-            background: "radial-gradient(circle at 45% 45%, rgba(203,213,225,0.6), rgba(199,210,254,0.3) 50%, transparent 72%)",
-          }}
-        />
-        {/* Extra accents for the empty side gutters on very wide screens */}
-        <div
-          className="hidden 2xl:block bg-blob w-80 h-80 top-1/4 left-8"
-          style={{
-            animation: "blob-drift-2 24s ease-in-out infinite",
-            background: "radial-gradient(circle at 50% 50%, rgba(251,191,36,0.55), rgba(249,115,22,0.25) 50%, transparent 72%)",
-          }}
-        />
-        <div
-          className="hidden 2xl:block bg-blob w-72 h-72 bottom-1/4 right-10"
-          style={{
-            animation: "blob-drift-3 21s ease-in-out infinite",
-            background: "radial-gradient(circle at 50% 50%, rgba(253,186,116,0.55), rgba(254,215,170,0.25) 50%, transparent 72%)",
-          }}
-        />
+      <div ref={glowRef} className="no-print pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-stripes">
+        <div className="bg-stripes-base" />
+        <div className="bg-stripes-glow" />
+        <div className="cursor-glow" />
       </div>
       <div className="max-w-6xl mx-auto relative">
         <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-6 lg:gap-8 items-start">

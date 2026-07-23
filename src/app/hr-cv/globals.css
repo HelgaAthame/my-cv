@@ -54,11 +54,72 @@
     mask-image: radial-gradient(circle at 50% 32%, transparent 0%, transparent 38%, rgba(0, 0, 0, 0.55) 65%, black 100%);
   }
 
-  .bg-blob {
+  /* Pastel diagonal stripes of varying widths, in the site's amber/orange/
+     slate palette. Two identical stripe layers stacked: the base one is
+     always visible at low opacity, the glow one is more saturated and
+     revealed only in a halo around the cursor (radial-gradient mask driven
+     by --x/--y, set on the shared ancestor in HrCV.tsx) and drawn at a
+     slightly different angle so the two patterns visibly mismatch under the
+     halo — a cheap, print-safe stand-in for "distortion" without SVG
+     filters or per-frame JS. */
+  .bg-stripes {
+    position: fixed;
+    inset: 0;
+    z-index: -10;
+    pointer-events: none;
+    background-color: #fffdf8;
+  }
+  .bg-stripes-base,
+  .bg-stripes-glow {
     position: absolute;
-    border-radius: 9999px;
-    filter: blur(90px);
-    will-change: transform;
+    inset: -15%;
+    background-image: repeating-linear-gradient(
+      115deg,
+      rgba(254, 243, 199, 0.65) 0px,
+      rgba(254, 243, 199, 0.65) 70px,
+      transparent 70px,
+      transparent 108px,
+      rgba(224, 231, 255, 0.55) 108px,
+      rgba(224, 231, 255, 0.55) 150px,
+      transparent 150px,
+      transparent 198px,
+      rgba(254, 215, 170, 0.6) 198px,
+      rgba(254, 215, 170, 0.6) 246px,
+      transparent 246px,
+      transparent 300px,
+      rgba(226, 232, 240, 0.5) 300px,
+      rgba(226, 232, 240, 0.5) 344px,
+      transparent 344px,
+      transparent 410px
+    );
+  }
+  .bg-stripes-glow {
+    background-image: repeating-linear-gradient(
+      124deg,
+      rgba(251, 191, 36, 0.8) 0px,
+      rgba(251, 191, 36, 0.8) 70px,
+      transparent 70px,
+      transparent 108px,
+      rgba(199, 210, 254, 0.7) 108px,
+      rgba(199, 210, 254, 0.7) 150px,
+      transparent 150px,
+      transparent 198px,
+      rgba(253, 186, 116, 0.8) 198px,
+      rgba(253, 186, 116, 0.8) 246px,
+      transparent 246px,
+      transparent 300px,
+      rgba(203, 213, 225, 0.65) 300px,
+      rgba(203, 213, 225, 0.65) 344px,
+      transparent 344px,
+      transparent 410px
+    );
+    -webkit-mask-image: radial-gradient(460px circle at var(--x, 50%) var(--y, -999px), black 0%, black 30%, transparent 72%);
+    mask-image: radial-gradient(460px circle at var(--x, 50%) var(--y, -999px), black 0%, black 30%, transparent 72%);
+  }
+  @media (pointer: coarse) {
+    .bg-stripes-glow {
+      display: none;
+    }
   }
 
   /* Soft warm glow that follows the cursor. Desktop/mouse only — a
@@ -133,21 +194,6 @@
   }
 }
 
-@keyframes blob-drift-1 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(40px, -30px) scale(1.08); }
-}
-
-@keyframes blob-drift-2 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-30px, 30px) scale(1.05); }
-}
-
-@keyframes blob-drift-3 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(20px, 25px) scale(1.1); }
-}
-
 @keyframes fade-in-up {
   from {
     opacity: 0;
@@ -163,14 +209,14 @@
   .animate-fade-in-up {
     animation: none;
   }
-  .bg-blob {
-    animation: none !important;
+  .bg-stripes-glow {
+    display: none;
   }
 }
 
 @media print {
   .no-print,
-  .bg-blob,
+  .bg-stripes,
   .cursor-glow {
     display: none !important;
   }
