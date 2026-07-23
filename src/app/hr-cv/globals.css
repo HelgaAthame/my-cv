@@ -34,17 +34,102 @@
     background-size: 16px 16px;
   }
 
+  /* The dotted texture lives on a ::before layer, not the container itself
+     — the container also holds the real photo/name/button, and a
+     mask-image on that element would mask the real content too, not just
+     its background-image. */
   .banner-texture-dark {
-    background-image: radial-gradient(circle at 1px 1px, rgba(251, 191, 36, 0.15) 1px, transparent 0);
+    position: relative;
+  }
+  .banner-texture-dark::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle at 1px 1px, rgba(251, 191, 36, 0.55) 1px, transparent 0);
     background-size: 18px 18px;
+    /* Clear halo directly behind the photo so the dots never compete with
+       it, brightening only toward the outer edges of the banner. */
+    -webkit-mask-image: radial-gradient(circle at 50% 32%, transparent 0%, transparent 38%, rgba(0, 0, 0, 0.55) 65%, black 100%);
+    mask-image: radial-gradient(circle at 50% 32%, transparent 0%, transparent 38%, rgba(0, 0, 0, 0.55) 65%, black 100%);
   }
 
   .bg-blob {
     position: absolute;
     border-radius: 9999px;
-    filter: blur(80px);
-    opacity: 0.35;
+    filter: blur(90px);
     will-change: transform;
+  }
+
+  /* Soft warm glow that follows the cursor. Desktop/mouse only — a
+     touchscreen has no persistent pointer position, so this would just
+     look like a stuck light. */
+  .cursor-glow {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background: radial-gradient(560px circle at var(--x, 50%) var(--y, -999px), rgba(251, 191, 36, 0.10), transparent 60%);
+  }
+  @media (pointer: coarse) {
+    .cursor-glow {
+      display: none;
+    }
+  }
+
+  /* Underline that draws in from the left on hover instead of just
+     toggling on/off. */
+  .link-underline {
+    position: relative;
+  }
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .link-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* Premium button: lift + glow on hover, a light sweep across the face,
+     a quick press-down on click. */
+  .btn-premium {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn-premium::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    left: -75%;
+    width: 50%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+  }
+  .btn-premium:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px -6px rgba(251, 191, 36, 0.55);
+  }
+  .btn-premium:hover::before {
+    left: 125%;
+  }
+  .btn-premium:active {
+    transform: translateY(0) scale(0.97);
+    box-shadow: 0 4px 10px -4px rgba(251, 191, 36, 0.5);
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 }
 
@@ -63,9 +148,30 @@
   50% { transform: translate(20px, 25px) scale(1.1); }
 }
 
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up {
+    animation: none;
+  }
+  .bg-blob {
+    animation: none !important;
+  }
+}
+
 @media print {
   .no-print,
-  .bg-blob {
+  .bg-blob,
+  .cursor-glow {
     display: none !important;
   }
 
