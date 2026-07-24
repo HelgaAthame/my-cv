@@ -322,7 +322,7 @@ export const HrCV = () => {
                   {keySkills.map((skill) => (
                     <span
                       key={skill}
-                      className="bg-amber-400/10 text-amber-300 border border-amber-400/20 px-3 py-1.5 rounded-full text-xs font-medium"
+                      className="skill-badge bg-amber-400/10 text-amber-300 border border-amber-400/20 px-3 py-1.5 rounded-full text-xs font-medium transition-colors hover:bg-amber-400/25 hover:border-amber-400/50 hover:text-amber-200"
                     >
                       {skill}
                     </span>
@@ -518,7 +518,10 @@ export const HrCV = () => {
                     </h3>
                     <div className="flex flex-wrap gap-1.5">
                       {group.items.map((item) => (
-                        <span key={item} className="bg-slate-50 text-slate-600 border border-slate-100 px-2.5 py-1 rounded-md text-xs">
+                        <span
+                          key={item}
+                          className="skill-badge bg-slate-50 text-slate-600 border border-slate-100 px-2.5 py-1 rounded-md text-xs transition-colors hover:bg-amber-50 hover:border-amber-200 hover:text-amber-700"
+                        >
                           {item}
                         </span>
                       ))}

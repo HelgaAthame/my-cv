@@ -191,6 +191,31 @@
   .text-shine-hover:hover {
     background-position: 100% 0;
   }
+
+  /* Skill badges: same skewed-streak sweep as .btn-premium, tinted amber
+     to match the site accent, plus a small lift so hover reads as a real
+     highlight rather than just a passing light. */
+  .skill-badge {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  }
+  .skill-badge::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    left: -75%;
+    width: 50%;
+    background: linear-gradient(120deg, transparent, rgba(251, 191, 36, 0.55), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.55s ease;
+  }
+  .skill-badge:hover {
+    transform: translateY(-2px);
+  }
+  .skill-badge:hover::before {
+    left: 125%;
+  }
 }
 
 @keyframes fade-in-up {
@@ -212,6 +237,9 @@
     display: none;
   }
   .text-shine-hover {
+    transition: none;
+  }
+  .skill-badge::before {
     transition: none;
   }
 }
