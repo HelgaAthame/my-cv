@@ -219,7 +219,7 @@ const projects = [
 const SectionHeading = ({ children }: { children: React.ReactNode }) => (
   <h2 className="flex items-center gap-3 text-xl font-bold font-display tracking-tight text-slate-900 mb-4">
     <span className="w-1.5 h-6 bg-gradient-to-b from-amber-500 to-orange-500 rounded-full" />
-    {children}
+    <span className="text-shine-hover">{children}</span>
   </h2>
 );
 
@@ -435,7 +435,9 @@ export const HrCV = () => {
                           </a>
                         </div>
                       </div>
-                      <h3 className="text-xl font-bold font-display text-slate-900 mb-2">{project.name}</h3>
+                      <h3 className="text-xl font-bold font-display text-slate-900 mb-2">
+                        <span className="text-shine-hover">{project.name}</span>
+                      </h3>
                       <p className="text-slate-500 text-sm mb-3">{project.description}</p>
                       <div className="flex flex-wrap gap-2 mb-3">
                         {project.tech.map((tech) => (
@@ -463,7 +465,9 @@ export const HrCV = () => {
                     .map((project) => (
                       <div key={project.name} className="bg-white rounded-xl shadow-premium p-6 print-card">
                         <div className="flex justify-between items-start mb-3">
-                          <h3 className="text-lg font-bold font-display text-slate-900">{project.name}</h3>
+                          <h3 className="text-lg font-bold font-display text-slate-900">
+                            <span className="text-shine-hover">{project.name}</span>
+                          </h3>
                           <a
                             href={project.link}
                             target="_blank"

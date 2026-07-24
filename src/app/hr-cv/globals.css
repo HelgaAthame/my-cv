@@ -170,6 +170,27 @@
   .animate-fade-in-up {
     animation: fade-in-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
+
+  /* Same idea as .btn-premium's sweep, but on the text itself: a white
+     band baked into the gradient at the midpoint, clipped to the glyphs.
+     background-size is 4x the element so the visible window only ever
+     shows a solid-color slice at rest (0%) and at the hover end (100%) —
+     the white band only becomes visible mid-transition, while it sweeps
+     through. Solid color at both ends means it never looks "stuck". */
+  .text-shine-hover {
+    background-image: linear-gradient(100deg, #0f172a 0%, #0f172a 45%, #ffffff 50%, #0f172a 55%, #0f172a 100%);
+    background-size: 400% 100%;
+    background-repeat: no-repeat;
+    background-position: 0% 0;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    transition: background-position 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .text-shine-hover:hover {
+    background-position: 100% 0;
+  }
 }
 
 @keyframes fade-in-up {
@@ -190,6 +211,9 @@
   .bg-stripes-glow {
     display: none;
   }
+  .text-shine-hover {
+    transition: none;
+  }
 }
 
 @media print {
@@ -197,6 +221,14 @@
   .bg-stripes,
   .cursor-glow {
     display: none !important;
+  }
+
+  /* background-clip: text prints unreliably across engines — force plain
+     solid text instead of risking invisible headings on paper. */
+  .text-shine-hover {
+    background-image: none !important;
+    -webkit-text-fill-color: currentColor !important;
+    color: #0f172a !important;
   }
 
   body {
