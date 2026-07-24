@@ -21,6 +21,68 @@ import linkedinLogo from "../../../public/linkedIn.avif";
 import githubLogo from "../../../public/github.avif";
 import myPhoto from "../../../public/myPhoto3.jpg";
 
+// Deterministic PRNG (mulberry32) — NOT Math.random(). This runs at module
+// scope on both server and client during static export; a real random
+// source here would produce different markup on each and reintroduce the
+// hydration-mismatch bug this file already hit once with StarBackground.
+function mulberry32(seed: number) {
+  return function random() {
+    seed |= 0;
+    seed = (seed + 0x6d2b79f5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+// Builds a repeating-linear-gradient of colored stripes with widths and
+// gaps randomized within the given bounds, cycling through `colors`. Same
+// seed => same layout, so the base/glow layers can share one call and stay
+// in registration.
+function buildStripeGradient(
+  angleDeg: number,
+  colors: string[],
+  {
+    count,
+    minWidth,
+    maxWidth,
+    minGap,
+    maxGap,
+    seed,
+  }: { count: number; minWidth: number; maxWidth: number; minGap: number; maxGap: number; seed: number },
+) {
+  const random = mulberry32(seed);
+  let pos = 0;
+  const stops: string[] = [];
+  for (let i = 0; i < count; i++) {
+    const color = colors[i % colors.length];
+    const width = Math.round(minWidth + random() * (maxWidth - minWidth));
+    const gap = Math.round(minGap + random() * (maxGap - minGap));
+    stops.push(`${color} ${pos}px`, `${color} ${pos + width}px`);
+    pos += width;
+    stops.push(`transparent ${pos}px`, `transparent ${pos + gap}px`);
+    pos += gap;
+  }
+  return `repeating-linear-gradient(${angleDeg}deg, ${stops.join(", ")})`;
+}
+
+const stripeAngle = 115;
+const stripeLayout = { count: 28, minWidth: 4, maxWidth: 48, minGap: 4, maxGap: 14, seed: 1 };
+const stripeBaseColors = [
+  "rgba(255, 247, 217, 0.5)",
+  "rgba(231, 237, 255, 0.4)",
+  "rgba(254, 231, 204, 0.45)",
+  "rgba(237, 241, 246, 0.36)",
+];
+const stripeGlowColors = [
+  "rgba(253, 237, 169, 0.65)",
+  "rgba(212, 221, 255, 0.55)",
+  "rgba(254, 212, 165, 0.6)",
+  "rgba(222, 229, 237, 0.5)",
+];
+const stripesBaseGradient = buildStripeGradient(stripeAngle, stripeBaseColors, stripeLayout);
+const stripesGlowGradient = buildStripeGradient(stripeAngle, stripeGlowColors, stripeLayout);
+
 const keySkills = ["React", "Next.js", "TypeScript", "Tailwind CSS", "Redux/Toolkit", "Node.js", "Supabase", "JavaScript"];
 
 const aboutPoints = [
@@ -176,8 +238,8 @@ export const HrCV = () => {
   return (
     <div className="relative min-h-screen overflow-hidden p-4 md:p-8 lg:p-12">
       <div ref={glowRef} className="no-print pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-stripes">
-        <div className="bg-stripes-base" />
-        <div className="bg-stripes-glow" />
+        <div className="bg-stripes-base" style={{ backgroundImage: stripesBaseGradient }} />
+        <div className="bg-stripes-glow" style={{ backgroundImage: stripesGlowGradient }} />
         <div className="cursor-glow" />
       </div>
       <div className="max-w-6xl mx-auto relative">
