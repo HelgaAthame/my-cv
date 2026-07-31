@@ -166,7 +166,7 @@ const skillGroups = [
   {
     title: "Other",
     icon: Layers,
-    items: ["Phaser", "Unity (C#)", "OOP & Design Patterns", "Agile / Scrum / Kanban", "Jira", "Trello", "Figma", "Photoshop"],
+    items: ["PixiJS 8 (WebGL2)", "Canvas / game loop architecture", "Performance profiling", "Phaser", "Unity (C#)", "OOP & Design Patterns", "Agile / Scrum / Kanban", "Jira", "Trello", "Figma", "Photoshop"],
   },
 ];
 
@@ -200,6 +200,41 @@ const projects = [
       "Audio waveform playback and review UI for call recordings (wavesurfer.js)",
       "REST API with Swagger docs, PostgreSQL via Prisma, idempotent Docker seed/migrations",
       "Phased architecture: async processing (Redis/BullMQ) and self-hosted Whisper/LLM transcription planned for later phases",
+    ],
+  },
+  {
+    name: "Crypto Exchanger",
+    featured: true,
+    link: "https://crypto-exchanger-fiat.vercel.app/",
+    secondaryLink: "https://github.com/HelgaAthame/crypto-exchanger",
+    secondaryLabel: "Source",
+    description:
+      "Fiat/crypto exchange calculator with live rates, a full simulated checkout pipeline, and rate alerts.",
+    tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS v4", "Zod", "Vitest"],
+    points: [
+      "Live rates from CoinGecko and Frankfurter, cross-computed through a USD bridge behind a single cache layer",
+      "Multi-step checkout with method-specific branches (card → 3-D Secure OTP, bank transfer, crypto deposit), each step gated by the request's own state",
+      "Rate history charts, per-currency pages, and browser-side rate alerts",
+      "Accessible custom listbox (arrows, Home/End, type-ahead, aria-activedescendant) instead of an unstylable native select",
+      "SEO: schema.org BreadcrumbList in JSON-LD, branded 404 and route-level error boundaries",
+      "Domain logic unit-tested with Vitest (rates, fees, alerts, checkout state machine)",
+    ],
+  },
+  {
+    name: "Bullet Heaven",
+    featured: true,
+    link: "https://bullet-heaven-six.vercel.app/",
+    secondaryLink: "https://github.com/HelgaAthame/bullet-heaven",
+    secondaryLabel: "Source",
+    description:
+      "Browser arcade (Vampire Survivors-like) built on PixiJS 8 — a performance-engineering project targeting 60 FPS with 5000+ live entities.",
+    tech: ["PixiJS 8", "TypeScript (strict)", "Vite", "WebGL2", "Vitest"],
+    points: [
+      "Fixed 60 Hz logic step with render interpolation and a delta cap, so balance never depends on the monitor's refresh rate",
+      "Object pools and typed arrays for entities; ParticleContainer batching to keep draw calls flat",
+      "Spatial hash for broad-phase collisions instead of pairwise checks",
+      "Adaptive quality governor driven by a measured frame budget, with an in-game metrics overlay (FPS, frame p50/p99, draw calls)",
+      "No game engine or physics library — written from scratch to control every millisecond of frame time",
     ],
   },
   {

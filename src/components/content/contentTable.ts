@@ -159,6 +159,16 @@ const frontSkillArr: ContentItem[] = [
 ];
 const petProjects: ContentItem[] = [
   {
+    text: "Crypto Exchanger",
+    value: 4,
+    link: "https://crypto-exchanger-fiat.vercel.app/",
+  },
+  {
+    text: "Bullet Heaven (PixiJS game)",
+    value: 4,
+    link: "https://bullet-heaven-six.vercel.app/",
+  },
+  {
     text: "Gem Puzzle",
     value: 1,
     link: "https://rolling-scopes-school.github.io/helgaathame-JSFE2022Q3/src/",
