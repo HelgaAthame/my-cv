@@ -6,8 +6,6 @@ import {
   Mail,
   Send,
   MapPin,
-  Printer,
-  ExternalLink,
   GraduationCap,
   Sparkles,
   CheckCircle2,
@@ -19,7 +17,9 @@ import {
 } from "lucide-react";
 import linkedinLogo from "../../../public/linkedIn.avif";
 import githubLogo from "../../../public/github.avif";
-import myPhoto from "../../../public/myPhoto3.jpg";
+
+import { Hero } from "./Hero";
+import { ProjectsBento } from "./ProjectsBento";
 
 // Deterministic PRNG (mulberry32) — NOT Math.random(). This runs at module
 // scope on both server and client during static export; a real random
@@ -68,17 +68,19 @@ function buildStripeGradient(
 
 const stripeAngle = 115;
 const stripeLayout = { count: 28, minWidth: 4, maxWidth: 48, minGap: 4, maxGap: 14, seed: 1 };
+// Alpha values are far lower than the light theme's were: on a near-black
+// page the same opacities read as bright bars rather than texture.
 const stripeBaseColors = [
-  "rgba(255, 247, 217, 0.5)",
-  "rgba(231, 237, 255, 0.4)",
-  "rgba(254, 231, 204, 0.45)",
-  "rgba(237, 241, 246, 0.36)",
+  "rgba(251, 191, 36, 0.05)",
+  "rgba(148, 163, 184, 0.05)",
+  "rgba(249, 115, 22, 0.04)",
+  "rgba(129, 140, 248, 0.04)",
 ];
 const stripeGlowColors = [
-  "rgba(253, 237, 169, 0.65)",
-  "rgba(212, 221, 255, 0.55)",
-  "rgba(254, 212, 165, 0.6)",
-  "rgba(222, 229, 237, 0.5)",
+  "rgba(251, 191, 36, 0.14)",
+  "rgba(148, 163, 184, 0.12)",
+  "rgba(249, 115, 22, 0.12)",
+  "rgba(129, 140, 248, 0.1)",
 ];
 const stripesBaseGradient = buildStripeGradient(stripeAngle, stripeBaseColors, stripeLayout);
 const stripesGlowGradient = buildStripeGradient(stripeAngle, stripeGlowColors, stripeLayout);
@@ -166,99 +168,26 @@ const skillGroups = [
   {
     title: "Other",
     icon: Layers,
-    items: ["PixiJS 8 (WebGL2)", "Canvas / game loop architecture", "Performance profiling", "Phaser", "Unity (C#)", "OOP & Design Patterns", "Agile / Scrum / Kanban", "Jira", "Trello", "Figma", "Photoshop"],
+    items: [
+      "PixiJS 8 (WebGL2)", "Canvas / game loop architecture", "Performance profiling", "Phaser",
+      "Unity (C#)", "OOP & Design Patterns", "Agile / Scrum / Kanban", "Jira", "Trello", "Figma", "Photoshop",
+    ],
   },
 ];
 
-const projects = [
-  {
-    name: "PulseOps",
-    featured: true,
-    link: "https://pulse-ops-ai-five.vercel.app/",
-    credentials: "demo@pulseops.app / Passkey123!",
-    description: "SaaS revenue metrics with an AI analyst — a lightweight alternative to ChartMogul for indie founders.",
-    tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS v4", "Supabase", "Drizzle ORM", "Groq AI"],
-    points: [
-      "Solo full-stack development: product, design, and engineering",
-      "Event-sourced metrics architecture with pure domain logic",
-      "AI analyst feature using Groq with strict JSON contracts",
-      "Passwordless auth with passkeys, Google OAuth, and hCaptcha",
-      "100% test coverage of domain layer with Vitest",
-    ],
-  },
-  {
-    name: "Sensy",
-    featured: true,
-    link: "https://sensy-front-github.vercel.app/",
-    secondaryLink: "https://sensy-back.onrender.com/api/docs",
-    secondaryLabel: "API Docs (Swagger)",
-    credentials: "admin@sensy.by / admin12345",
-    description: "Call-center quality control platform — speech analytics and QA checklists for reviewing call recordings.",
-    tech: ["Next.js", "NestJS", "TypeScript", "PostgreSQL", "Prisma", "Redis", "Tailwind CSS"],
-    points: [
-      "Full-stack: built both the frontend and the backend independently",
-      "Audio waveform playback and review UI for call recordings (wavesurfer.js)",
-      "REST API with Swagger docs, PostgreSQL via Prisma, idempotent Docker seed/migrations",
-      "Phased architecture: async processing (Redis/BullMQ) and self-hosted Whisper/LLM transcription planned for later phases",
-    ],
-  },
-  {
-    name: "Crypto Exchanger",
-    featured: true,
-    link: "https://crypto-exchanger-fiat.vercel.app/",
-    secondaryLink: "https://github.com/HelgaAthame/crypto-exchanger",
-    secondaryLabel: "Source",
-    description:
-      "Fiat/crypto exchange calculator with live rates, a full simulated checkout pipeline, and rate alerts.",
-    tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS v4", "Zod", "Vitest"],
-    points: [
-      "Live rates from CoinGecko and Frankfurter, cross-computed through a USD bridge behind a single cache layer",
-      "Multi-step checkout with method-specific branches (card → 3-D Secure OTP, bank transfer, crypto deposit), each step gated by the request's own state",
-      "Rate history charts, per-currency pages, and browser-side rate alerts",
-      "Accessible custom listbox (arrows, Home/End, type-ahead, aria-activedescendant) instead of an unstylable native select",
-      "SEO: schema.org BreadcrumbList in JSON-LD, branded 404 and route-level error boundaries",
-      "Domain logic unit-tested with Vitest (rates, fees, alerts, checkout state machine)",
-    ],
-  },
-  {
-    name: "Bullet Heaven",
-    featured: true,
-    link: "https://bullet-heaven-six.vercel.app/",
-    secondaryLink: "https://github.com/HelgaAthame/bullet-heaven",
-    secondaryLabel: "Source",
-    description:
-      "Browser arcade (Vampire Survivors-like) built on PixiJS 8 — a performance-engineering project targeting 60 FPS with 5000+ live entities.",
-    tech: ["PixiJS 8", "TypeScript (strict)", "Vite", "WebGL2", "Vitest"],
-    points: [
-      "Fixed 60 Hz logic step with render interpolation and a delta cap, so balance never depends on the monitor's refresh rate",
-      "Object pools and typed arrays for entities; ParticleContainer batching to keep draw calls flat",
-      "Spatial hash for broad-phase collisions instead of pairwise checks",
-      "Adaptive quality governor driven by a measured frame budget, with an in-game metrics overlay (FPS, frame p50/p99, draw calls)",
-      "No game engine or physics library — written from scratch to control every millisecond of frame time",
-    ],
-  },
-  {
-    name: "E-commerce with Server-Side Rendering",
-    link: "https://store-example7.vercel.app/",
-    description: "Full-featured e-commerce application with server-side rendering for optimal SEO and performance.",
-    tech: ["Next.js", "React", "TypeScript", "SSR"],
-  },
-  {
-    name: "Music Library (Fullstack)",
-    link: "https://nest-next-kappa.vercel.app/",
-    description: "Full-stack music library application with Nest.js backend and Next.js frontend.",
-    tech: ["Next.js", "Nest.js", "React", "TypeScript"],
-  },
-];
-
-const SectionHeading = ({ children }: { children: React.ReactNode }) => (
-  <h2 className="flex items-center gap-3 text-xl font-bold font-display tracking-tight text-slate-900 mb-4">
-    <span className="w-1.5 h-6 bg-gradient-to-b from-amber-500 to-orange-500 rounded-full" />
+export const SectionHeading = ({ children }: { children: React.ReactNode }) => (
+  <h2 className="mb-4 flex items-center gap-3 font-display text-xl font-bold tracking-tight text-white">
+    <span className="h-6 w-1.5 rounded-full bg-gradient-to-b from-amber-400 to-orange-500" />
     <span className="text-shine-hover">{children}</span>
   </h2>
 );
 
-export const HrCV = () => {
+/**
+ * The page-wide background: two stripe layers plus a cursor halo. Extracted
+ * so the case-study pages can share exactly the same backdrop instead of
+ * re-deriving it (and drifting out of sync with this file's stripe seed).
+ */
+export const PageBackground = () => {
   const glowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -271,307 +200,212 @@ export const HrCV = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen overflow-hidden p-4 md:p-8 lg:p-12">
-      <div ref={glowRef} className="no-print pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-stripes">
-        <div className="bg-stripes-base" style={{ backgroundImage: stripesBaseGradient }} />
-        <div className="bg-stripes-glow" style={{ backgroundImage: stripesGlowGradient }} />
-        <div className="cursor-glow" />
-      </div>
-      <div className="max-w-6xl mx-auto relative">
-        <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-6 lg:gap-8 items-start">
-          {/* Sidebar */}
-          <aside className="lg:sticky lg:top-0 animate-fade-in-up">
-            <div className="bg-slate-900 rounded-2xl shadow-premium-lg overflow-hidden sidebar-dark print-card">
-              <div className="pt-8 pb-6 px-6 flex flex-col items-center text-center bg-gradient-to-b from-slate-800/80 to-slate-900 banner-texture-dark">
-                <div className="w-32 h-32 rounded-full overflow-hidden ring-4 ring-amber-500/40 shadow-premium">
-                  <div className="w-full h-full" style={{ transform: "scale(2.9)", transformOrigin: "48% 33%" }}>
-                    <Image
-                      src={myPhoto.src}
-                      alt="Olga"
-                      width={432}
-                      height={436}
-                      priority
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
-                <h1 className="mt-4 text-3xl font-bold font-display tracking-tight text-white">Olga</h1>
-                <p className="text-amber-400 font-medium">Frontend Developer (Full-Stack)</p>
-
-                <button
-                  onClick={() => window.print()}
-                  className="btn-premium no-print mt-4 inline-flex items-center gap-2 text-sm font-semibold text-slate-900 bg-amber-400 hover:bg-amber-300 px-4 py-2 rounded-lg"
-                >
-                  <Printer size={16} />
-                  Save as PDF
-                </button>
-              </div>
-
-              <div className="px-6 py-6 border-t border-slate-700/60 space-y-3 text-left">
-                <a
-                  href="mailto:olgaivanovna2304@gmail.com"
-                  className="link-underline flex items-center gap-3 text-sm text-slate-300 hover:text-amber-400 break-all w-fit"
-                >
-                  <Mail size={16} className="text-amber-400 shrink-0" />
-                  olgaivanovna2304@gmail.com
-                </a>
-                <a
-                  href="https://t.me/HelgaAthame"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="link-underline flex items-center gap-3 text-sm text-slate-300 hover:text-amber-400 w-fit"
-                >
-                  <Send size={16} className="text-amber-400 shrink-0" />
-                  @HelgaAthame
-                </a>
-                <div className="flex items-center gap-3 text-sm text-slate-300">
-                  <MapPin size={16} className="text-amber-400 shrink-0" />
-                  Minsk, Belarus
-                </div>
-                <a
-                  href="https://www.linkedin.com/in/olga-k-aa9054220"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="link-underline flex items-center gap-3 text-sm text-slate-300 hover:text-amber-400 w-fit"
-                >
-                  <Image src={linkedinLogo.src} alt="" width={16} height={16} className="shrink-0 rounded-sm" />
-                  LinkedIn
-                </a>
-                <a
-                  href="https://github.com/HelgaAthame"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="link-underline flex items-center gap-3 text-sm text-slate-300 hover:text-amber-400 w-fit"
-                >
-                  <Image src={githubLogo.src} alt="" width={16} height={16} className="shrink-0 rounded-sm" />
-                  GitHub
-                </a>
-              </div>
-
-              <div className="px-6 py-6 border-t border-slate-700/60">
-                <h2 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-slate-400 mb-4">
-                  <Sparkles size={14} className="text-amber-400" />
-                  Key Skills
-                </h2>
-                <div className="flex flex-wrap gap-2">
-                  {keySkills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="skill-badge bg-amber-400/10 text-amber-300 border border-amber-400/20 px-3 py-1.5 rounded-full text-xs font-medium transition-colors hover:bg-amber-400/25 hover:border-amber-400/50 hover:text-amber-200"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="px-6 py-6 border-t border-slate-700/60">
-                <h2 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-slate-400 mb-4">
-                  <CheckCircle2 size={14} className="text-amber-400" />
-                  Soft Skills
-                </h2>
-                <ul className="space-y-2 text-sm text-slate-300">
-                  {[
-                    "Team development experience",
-                    "Quick learner of new technologies",
-                    "Dedicated and responsible",
-                    "Process optimization mindset",
-                    "Always delivers on time",
-                    "Effective communication",
-                  ].map((skill) => (
-                    <li key={skill} className="flex items-start gap-2">
-                      <CheckCircle2 size={14} className="text-amber-400 mt-0.5 shrink-0" />
-                      {skill}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </aside>
-
-          {/* Main content */}
-          <main className="space-y-8 min-w-0">
-            <section className="bg-white rounded-2xl shadow-premium p-6 print-card animate-fade-in-up" style={{ animationDelay: "0.05s" }}>
-              <SectionHeading>About Me</SectionHeading>
-              <p className="relative pl-5 mb-5 text-lg font-display leading-snug text-slate-800 before:content-[''] before:absolute before:left-0 before:top-1 before:bottom-1 before:w-1 before:rounded-full before:bg-gradient-to-b before:from-amber-500 before:to-orange-500">
-                Frontend developer with <span className="font-bold text-amber-600">4+ years</span> of commercial development experience.
-                Skilled in <span className="font-semibold text-slate-900">React, Next.js, TypeScript, Node.js</span>, and modern frontend technologies.
-                Passionate about building scalable web applications and continuously learning new technologies.
-              </p>
-              <ul className="sm:columns-2 gap-x-6 text-sm text-slate-700">
-                {aboutPoints.map((point) => (
-                  <li key={point} className="flex items-start gap-2 mb-2 break-inside-avoid">
-                    <CheckCircle2 size={15} className="text-amber-500 mt-0.5 shrink-0" />
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
-            </section>
-
-            <section className="animate-fade-in-up" style={{ animationDelay: "0.12s" }}>
-              <SectionHeading>Experience</SectionHeading>
-              <div className="space-y-6">
-                {experience.map((job, i) => (
-                  <div
-                    key={job.company}
-                    className={`relative pl-8 ${i < experience.length - 1 ? "border-l-2 border-amber-100 pb-2" : "border-l-2 border-transparent"}`}
-                  >
-                    <span className="absolute -left-[7px] top-1 w-3 h-3 rounded-full bg-amber-500 ring-4 ring-white" />
-                    <div className="bg-white rounded-xl shadow-premium p-6 print-card">
-                      <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
-                        <div>
-                          <h3 className="text-lg font-bold font-display text-slate-900">{job.role}</h3>
-                          <p className="text-amber-600 font-medium">{job.company}</p>
-                        </div>
-                        <span className="text-slate-500 text-sm mt-1 md:mt-0 whitespace-nowrap">{job.period}</span>
-                      </div>
-                      <p className="text-slate-500 text-sm mb-3">{job.location}</p>
-                      <ul className="list-disc list-inside text-slate-700 space-y-1 text-sm">
-                        {job.points.map((point) => (
-                          <li key={point}>{point}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            <section className="animate-fade-in-up" style={{ animationDelay: "0.19s" }}>
-              <SectionHeading>Featured Projects</SectionHeading>
-              <div className="space-y-6">
-                {projects
-                  .filter((p) => p.featured)
-                  .map((project) => (
-                    <div
-                      key={project.name}
-                      className="bg-white rounded-xl shadow-premium p-6 border-2 border-amber-200 print-card"
-                    >
-                      <div className="flex flex-wrap justify-between items-start gap-2 mb-1">
-                        <span className="text-xs font-bold uppercase tracking-wide text-amber-600">Featured</span>
-                        <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-                          {project.secondaryLink && (
-                            <a
-                              href={project.secondaryLink}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="link-underline flex items-center gap-1 text-amber-600 hover:text-amber-700 text-sm font-medium"
-                            >
-                              {project.secondaryLabel} <ExternalLink size={14} />
-                            </a>
-                          )}
-                          <a
-                            href={project.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="link-underline flex items-center gap-1 text-amber-600 hover:text-amber-700 text-sm font-medium"
-                          >
-                            Live Demo <ExternalLink size={14} />
-                          </a>
-                        </div>
-                      </div>
-                      <h3 className="text-xl font-bold font-display text-slate-900 mb-2">
-                        <span className="text-shine-hover">{project.name}</span>
-                      </h3>
-                      <p className="text-slate-500 text-sm mb-3">{project.description}</p>
-                      <div className="flex flex-wrap gap-2 mb-3">
-                        {project.tech.map((tech) => (
-                          <span key={tech} className="bg-amber-50 text-amber-700 border border-amber-100 px-3 py-1 rounded-full text-xs">
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                      <ul className="list-disc list-inside text-slate-700 space-y-1 text-sm">
-                        {project.points?.map((point) => (
-                          <li key={point}>{point}</li>
-                        ))}
-                      </ul>
-                      {project.credentials && (
-                        <p className="mt-3 text-xs text-slate-500 bg-slate-50 border border-slate-100 rounded-lg px-3 py-2 inline-block">
-                          Demo login: <span className="font-mono text-slate-700">{project.credentials}</span>
-                        </p>
-                      )}
-                    </div>
-                  ))}
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  {projects
-                    .filter((p) => !p.featured)
-                    .map((project) => (
-                      <div key={project.name} className="bg-white rounded-xl shadow-premium p-6 print-card">
-                        <div className="flex justify-between items-start mb-3">
-                          <h3 className="text-lg font-bold font-display text-slate-900">
-                            <span className="text-shine-hover">{project.name}</span>
-                          </h3>
-                          <a
-                            href={project.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="link-underline flex items-center gap-1 text-amber-600 hover:text-amber-700 text-sm font-medium shrink-0 ml-2"
-                          >
-                            Demo <ExternalLink size={14} />
-                          </a>
-                        </div>
-                        <div className="flex flex-wrap gap-2 mb-3">
-                          {project.tech.map((tech) => (
-                            <span key={tech} className="bg-amber-50 text-amber-700 border border-amber-100 px-3 py-1 rounded-full text-xs">
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                        <p className="text-slate-700 text-sm">{project.description}</p>
-                      </div>
-                    ))}
-                </div>
-              </div>
-            </section>
-
-            <section className="animate-fade-in-up" style={{ animationDelay: "0.26s" }}>
-              <SectionHeading>Education</SectionHeading>
-              <div className="grid sm:grid-cols-2 gap-4">
-                {education.map((edu) => (
-                  <div key={`${edu.school}-${edu.degree}`} className="bg-white rounded-xl shadow-premium p-5 flex gap-3 print-card">
-                    <GraduationCap size={20} className="text-amber-500 shrink-0 mt-0.5" />
-                    <div>
-                      <h3 className="font-bold text-slate-900 text-sm">{edu.degree}</h3>
-                      <p className="text-slate-500 text-sm">{edu.school}</p>
-                      <p className="text-amber-600 text-xs font-medium mt-1">{edu.note}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            <section className="animate-fade-in-up" style={{ animationDelay: "0.33s" }}>
-              <SectionHeading>Technical Skills</SectionHeading>
-              <div className="grid md:grid-cols-2 gap-4">
-                {skillGroups.map((group) => (
-                  <div key={group.title} className="bg-white rounded-xl shadow-premium p-6 print-card">
-                    <h3 className="flex items-center gap-2 font-bold text-slate-900 mb-3">
-                      <group.icon size={16} className="text-amber-500" />
-                      {group.title}
-                    </h3>
-                    <div className="flex flex-wrap gap-1.5">
-                      {group.items.map((item) => (
-                        <span
-                          key={item}
-                          className="skill-badge bg-slate-50 text-slate-600 border border-slate-100 px-2.5 py-1 rounded-md text-xs transition-colors hover:bg-amber-50 hover:border-amber-200 hover:text-amber-700"
-                        >
-                          {item}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            <footer className="text-center text-slate-400 text-sm py-6 border-t border-slate-200">
-              <p>© 2024 Olga. Built with Next.js, React, and Tailwind CSS.</p>
-            </footer>
-          </main>
-        </div>
-      </div>
+    <div ref={glowRef} className="no-print bg-stripes pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+      <div className="bg-stripes-base" style={{ backgroundImage: stripesBaseGradient }} />
+      <div className="bg-stripes-glow" style={{ backgroundImage: stripesGlowGradient }} />
+      <div className="cursor-glow" />
     </div>
   );
 };
+
+export const HrCV = () => (
+  <div className="relative min-h-screen overflow-hidden p-4 md:p-8 lg:p-12">
+    <PageBackground />
+
+    <div className="relative mx-auto max-w-6xl space-y-12">
+      <Hero />
+
+      {/* Projects come before experience on purpose: the work is the
+          argument, and two of these are things a reviewer can open and
+          poke at in ten seconds. */}
+      <section id="projects" className="animate-fade-in-up scroll-mt-8" style={{ animationDelay: "0.05s" }}>
+        <SectionHeading>Featured Projects</SectionHeading>
+        <ProjectsBento />
+      </section>
+
+      <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-[1fr_300px] lg:gap-8">
+        <main className="min-w-0 space-y-10">
+          <section className="surface print-card rounded-2xl p-6 animate-fade-in-up" style={{ animationDelay: "0.12s" }}>
+            <SectionHeading>About Me</SectionHeading>
+            <p className="relative mb-5 pl-5 font-display text-lg leading-snug text-slate-100 before:absolute before:bottom-1 before:left-0 before:top-1 before:w-1 before:rounded-full before:bg-gradient-to-b before:from-amber-400 before:to-orange-500 before:content-['']">
+              Frontend developer with <span className="font-bold text-amber-400 print-accent">4+ years</span> of commercial development experience.
+              Skilled in <span className="font-semibold text-white">React, Next.js, TypeScript, Node.js</span>, and modern frontend technologies.
+              Passionate about building scalable web applications and continuously learning new technologies.
+            </p>
+            <ul className="gap-x-6 text-sm text-slate-300 sm:columns-2">
+              {aboutPoints.map((point) => (
+                <li key={point} className="mb-2 flex break-inside-avoid items-start gap-2">
+                  <CheckCircle2 size={15} className="mt-0.5 shrink-0 text-amber-400" />
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section className="animate-fade-in-up" style={{ animationDelay: "0.19s" }}>
+            <SectionHeading>Experience</SectionHeading>
+            <div className="space-y-6">
+              {experience.map((job, i) => (
+                <div
+                  key={job.company}
+                  className={`relative pl-8 ${i < experience.length - 1 ? "border-l-2 border-amber-400/20 pb-2" : "border-l-2 border-transparent"}`}
+                >
+                  <span className="absolute -left-[7px] top-1 h-3 w-3 rounded-full bg-amber-400 ring-4 ring-slate-950" />
+                  <div className="surface print-card print-avoid-break rounded-xl p-6">
+                    <div className="mb-2 flex flex-col md:flex-row md:items-start md:justify-between">
+                      <div>
+                        <h3 className="font-display text-lg font-bold text-white">{job.role}</h3>
+                        <p className="font-medium text-amber-400 print-accent">{job.company}</p>
+                      </div>
+                      <span className="mt-1 whitespace-nowrap text-sm text-slate-400 md:mt-0">{job.period}</span>
+                    </div>
+                    <p className="mb-3 text-sm text-slate-400">{job.location}</p>
+                    <ul className="list-inside list-disc space-y-1 text-sm text-slate-300">
+                      {job.points.map((point) => (
+                        <li key={point}>{point}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+        </main>
+
+        {/* The sidebar is now a companion column, not the page's spine: the
+            identity block it used to carry lives in the hero above. */}
+        <aside className="animate-fade-in-up lg:sticky lg:top-8" style={{ animationDelay: "0.12s" }}>
+          <div className="surface-solid sidebar-dark print-card overflow-hidden rounded-2xl shadow-premium-lg">
+            <div className="space-y-3 px-6 py-6 text-left">
+              <a
+                href="mailto:olgaivanovna2304@gmail.com"
+                className="link-underline flex w-fit items-center gap-3 break-all text-sm text-slate-300 hover:text-amber-400"
+              >
+                <Mail size={16} className="shrink-0 text-amber-400" />
+                olgaivanovna2304@gmail.com
+              </a>
+              <a
+                href="https://t.me/HelgaAthame"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-underline flex w-fit items-center gap-3 text-sm text-slate-300 hover:text-amber-400"
+              >
+                <Send size={16} className="shrink-0 text-amber-400" />
+                @HelgaAthame
+              </a>
+              <div className="flex items-center gap-3 text-sm text-slate-300">
+                <MapPin size={16} className="shrink-0 text-amber-400" />
+                Minsk, Belarus
+              </div>
+              <a
+                href="https://www.linkedin.com/in/olga-k-aa9054220"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-underline flex w-fit items-center gap-3 text-sm text-slate-300 hover:text-amber-400"
+              >
+                <Image src={linkedinLogo.src} alt="" width={16} height={16} className="shrink-0 rounded-sm" />
+                LinkedIn
+              </a>
+              <a
+                href="https://github.com/HelgaAthame"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-underline flex w-fit items-center gap-3 text-sm text-slate-300 hover:text-amber-400"
+              >
+                <Image src={githubLogo.src} alt="" width={16} height={16} className="shrink-0 rounded-sm" />
+                GitHub
+              </a>
+            </div>
+
+            <div className="border-t border-white/10 px-6 py-6">
+              <h2 className="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-slate-400">
+                <Sparkles size={14} className="text-amber-400" />
+                Key Skills
+              </h2>
+              <div className="flex flex-wrap gap-2">
+                {keySkills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="skill-badge rounded-full border border-amber-400/20 bg-amber-400/10 px-3 py-1.5 text-xs font-medium text-amber-300 transition-colors hover:border-amber-400/50 hover:bg-amber-400/25 hover:text-amber-200"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="border-t border-white/10 px-6 py-6">
+              <h2 className="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-slate-400">
+                <CheckCircle2 size={14} className="text-amber-400" />
+                Soft Skills
+              </h2>
+              <ul className="space-y-2 text-sm text-slate-300">
+                {[
+                  "Team development experience",
+                  "Quick learner of new technologies",
+                  "Dedicated and responsible",
+                  "Process optimization mindset",
+                  "Always delivers on time",
+                  "Effective communication",
+                ].map((skill) => (
+                  <li key={skill} className="flex items-start gap-2">
+                    <CheckCircle2 size={14} className="mt-0.5 shrink-0 text-amber-400" />
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      {/* Full width, outside the sidebar grid: these are wide, chip-heavy
+          blocks, and squeezing them into the narrow column left the whole
+          right-hand side of the page empty below the sidebar. */}
+      <section className="animate-fade-in-up" style={{ animationDelay: "0.26s" }}>
+        <SectionHeading>Technical Skills</SectionHeading>
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {skillGroups.map((group) => (
+            <div key={group.title} className="surface print-card print-avoid-break rounded-xl p-6">
+              <h3 className="mb-3 flex items-center gap-2 font-bold text-white">
+                <group.icon size={16} className="text-amber-400" />
+                {group.title}
+              </h3>
+              <div className="flex flex-wrap gap-1.5">
+                {group.items.map((item) => (
+                  <span
+                    key={item}
+                    className="skill-badge rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-slate-300 transition-colors hover:border-amber-400/40 hover:bg-amber-400/10 hover:text-amber-200"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="animate-fade-in-up" style={{ animationDelay: "0.33s" }}>
+        <SectionHeading>Education</SectionHeading>
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          {education.map((edu) => (
+            <div key={`${edu.school}-${edu.degree}`} className="surface print-card print-avoid-break flex gap-3 rounded-xl p-5">
+              <GraduationCap size={20} className="mt-0.5 shrink-0 text-amber-400" />
+              <div>
+                <h3 className="text-sm font-bold text-white">{edu.degree}</h3>
+                <p className="text-sm text-slate-400">{edu.school}</p>
+                <p className="mt-1 text-xs font-medium text-amber-400 print-accent">{edu.note}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <footer className="border-t border-white/10 py-6 text-center text-sm text-slate-500">
+        <p>© 2026 Olga. Built with Next.js, React, and Tailwind CSS.</p>
+      </footer>
+    </div>
+  </div>
+);
