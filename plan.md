@@ -479,6 +479,23 @@ GitHub OAuth, это нормально и безопасно, т.к. это е�
         (`base`/`glow`) содержат одинаковый сгенерированный градиент —
         гидрационного расхождения нет
 
+## 12b. Два новых проекта — сделано (2026-07-31)
+
+- [x] Crypto Exchanger и Bullet Heaven добавлены в `HrCV.tsx` (оба как
+      `featured`, теперь featured-карточек четыре) и в `contentTable.ts`
+      (Pet Projects на интерактивной странице)
+- [x] В Technical Skills → Other добавлены PixiJS 8 (WebGL2), Canvas /
+      game loop architecture, Performance profiling
+- [x] README профиля `HelgaAthame/HelgaAthame` — оба проекта добавлены
+      после Sensy, в Frontend-скиллы добавлена строка про PixiJS/WebGL
+- [x] У репозитория `crypto-exchanger` в настройках был указан нерабочий
+      homepage (`crypto-exchanger-tau.vercel.app` → 404); заменён на
+      рабочий `crypto-exchanger-fiat.vercel.app`, заодно добавлено
+      описание репозитория (было пустое)
+- [ ] У `bullet-heaven` описание репозитория — "pixi js mini game",
+      сильно недопродаёт проект. Заменить на формулировку про 60 FPS /
+      5000+ сущностей
+
 ## 13. Требует твоего участия (не сделать за тебя)
 
 - [x] Заменить аватар на github.com/settings/profile — сделано автором,
