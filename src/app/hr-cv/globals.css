@@ -4,11 +4,33 @@
 
 @layer base {
   body {
-    @apply bg-gradient-to-br from-slate-50 via-white to-slate-100 text-slate-900;
+    @apply bg-slate-950 text-slate-300;
   }
 }
 
 @layer utilities {
+  /* The single card surface used across the page. Defined once here rather
+     than repeated as a utility string in the JSX, because the print block
+     below has to be able to flip every card back to paper-white in one
+     rule — chasing a dozen inline `bg-slate-900/60`s would not survive the
+     next edit. */
+  .surface {
+    @apply bg-slate-900/60 border border-white/10 backdrop-blur-sm;
+  }
+  .surface-solid {
+    @apply bg-slate-900 border border-white/10;
+  }
+  /* Cards that lift and warm slightly under the pointer. Applied to the
+     project tiles, which are the one thing on the page meant to be clicked. */
+  .surface-hover {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .surface-hover:hover {
+    transform: translateY(-4px);
+    border-color: rgba(251, 191, 36, 0.45);
+    box-shadow: 0 18px 40px -20px rgba(251, 191, 36, 0.5);
+  }
+
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-amber-600 via-orange-500 to-amber-700;
   }
@@ -18,15 +40,13 @@
   }
   
   .shadow-premium {
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
-                0 2px 4px -1px rgba(0, 0, 0, 0.06),
-                0 0 0 1px rgba(251, 191, 36, 0.1);
+    box-shadow: 0 4px 16px -6px rgba(0, 0, 0, 0.7),
+                0 0 0 1px rgba(251, 191, 36, 0.08);
   }
-  
+
   .shadow-premium-lg {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-                0 4px 6px -2px rgba(0, 0, 0, 0.05),
-                0 0 0 1px rgba(251, 191, 36, 0.1);
+    box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.85),
+                0 0 0 1px rgba(251, 191, 36, 0.12);
   }
 
   .banner-texture {
@@ -71,7 +91,7 @@
     inset: 0;
     z-index: -10;
     pointer-events: none;
-    background-color: #fffdf8;
+    background-color: #030712;
   }
   .bg-stripes-base,
   .bg-stripes-glow {
@@ -178,7 +198,7 @@
      the white band only becomes visible mid-transition, while it sweeps
      through. Solid color at both ends means it never looks "stuck". */
   .text-shine-hover {
-    background-image: linear-gradient(100deg, #0f172a 0%, #0f172a 45%, #ffffff 50%, #0f172a 55%, #0f172a 100%);
+    background-image: linear-gradient(100deg, #f1f5f9 0%, #f1f5f9 45%, #fbbf24 50%, #f1f5f9 55%, #f1f5f9 100%);
     background-size: 400% 100%;
     background-repeat: no-repeat;
     background-position: 0% 0;
@@ -259,24 +279,56 @@
     color: #0f172a !important;
   }
 
-  body {
-    background: white !important;
+  /* The whole page is dark on screen. Printing it dark wastes ink and some
+     browsers silently drop background colors anyway, leaving light text on
+     white paper — i.e. an unreadable CV. So paper gets its own light theme,
+     forced in one place: everything goes white/slate, and only the amber
+     accent survives, via .print-accent. */
+  /* Catch-all first: any text that is not inside a card would otherwise
+     print as light grey on white. .print-accent below is a class selector,
+     so it still outranks this. */
+  body,
+  body * {
+    color: #0f172a !important;
+    border-color: #e2e8f0 !important;
   }
 
-  .print-card {
-    box-shadow: none !important;
-    border: 1px solid #e2e8f0 !important;
-  }
-
-  /* The dark sidebar is bold on screen, but printing it dark wastes ink
-     and some browsers silently drop background colors anyway — force it
-     back to the same light/bordered look as the rest of the page. */
+  body,
+  .surface,
+  .surface-solid,
   .sidebar-dark,
-  .sidebar-dark * {
+  .sidebar-dark *,
+  .print-card,
+  .print-card * {
     background: white !important;
     background-image: none !important;
     color: #0f172a !important;
     border-color: #e2e8f0 !important;
+    backdrop-filter: none !important;
+  }
+
+  .print-accent,
+  .print-card .print-accent {
+    color: #b45309 !important;
+  }
+
+  .print-card,
+  .surface,
+  .surface-solid {
+    box-shadow: none !important;
+    border: 1px solid #e2e8f0 !important;
+  }
+
+  /* Screenshots are the point of the tiles on screen; on paper they eat a
+     page each and say nothing a recruiter needs. */
+  .print-hide-shot {
+    display: none !important;
+  }
+
+  /* Keep a project and its description on one sheet. */
+  .print-avoid-break {
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
 
   * {
