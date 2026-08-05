@@ -168,11 +168,10 @@ const petProjects: ContentItem[] = [
     value: 4,
     link: "https://bullet-heaven-six.vercel.app/",
   },
-  {
-    text: "Gem Puzzle",
-    value: 1,
-    link: "https://rolling-scopes-school.github.io/helgaathame-JSFE2022Q3/src/",
-  },
+  // Gem Puzzle, Song Bird and Online Zoo used to live here. Their host —
+  // rolling-scopes-school/helgaathame-JSFE2022Q3 — has been deleted from the
+  // org and is mirrored nowhere, so all three demos 404. A dead link on a CV
+  // costs more than a missing entry.
   {
     text: "E-commerce with Server-Side Rendering",
     value: 4,
@@ -204,25 +203,14 @@ const petProjects: ContentItem[] = [
     link: "https://helgaathame.github.io/logic/",
   },
   {
-    // The Vercel deployment 404s now; point at the source instead.
     text: "News App (Fullstack) for small screens",
     value: 3,
-    link: "https://github.com/HelgaAthame/news-app",
-  },
-  {
-    text: "Song Bird",
-    value: 1,
-    link: "https://rolling-scopes-school.github.io/helgaathame-JSFE2022Q3/my-app/dist/#",
+    link: "https://news-app-olga.vercel.app/",
   },
   {
     text: "GraphQL Playground",
     value: 3,
     link: "https://graphiql-app-git-develop-killthecreator.vercel.app/",
-  },
-  {
-    text: "Online Zoo",
-    value: 1,
-    link: "https://rolling-scopes-school.github.io/helgaathame-JSFE2022Q3/online-zoo/",
   },
   {
     text: "Portfolio and Resume",

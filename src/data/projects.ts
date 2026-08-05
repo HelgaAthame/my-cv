@@ -322,12 +322,13 @@ export const projects: Project[] = [
     name: "News App (Fullstack)",
     tagline: "GraphQL news platform, web and mobile",
     description:
-      "Create, edit and read news across web and mobile — NestJS with GraphQL/Apollo, TypeORM and PostgreSQL behind a Next.js web client and a React Native app. The hosted demo is offline; the source is on GitHub.",
+      "Create, edit and read news across web and mobile — NestJS with GraphQL/Apollo, TypeORM and PostgreSQL behind an Expo client that ships to both web and React Native.",
     featured: false,
-    // The Vercel deployment now returns 404 — link the code, not a dead page.
-    link: "https://github.com/HelgaAthame/news-app",
-    linkLabel: "Code",
-    links: [{ label: "Backend", href: "https://github.com/HelgaAthame/newsapp-back" }],
+    link: "https://news-app-olga.vercel.app/",
+    links: [
+      { label: "Frontend", href: "https://github.com/HelgaAthame/news-app" },
+      { label: "Backend", href: "https://github.com/HelgaAthame/newsapp-back" },
+    ],
     tech: ["Next.js", "NestJS", "GraphQL", "TypeORM", "PostgreSQL", "React Native", "Expo"],
   },
 ];
