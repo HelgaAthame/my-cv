@@ -22,7 +22,7 @@ const TechChips = ({ tech }: { tech: string[] }) => (
     {tech.map((item) => (
       <span
         key={item}
-        className="rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] text-slate-300"
+        className="chip rounded-md px-2 py-0.5 text-[11px]"
       >
         {item}
       </span>
@@ -35,7 +35,7 @@ const FeaturedTile = ({ project }: { project: Project }) => (
     className={`surface surface-hover print-card print-avoid-break group flex flex-col overflow-hidden rounded-2xl ${span[project.slug] ?? "md:col-span-3"}`}
   >
     {project.screenshot && (
-      <div className="print-hide-shot relative aspect-[16/9] overflow-hidden border-b border-white/10 bg-slate-950">
+      <div className="print-hide-shot relative aspect-[16/9] overflow-hidden border-b hairline bg-[color:var(--page-bg)]">
         <Image
           src={project.screenshot}
           alt={project.screenshotAlt ?? ""}
@@ -46,11 +46,11 @@ const FeaturedTile = ({ project }: { project: Project }) => (
     )}
 
     <div className="flex flex-1 flex-col p-6">
-      <h3 className="font-display text-xl font-bold text-white">
+      <h3 className="font-display text-xl font-bold t-title">
         <span className="text-shine-hover">{project.name}</span>
       </h3>
-      <p className="mt-1 text-sm text-amber-400 print-accent">{project.tagline}</p>
-      <p className="mt-3 text-sm leading-relaxed text-slate-300">{project.description}</p>
+      <p className="mt-1 text-sm t-accent">{project.tagline}</p>
+      <p className="mt-3 text-sm leading-relaxed t-body">{project.description}</p>
 
       {project.stats && (
         <dl className="mt-5 flex flex-wrap gap-x-8 gap-y-3">
@@ -58,8 +58,8 @@ const FeaturedTile = ({ project }: { project: Project }) => (
             <div key={stat.label}>
               <dt className="sr-only">{stat.label}</dt>
               <dd>
-                <span className="block font-display text-2xl font-bold text-white">{stat.value}</span>
-                <span className="block text-xs text-slate-400">{stat.label}</span>
+                <span className="block font-display text-2xl font-bold t-title">{stat.value}</span>
+                <span className="block text-xs t-muted">{stat.label}</span>
               </dd>
             </div>
           ))}
@@ -69,8 +69,8 @@ const FeaturedTile = ({ project }: { project: Project }) => (
       <TechChips tech={project.tech} />
 
       {project.credentials && (
-        <p className="mt-4 inline-block rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs text-slate-400">
-          Demo login: <span className="font-mono text-slate-200">{project.credentials}</span>
+        <p className="mt-4 inline-block rounded-lg chip px-3 py-2 text-xs t-muted">
+          Demo login: <span className="font-mono t-body">{project.credentials}</span>
         </p>
       )}
 
@@ -78,7 +78,7 @@ const FeaturedTile = ({ project }: { project: Project }) => (
         {project.caseStudy && (
           <Link
             href={`/hr-cv/projects/${project.slug}`}
-            className="link-underline inline-flex items-center gap-1 text-amber-400 hover:text-amber-300 print-accent"
+            className="link-underline inline-flex items-center gap-1 t-accent t-accent-hover"
           >
             Read the case study <ArrowUpRight size={14} />
           </Link>
@@ -87,7 +87,7 @@ const FeaturedTile = ({ project }: { project: Project }) => (
           href={project.link}
           target="_blank"
           rel="noopener noreferrer"
-          className="link-underline inline-flex items-center gap-1 text-slate-300 hover:text-amber-300"
+          className="link-underline inline-flex items-center gap-1 t-body t-accent-hover"
         >
           Live demo <ExternalLink size={13} />
         </a>
@@ -97,7 +97,7 @@ const FeaturedTile = ({ project }: { project: Project }) => (
             href={link.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="link-underline inline-flex items-center gap-1 text-slate-400 hover:text-amber-300"
+            className="link-underline inline-flex items-center gap-1 t-muted t-accent-hover"
           >
             {link.label} <ExternalLink size={13} />
           </a>
@@ -110,19 +110,19 @@ const FeaturedTile = ({ project }: { project: Project }) => (
 const CompactTile = ({ project }: { project: Project }) => (
   <article className="surface surface-hover print-card print-avoid-break rounded-xl p-5">
     <div className="flex items-start justify-between gap-3">
-      <h3 className="font-display text-base font-bold text-white">
+      <h3 className="font-display text-base font-bold t-title">
         <span className="text-shine-hover">{project.name}</span>
       </h3>
       <a
         href={project.link}
         target="_blank"
         rel="noopener noreferrer"
-        className="link-underline inline-flex shrink-0 items-center gap-1 text-sm text-amber-400 hover:text-amber-300 print-accent"
+        className="link-underline inline-flex shrink-0 items-center gap-1 text-sm t-accent t-accent-hover"
       >
-        Demo <ExternalLink size={13} />
+        {project.linkLabel ?? "Demo"} <ExternalLink size={13} />
       </a>
     </div>
-    <p className="mt-2 text-sm text-slate-300">{project.description}</p>
+    <p className="mt-2 text-sm t-body">{project.description}</p>
     <TechChips tech={project.tech} />
   </article>
 );

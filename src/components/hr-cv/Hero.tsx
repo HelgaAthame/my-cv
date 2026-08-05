@@ -23,31 +23,31 @@ export const Hero = () => (
   <header className="relative animate-fade-in-up">
     <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
       <div className="min-w-0">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-400 print-accent">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] t-accent">
           Frontend Developer (Full-Stack) · Minsk, Belarus
         </p>
 
-        <h1 className="mt-3 font-display text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
+        <h1 className="mt-3 font-display text-5xl font-bold tracking-tight t-title sm:text-6xl lg:text-7xl">
           Olga
         </h1>
 
-        <p className="mt-4 max-w-2xl font-display text-xl leading-snug text-slate-200 sm:text-2xl">
+        <p className="mt-4 max-w-2xl font-display text-xl leading-snug t-body sm:text-2xl">
           I build production frontends in{" "}
-          <span className="text-amber-400 print-accent">React and Next.js</span> — and I go all the
+          <span className="t-accent">React and Next.js</span> — and I go all the
           way down when the problem calls for it, from a NestJS API to a game loop holding 60 FPS.
         </p>
 
         <div className="no-print mt-7 flex flex-wrap items-center gap-3">
           <button
             onClick={() => window.print()}
-            className="btn-premium inline-flex items-center gap-2 rounded-lg bg-amber-400 px-5 py-2.5 text-sm font-semibold text-slate-950 hover:bg-amber-300"
+            className="btn-premium inline-flex items-center gap-2 rounded-lg bg-[color:var(--accent)] px-5 py-2.5 text-sm font-semibold text-[color:var(--on-accent)] hover:opacity-90"
           >
             <Printer size={16} />
             Save as PDF
           </button>
           <a
             href="mailto:olgaivanovna2304@gmail.com"
-            className="inline-flex items-center gap-2 rounded-lg border border-white/15 px-5 py-2.5 text-sm font-semibold text-slate-200 transition-colors hover:border-amber-400/50 hover:text-amber-300"
+            className="inline-flex items-center gap-2 rounded-lg border hairline px-5 py-2.5 text-sm font-semibold t-body transition-colors hover:border-[color:var(--accent)] t-accent-hover"
           >
             <Mail size={16} />
             Email me
@@ -56,7 +56,7 @@ export const Hero = () => (
             href="https://t.me/HelgaAthame"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg border border-white/15 px-5 py-2.5 text-sm font-semibold text-slate-200 transition-colors hover:border-amber-400/50 hover:text-amber-300"
+            className="inline-flex items-center gap-2 rounded-lg border hairline px-5 py-2.5 text-sm font-semibold t-body transition-colors hover:border-[color:var(--accent)] t-accent-hover"
           >
             <Send size={16} />
             Telegram
@@ -65,7 +65,7 @@ export const Hero = () => (
             href="https://github.com/HelgaAthame"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg border border-white/15 px-5 py-2.5 text-sm font-semibold text-slate-200 transition-colors hover:border-amber-400/50 hover:text-amber-300"
+            className="inline-flex items-center gap-2 rounded-lg border hairline px-5 py-2.5 text-sm font-semibold t-body transition-colors hover:border-[color:var(--accent)] t-accent-hover"
           >
             <Image src={githubLogo.src} alt="" width={16} height={16} className="rounded-sm" />
             GitHub
@@ -74,7 +74,7 @@ export const Hero = () => (
             href="https://www.linkedin.com/in/olga-k-aa9054220"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg border border-white/15 px-5 py-2.5 text-sm font-semibold text-slate-200 transition-colors hover:border-amber-400/50 hover:text-amber-300"
+            className="inline-flex items-center gap-2 rounded-lg border hairline px-5 py-2.5 text-sm font-semibold t-body transition-colors hover:border-[color:var(--accent)] t-accent-hover"
           >
             <Image src={linkedinLogo.src} alt="" width={16} height={16} className="rounded-sm" />
             LinkedIn
@@ -100,16 +100,16 @@ export const Hero = () => (
       </div>
     </div>
 
-    <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 lg:grid-cols-4 print-card print-avoid-break">
+    <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border hairline bg-[color:var(--hairline)] lg:grid-cols-4 print-card print-avoid-break">
       {stats.map((stat) => (
-        <div key={stat.label} className="bg-slate-950 p-5">
+        <div key={stat.label} className="bg-[color:var(--page-bg)] p-5">
           <dt className="sr-only">{stat.label}</dt>
           <dd>
-            <span className="block font-display text-4xl font-bold tracking-tight text-amber-400 print-accent">
+            <span className="block font-display text-4xl font-bold tracking-tight t-accent">
               {stat.value}
             </span>
-            <span className="mt-1 block text-sm font-medium text-slate-200">{stat.label}</span>
-            <span className="mt-0.5 block text-xs text-slate-500">{stat.sub}</span>
+            <span className="mt-1 block text-sm font-medium t-body">{stat.label}</span>
+            <span className="mt-0.5 block text-xs t-faint">{stat.sub}</span>
           </dd>
         </div>
       ))}
@@ -117,7 +117,7 @@ export const Hero = () => (
 
     <a
       href="#projects"
-      className="no-print mt-8 inline-flex items-center gap-2 text-sm font-medium text-slate-400 transition-colors hover:text-amber-300"
+      className="no-print mt-8 inline-flex items-center gap-2 text-sm font-medium t-muted transition-colors t-accent-hover"
     >
       <ArrowDown size={15} />
       See the work

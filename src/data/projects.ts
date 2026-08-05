@@ -29,8 +29,13 @@ export type Project = {
   screenshot?: StaticImageData;
   /** Alt text for the screenshot — required whenever `screenshot` is set. */
   screenshotAlt?: string;
-  /** Live deployment. */
+  /**
+   * The tile's primary link. Usually the live deployment — but a dead demo
+   * link on a CV is worse than no demo at all, so a project whose hosting
+   * has lapsed points at its source instead and says so via `linkLabel`.
+   */
   link: string;
+  linkLabel?: string;
   links?: ProjectLink[];
   credentials?: string;
   tech: string[];
@@ -317,13 +322,12 @@ export const projects: Project[] = [
     name: "News App (Fullstack)",
     tagline: "GraphQL news platform, web and mobile",
     description:
-      "Create, edit and read news across web and mobile — NestJS with GraphQL/Apollo, TypeORM and PostgreSQL behind a Next.js web client and a React Native app.",
+      "Create, edit and read news across web and mobile — NestJS with GraphQL/Apollo, TypeORM and PostgreSQL behind a Next.js web client and a React Native app. The hosted demo is offline; the source is on GitHub.",
     featured: false,
-    link: "https://news-app-olga.vercel.app/",
-    links: [
-      { label: "Frontend", href: "https://github.com/HelgaAthame/news-app" },
-      { label: "Backend", href: "https://github.com/HelgaAthame/newsapp-back" },
-    ],
+    // The Vercel deployment now returns 404 — link the code, not a dead page.
+    link: "https://github.com/HelgaAthame/news-app",
+    linkLabel: "Code",
+    links: [{ label: "Backend", href: "https://github.com/HelgaAthame/newsapp-back" }],
     tech: ["Next.js", "NestJS", "GraphQL", "TypeORM", "PostgreSQL", "React Native", "Expo"],
   },
 ];

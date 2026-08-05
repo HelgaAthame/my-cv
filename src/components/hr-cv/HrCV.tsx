@@ -20,6 +20,7 @@ import githubLogo from "../../../public/github.avif";
 
 import { Hero } from "./Hero";
 import { ProjectsBento } from "./ProjectsBento";
+import { ThemeToggle } from "./ThemeToggle";
 
 // Deterministic PRNG (mulberry32) — NOT Math.random(). This runs at module
 // scope on both server and client during static export; a real random
@@ -82,8 +83,25 @@ const stripeGlowColors = [
   "rgba(249, 115, 22, 0.12)",
   "rgba(129, 140, 248, 0.1)",
 ];
+// The light theme's pastel set. Same seed and layout, so switching themes
+// never shifts the stripe positions — only their color.
+const stripeBaseColorsLight = [
+  "rgba(255, 247, 217, 0.5)",
+  "rgba(231, 237, 255, 0.4)",
+  "rgba(254, 231, 204, 0.45)",
+  "rgba(237, 241, 246, 0.36)",
+];
+const stripeGlowColorsLight = [
+  "rgba(253, 237, 169, 0.65)",
+  "rgba(212, 221, 255, 0.55)",
+  "rgba(254, 212, 165, 0.6)",
+  "rgba(222, 229, 237, 0.5)",
+];
+
 const stripesBaseGradient = buildStripeGradient(stripeAngle, stripeBaseColors, stripeLayout);
 const stripesGlowGradient = buildStripeGradient(stripeAngle, stripeGlowColors, stripeLayout);
+const stripesBaseGradientLight = buildStripeGradient(stripeAngle, stripeBaseColorsLight, stripeLayout);
+const stripesGlowGradientLight = buildStripeGradient(stripeAngle, stripeGlowColorsLight, stripeLayout);
 
 const keySkills = ["React", "Next.js", "TypeScript", "Tailwind CSS", "Redux/Toolkit", "Node.js", "Supabase", "JavaScript"];
 
@@ -176,8 +194,8 @@ const skillGroups = [
 ];
 
 export const SectionHeading = ({ children }: { children: React.ReactNode }) => (
-  <h2 className="mb-4 flex items-center gap-3 font-display text-xl font-bold tracking-tight text-white">
-    <span className="h-6 w-1.5 rounded-full bg-gradient-to-b from-amber-400 to-orange-500" />
+  <h2 className="mb-4 flex items-center gap-3 font-display text-xl font-bold tracking-tight t-title">
+    <span className="h-6 w-1.5 rounded-full accent-bar" />
     <span className="text-shine-hover">{children}</span>
   </h2>
 );
@@ -201,8 +219,10 @@ export const PageBackground = () => {
 
   return (
     <div ref={glowRef} className="no-print bg-stripes pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-      <div className="bg-stripes-base" style={{ backgroundImage: stripesBaseGradient }} />
-      <div className="bg-stripes-glow" style={{ backgroundImage: stripesGlowGradient }} />
+      <div className="bg-stripes-base stripes-dark" style={{ backgroundImage: stripesBaseGradient }} />
+      <div className="bg-stripes-glow stripes-dark" style={{ backgroundImage: stripesGlowGradient }} />
+      <div className="bg-stripes-base stripes-light" style={{ backgroundImage: stripesBaseGradientLight }} />
+      <div className="bg-stripes-glow stripes-light" style={{ backgroundImage: stripesGlowGradientLight }} />
       <div className="cursor-glow" />
     </div>
   );
@@ -211,6 +231,7 @@ export const PageBackground = () => {
 export const HrCV = () => (
   <div className="relative min-h-screen overflow-hidden p-4 md:p-8 lg:p-12">
     <PageBackground />
+    <ThemeToggle />
 
     <div className="relative mx-auto max-w-6xl space-y-12">
       <Hero />
@@ -227,15 +248,15 @@ export const HrCV = () => (
         <main className="min-w-0 space-y-10">
           <section className="surface print-card rounded-2xl p-6 animate-fade-in-up" style={{ animationDelay: "0.12s" }}>
             <SectionHeading>About Me</SectionHeading>
-            <p className="relative mb-5 pl-5 font-display text-lg leading-snug text-slate-100 before:absolute before:bottom-1 before:left-0 before:top-1 before:w-1 before:rounded-full before:bg-gradient-to-b before:from-amber-400 before:to-orange-500 before:content-['']">
-              Frontend developer with <span className="font-bold text-amber-400 print-accent">4+ years</span> of commercial development experience.
-              Skilled in <span className="font-semibold text-white">React, Next.js, TypeScript, Node.js</span>, and modern frontend technologies.
+            <p className="relative mb-5 pl-5 font-display text-lg leading-snug t-title before:absolute before:bottom-1 before:left-0 before:top-1 before:w-1 before:rounded-full before:bg-[color:var(--accent)] before:content-['']">
+              Frontend developer with <span className="font-bold t-accent">4+ years</span> of commercial development experience.
+              Skilled in <span className="font-semibold t-title">React, Next.js, TypeScript, Node.js</span>, and modern frontend technologies.
               Passionate about building scalable web applications and continuously learning new technologies.
             </p>
-            <ul className="gap-x-6 text-sm text-slate-300 sm:columns-2">
+            <ul className="gap-x-6 text-sm t-body sm:columns-2">
               {aboutPoints.map((point) => (
                 <li key={point} className="mb-2 flex break-inside-avoid items-start gap-2">
-                  <CheckCircle2 size={15} className="mt-0.5 shrink-0 text-amber-400" />
+                  <CheckCircle2 size={15} className="mt-0.5 shrink-0 t-accent" />
                   <span>{point}</span>
                 </li>
               ))}
@@ -248,19 +269,19 @@ export const HrCV = () => (
               {experience.map((job, i) => (
                 <div
                   key={job.company}
-                  className={`relative pl-8 ${i < experience.length - 1 ? "border-l-2 border-amber-400/20 pb-2" : "border-l-2 border-transparent"}`}
+                  className={`relative pl-8 ${i < experience.length - 1 ? "border-l-2 border-[color:var(--accent-soft-border)] pb-2" : "border-l-2 border-transparent"}`}
                 >
-                  <span className="absolute -left-[7px] top-1 h-3 w-3 rounded-full bg-amber-400 ring-4 ring-slate-950" />
+                  <span className="absolute -left-[7px] top-1 h-3 w-3 rounded-full bg-[color:var(--accent)] ring-4 ring-[color:var(--page-bg)]" />
                   <div className="surface print-card print-avoid-break rounded-xl p-6">
                     <div className="mb-2 flex flex-col md:flex-row md:items-start md:justify-between">
                       <div>
-                        <h3 className="font-display text-lg font-bold text-white">{job.role}</h3>
-                        <p className="font-medium text-amber-400 print-accent">{job.company}</p>
+                        <h3 className="font-display text-lg font-bold t-title">{job.role}</h3>
+                        <p className="font-medium t-accent">{job.company}</p>
                       </div>
-                      <span className="mt-1 whitespace-nowrap text-sm text-slate-400 md:mt-0">{job.period}</span>
+                      <span className="mt-1 whitespace-nowrap text-sm t-muted md:mt-0">{job.period}</span>
                     </div>
-                    <p className="mb-3 text-sm text-slate-400">{job.location}</p>
-                    <ul className="list-inside list-disc space-y-1 text-sm text-slate-300">
+                    <p className="mb-3 text-sm t-muted">{job.location}</p>
+                    <ul className="list-inside list-disc space-y-1 text-sm t-body">
                       {job.points.map((point) => (
                         <li key={point}>{point}</li>
                       ))}
@@ -280,29 +301,29 @@ export const HrCV = () => (
             <div className="space-y-3 px-6 py-6 text-left">
               <a
                 href="mailto:olgaivanovna2304@gmail.com"
-                className="link-underline flex w-fit items-center gap-3 break-all text-sm text-slate-300 hover:text-amber-400"
+                className="link-underline flex w-fit items-center gap-3 break-all text-sm t-body t-accent-hover"
               >
-                <Mail size={16} className="shrink-0 text-amber-400" />
+                <Mail size={16} className="shrink-0 t-accent" />
                 olgaivanovna2304@gmail.com
               </a>
               <a
                 href="https://t.me/HelgaAthame"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="link-underline flex w-fit items-center gap-3 text-sm text-slate-300 hover:text-amber-400"
+                className="link-underline flex w-fit items-center gap-3 text-sm t-body t-accent-hover"
               >
-                <Send size={16} className="shrink-0 text-amber-400" />
+                <Send size={16} className="shrink-0 t-accent" />
                 @HelgaAthame
               </a>
-              <div className="flex items-center gap-3 text-sm text-slate-300">
-                <MapPin size={16} className="shrink-0 text-amber-400" />
+              <div className="flex items-center gap-3 text-sm t-body">
+                <MapPin size={16} className="shrink-0 t-accent" />
                 Minsk, Belarus
               </div>
               <a
                 href="https://www.linkedin.com/in/olga-k-aa9054220"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="link-underline flex w-fit items-center gap-3 text-sm text-slate-300 hover:text-amber-400"
+                className="link-underline flex w-fit items-center gap-3 text-sm t-body t-accent-hover"
               >
                 <Image src={linkedinLogo.src} alt="" width={16} height={16} className="shrink-0 rounded-sm" />
                 LinkedIn
@@ -311,23 +332,23 @@ export const HrCV = () => (
                 href="https://github.com/HelgaAthame"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="link-underline flex w-fit items-center gap-3 text-sm text-slate-300 hover:text-amber-400"
+                className="link-underline flex w-fit items-center gap-3 text-sm t-body t-accent-hover"
               >
                 <Image src={githubLogo.src} alt="" width={16} height={16} className="shrink-0 rounded-sm" />
                 GitHub
               </a>
             </div>
 
-            <div className="border-t border-white/10 px-6 py-6">
-              <h2 className="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-slate-400">
-                <Sparkles size={14} className="text-amber-400" />
+            <div className="border-t hairline px-6 py-6">
+              <h2 className="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-wide t-muted">
+                <Sparkles size={14} className="t-accent" />
                 Key Skills
               </h2>
               <div className="flex flex-wrap gap-2">
                 {keySkills.map((skill) => (
                   <span
                     key={skill}
-                    className="skill-badge rounded-full border border-amber-400/20 bg-amber-400/10 px-3 py-1.5 text-xs font-medium text-amber-300 transition-colors hover:border-amber-400/50 hover:bg-amber-400/25 hover:text-amber-200"
+                    className="skill-badge chip-accent rounded-full px-3 py-1.5 text-xs font-medium"
                   >
                     {skill}
                   </span>
@@ -335,12 +356,12 @@ export const HrCV = () => (
               </div>
             </div>
 
-            <div className="border-t border-white/10 px-6 py-6">
-              <h2 className="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-slate-400">
-                <CheckCircle2 size={14} className="text-amber-400" />
+            <div className="border-t hairline px-6 py-6">
+              <h2 className="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-wide t-muted">
+                <CheckCircle2 size={14} className="t-accent" />
                 Soft Skills
               </h2>
-              <ul className="space-y-2 text-sm text-slate-300">
+              <ul className="space-y-2 text-sm t-body">
                 {[
                   "Team development experience",
                   "Quick learner of new technologies",
@@ -350,7 +371,7 @@ export const HrCV = () => (
                   "Effective communication",
                 ].map((skill) => (
                   <li key={skill} className="flex items-start gap-2">
-                    <CheckCircle2 size={14} className="mt-0.5 shrink-0 text-amber-400" />
+                    <CheckCircle2 size={14} className="mt-0.5 shrink-0 t-accent" />
                     {skill}
                   </li>
                 ))}
@@ -368,15 +389,15 @@ export const HrCV = () => (
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {skillGroups.map((group) => (
             <div key={group.title} className="surface print-card print-avoid-break rounded-xl p-6">
-              <h3 className="mb-3 flex items-center gap-2 font-bold text-white">
-                <group.icon size={16} className="text-amber-400" />
+              <h3 className="mb-3 flex items-center gap-2 font-bold t-title">
+                <group.icon size={16} className="t-accent" />
                 {group.title}
               </h3>
               <div className="flex flex-wrap gap-1.5">
                 {group.items.map((item) => (
                   <span
                     key={item}
-                    className="skill-badge rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-slate-300 transition-colors hover:border-amber-400/40 hover:bg-amber-400/10 hover:text-amber-200"
+                    className="skill-badge chip rounded-md px-2.5 py-1 text-xs"
                   >
                     {item}
                   </span>
@@ -392,18 +413,18 @@ export const HrCV = () => (
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {education.map((edu) => (
             <div key={`${edu.school}-${edu.degree}`} className="surface print-card print-avoid-break flex gap-3 rounded-xl p-5">
-              <GraduationCap size={20} className="mt-0.5 shrink-0 text-amber-400" />
+              <GraduationCap size={20} className="mt-0.5 shrink-0 t-accent" />
               <div>
-                <h3 className="text-sm font-bold text-white">{edu.degree}</h3>
-                <p className="text-sm text-slate-400">{edu.school}</p>
-                <p className="mt-1 text-xs font-medium text-amber-400 print-accent">{edu.note}</p>
+                <h3 className="text-sm font-bold t-title">{edu.degree}</h3>
+                <p className="text-sm t-muted">{edu.school}</p>
+                <p className="mt-1 text-xs font-medium t-accent">{edu.note}</p>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      <footer className="border-t border-white/10 py-6 text-center text-sm text-slate-500">
+      <footer className="border-t hairline py-6 text-center text-sm t-faint">
         <p>© 2026 Olga. Built with Next.js, React, and Tailwind CSS.</p>
       </footer>
     </div>

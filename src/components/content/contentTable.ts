@@ -204,9 +204,10 @@ const petProjects: ContentItem[] = [
     link: "https://helgaathame.github.io/logic/",
   },
   {
+    // The Vercel deployment 404s now; point at the source instead.
     text: "News App (Fullstack) for small screens",
     value: 3,
-    link: "https://news-app-olga.vercel.app/",
+    link: "https://github.com/HelgaAthame/news-app",
   },
   {
     text: "Song Bird",

@@ -2,23 +2,125 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ---------------------------------------------------------------------------
+   Theme tokens.
+
+   Every color on the page goes through these variables rather than through
+   Tailwind color utilities in the JSX. That indirection is the whole reason
+   two themes are maintainable here: `text-white` cannot be re-pointed at a
+   dark ink for the light theme without an !important sledgehammer, whereas
+   `--title` can. Print reuses the light values further down, so paper and
+   the light theme can never drift apart.
+
+   Dark is the default — the theme is set on <html data-theme> by an inline
+   script in the layout before first paint, so there is no flash and no
+   hydration mismatch.
+--------------------------------------------------------------------------- */
+:root {
+  --page-bg: #030712;
+  --surface-bg: rgb(15 23 42 / 0.6);
+  --surface-solid-bg: #0f172a;
+  --hairline: rgb(255 255 255 / 0.1);
+  --chip-bg: rgb(255 255 255 / 0.05);
+  --title: #ffffff;
+  --body-text: #cbd5e1;
+  --muted: #94a3b8;
+  --faint: #64748b;
+  --accent: #fbbf24;
+  --accent-hover: #fcd34d;
+  --accent-soft-bg: rgb(251 191 36 / 0.1);
+  --accent-soft-border: rgb(251 191 36 / 0.2);
+  --accent-soft-text: #fcd34d;
+  --shine-base: #f1f5f9;
+  --dot-ring: #030712;
+  --on-accent: #030712;
+  --shadow-premium: 0 4px 16px -6px rgb(0 0 0 / 0.7), 0 0 0 1px rgb(251 191 36 / 0.08);
+  --shadow-premium-lg: 0 18px 40px -18px rgb(0 0 0 / 0.85), 0 0 0 1px rgb(251 191 36 / 0.12);
+}
+
+:root[data-theme="light"] {
+  --page-bg: #fffdf8;
+  --surface-bg: rgb(255 255 255 / 0.8);
+  --surface-solid-bg: #ffffff;
+  --hairline: #e2e8f0;
+  --chip-bg: #f8fafc;
+  --title: #0f172a;
+  --body-text: #334155;
+  --muted: #64748b;
+  --faint: #94a3b8;
+  --accent: #b45309;
+  --accent-hover: #92400e;
+  --accent-soft-bg: rgb(251 191 36 / 0.14);
+  --accent-soft-border: rgb(180 83 9 / 0.25);
+  --accent-soft-text: #92400e;
+  --shine-base: #0f172a;
+  --dot-ring: #fffdf8;
+  --on-accent: #ffffff;
+  --shadow-premium: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -1px rgb(0 0 0 / 0.06), 0 0 0 1px rgb(251 191 36 / 0.15);
+  --shadow-premium-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.05), 0 0 0 1px rgb(251 191 36 / 0.18);
+}
+
 @layer base {
   body {
-    @apply bg-slate-950 text-slate-300;
+    background-color: var(--page-bg);
+    color: var(--body-text);
   }
 }
 
 @layer utilities {
-  /* The single card surface used across the page. Defined once here rather
-     than repeated as a utility string in the JSX, because the print block
-     below has to be able to flip every card back to paper-white in one
-     rule — chasing a dozen inline `bg-slate-900/60`s would not survive the
-     next edit. */
+  /* Semantic text roles. These replace text-white / text-slate-300 / … in
+     the JSX; see the token block above for why. */
+  .t-title {
+    color: var(--title);
+  }
+  .t-body {
+    color: var(--body-text);
+  }
+  .t-muted {
+    color: var(--muted);
+  }
+  .t-faint {
+    color: var(--faint);
+  }
+  .t-accent {
+    color: var(--accent);
+  }
+  .hover\:t-accent-hover:hover,
+  .t-accent-hover:hover {
+    color: var(--accent-hover);
+  }
+  .hairline {
+    border-color: var(--hairline);
+  }
+  .accent-bar {
+    background: linear-gradient(to bottom, var(--accent), #f97316);
+  }
+  /* Small bordered pill used for tech chips and skill badges. */
+  .chip {
+    background-color: var(--chip-bg);
+    border: 1px solid var(--hairline);
+    color: var(--body-text);
+  }
+  .chip:hover {
+    background-color: var(--accent-soft-bg);
+    border-color: var(--accent-soft-border);
+    color: var(--accent-soft-text);
+  }
+  .chip-accent {
+    background-color: var(--accent-soft-bg);
+    border: 1px solid var(--accent-soft-border);
+    color: var(--accent-soft-text);
+  }
+
+  /* The single card surface used across the page. */
   .surface {
-    @apply bg-slate-900/60 border border-white/10 backdrop-blur-sm;
+    background-color: var(--surface-bg);
+    border: 1px solid var(--hairline);
+    @apply backdrop-blur-sm;
   }
   .surface-solid {
-    @apply bg-slate-900 border border-white/10;
+    background-color: var(--surface-solid-bg);
+    border: 1px solid var(--hairline);
   }
   /* Cards that lift and warm slightly under the pointer. Applied to the
      project tiles, which are the one thing on the page meant to be clicked. */
@@ -39,14 +141,14 @@
     @apply border-2 border-transparent bg-clip-border bg-gradient-to-r from-amber-600 to-orange-500;
   }
   
+  /* Shadow has to be a per-theme token too: a near-black drop shadow is
+     invisible on a dark page and muddy on a light one. */
   .shadow-premium {
-    box-shadow: 0 4px 16px -6px rgba(0, 0, 0, 0.7),
-                0 0 0 1px rgba(251, 191, 36, 0.08);
+    box-shadow: var(--shadow-premium);
   }
 
   .shadow-premium-lg {
-    box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.85),
-                0 0 0 1px rgba(251, 191, 36, 0.12);
+    box-shadow: var(--shadow-premium-lg);
   }
 
   .banner-texture {
@@ -91,7 +193,14 @@
     inset: 0;
     z-index: -10;
     pointer-events: none;
-    background-color: #030712;
+    background-color: var(--page-bg);
+  }
+  /* Both stripe palettes are rendered; the theme decides which pair is
+     visible. The alphas that read as texture on near-black read as bright
+     bars on cream, so one set of colors cannot serve both. */
+  :root[data-theme="light"] .stripes-dark,
+  :root:not([data-theme="light"]) .stripes-light {
+    display: none;
   }
   .bg-stripes-base,
   .bg-stripes-glow {
@@ -198,7 +307,14 @@
      the white band only becomes visible mid-transition, while it sweeps
      through. Solid color at both ends means it never looks "stuck". */
   .text-shine-hover {
-    background-image: linear-gradient(100deg, #f1f5f9 0%, #f1f5f9 45%, #fbbf24 50%, #f1f5f9 55%, #f1f5f9 100%);
+    background-image: linear-gradient(
+      100deg,
+      var(--shine-base) 0%,
+      var(--shine-base) 45%,
+      var(--accent) 50%,
+      var(--shine-base) 55%,
+      var(--shine-base) 100%
+    );
     background-size: 400% 100%;
     background-repeat: no-repeat;
     background-position: 0% 0;
@@ -279,37 +395,50 @@
     color: #0f172a !important;
   }
 
-  /* The whole page is dark on screen. Printing it dark wastes ink and some
-     browsers silently drop background colors anyway, leaving light text on
-     white paper — i.e. an unreadable CV. So paper gets its own light theme,
-     forced in one place: everything goes white/slate, and only the amber
-     accent survives, via .print-accent. */
-  /* Catch-all first: any text that is not inside a card would otherwise
-     print as light grey on white. .print-accent below is a class selector,
-     so it still outranks this. */
-  body,
-  body * {
-    color: #0f172a !important;
-    border-color: #e2e8f0 !important;
+  /* Paper is always the light theme, whichever one is on screen: printing
+     the dark one wastes ink, and some engines silently drop background
+     colors, which would leave near-white text on white paper — an
+     unreadable CV. Re-declaring the light tokens here (rather than a pile
+     of !important overrides) means paper and the light theme cannot drift
+     apart: change a token once, both follow. */
+  :root,
+  :root[data-theme="dark"],
+  :root[data-theme="light"] {
+    --page-bg: #ffffff;
+    --surface-bg: #ffffff;
+    --surface-solid-bg: #ffffff;
+    --hairline: #e2e8f0;
+    --chip-bg: #f8fafc;
+    --title: #0f172a;
+    --body-text: #334155;
+    --muted: #64748b;
+    --faint: #94a3b8;
+    --accent: #b45309;
+    --accent-hover: #92400e;
+    --accent-soft-bg: #ffffff;
+    --accent-soft-border: #e2e8f0;
+    --accent-soft-text: #334155;
+    --dot-ring: #ffffff;
+    --on-accent: #ffffff;
+    --shadow-premium: none;
+    --shadow-premium-lg: none;
   }
 
-  body,
+  body {
+    background: white !important;
+  }
+
+  /* Tailwind color utilities still in the markup for one-off decorative
+     bits (the amber CTA, the dark sidebar block) would otherwise print as
+     solid ink blocks. */
   .surface,
   .surface-solid,
   .sidebar-dark,
   .sidebar-dark *,
   .print-card,
   .print-card * {
-    background: white !important;
     background-image: none !important;
-    color: #0f172a !important;
-    border-color: #e2e8f0 !important;
     backdrop-filter: none !important;
-  }
-
-  .print-accent,
-  .print-card .print-accent {
-    color: #b45309 !important;
   }
 
   .print-card,
@@ -335,4 +464,11 @@
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
+}
+
+/* Icon visibility for the theme toggle. The button renders both icons and
+   CSS picks one — see ThemeToggle.tsx for why it holds no React state. */
+:root[data-theme="light"] .theme-icon-dark,
+:root:not([data-theme="light"]) .theme-icon-light {
+  display: none;
 }
