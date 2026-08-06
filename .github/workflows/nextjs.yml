@@ -1,12 +1,15 @@
 name: publish-to-github-pages
+# SUPERSEDED — do not point this at `main`.
+#
+# Pages is deployed by nextjs-new.yml, which already runs on main. This
+# workflow is the older attempt, left dormant by a trigger branch that does
+# not exist here (`master`). Both share the `pages` concurrency group and
+# both call deploy-pages, so enabling this one just makes every push race
+# two deploys against the same environment. Delete it or leave it dormant.
 on:
-  # The default branch here is `main`; this said `master`, which does not
-  # exist in this repository, so no push ever triggered a deploy.
   push:
     branches:
-      - main
-  # Lets a deploy be re-run from the Actions tab without an empty commit.
-  workflow_dispatch:
+      - master
 
 permissions:
   contents: read
