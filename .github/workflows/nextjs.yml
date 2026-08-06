@@ -1,8 +1,12 @@
 name: publish-to-github-pages
 on:
+  # The default branch here is `main`; this said `master`, which does not
+  # exist in this repository, so no push ever triggered a deploy.
   push:
     branches:
-      - master
+      - main
+  # Lets a deploy be re-run from the Actions tab without an empty commit.
+  workflow_dispatch:
 
 permissions:
   contents: read
