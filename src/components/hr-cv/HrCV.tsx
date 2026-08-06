@@ -105,17 +105,19 @@ const stripesGlowGradientLight = buildStripeGradient(stripeAngle, stripeGlowColo
 
 const keySkills = ["React", "Next.js", "TypeScript", "Tailwind CSS", "Redux/Toolkit", "Node.js", "Supabase", "JavaScript"];
 
+// Each of these points at something on this page a reader can open and
+// check. The previous version was a list of adjectives ("deep knowledge
+// of…", "experience with…") — true, but unfalsifiable, and therefore worth
+// nothing to someone comparing twenty CVs.
 const aboutPoints = [
-  "4+ years of commercial Frontend development experience",
-  "Deep understanding of AI-assisted development — orchestrating Claude, Codex, GPT and other leading models into a fast, production-grade workflow",
-  "Deep knowledge of HTML, CSS, JavaScript with focus on React + Redux Toolkit",
-  "Contributed to 20+ commercial projects across different domains, team sizes, and tech stacks",
-  "Experience developing complex SPAs from scratch (online stores, messengers, games)",
-  "Proficient with Next.js (SSR), TypeScript, and modern development tools",
-  "Backend experience with Node.js, Express, Nest.js, REST APIs, and Supabase",
-  "Completed RS School courses with top rankings (1st place in React, 14th from 9000+ in JS/FE)",
-  "Experience with testing (Vitest, Jest, Cypress, Playwright) and CI/CD",
-  "Team development experience with Agile methodologies",
+  "4+ years of commercial frontend work at Lab42 and CreativeIT — 20+ projects across different domains, team sizes and stacks",
+  "Full-stack when the project needs it: I built and maintain both sides of Sensy (NestJS, PostgreSQL/Prisma, Redis) and shipped PulseOps solo on Supabase and Drizzle",
+  "I test the part that carries the risk — pure domain logic, no browser required. PulseOps has 100% coverage of its metrics layer under Vitest",
+  "Accessibility as work, not a checkbox: when a design needed a select the OS cannot draw, I rebuilt it as an ARIA listbox with the full keyboard contract instead of a div with a click handler",
+  "Performance stated as a number and then measured: Bullet Heaven targets 60 FPS at 5000+ entities and ships an in-game overlay reporting frame p50/p99 and draw calls",
+  "Comfortable owning a feature end to end — product decision, design, API, UI, deploy — and equally comfortable working to someone else's spec in a team",
+  "AI-assisted development in daily use (Claude, Codex, GPT, Cursor). The leverage is in reviewing what the model produces, not in the prompt",
+  "RS School graduate: 1st place in the React course, 14th of 9000+ in JS/FE",
 ];
 
 const experience = [
@@ -249,9 +251,10 @@ export const HrCV = () => (
           <section className="surface print-card rounded-2xl p-6 animate-fade-in-up" style={{ animationDelay: "0.12s" }}>
             <SectionHeading>About Me</SectionHeading>
             <p className="relative mb-5 pl-5 font-display text-lg leading-snug t-title before:absolute before:bottom-1 before:left-0 before:top-1 before:w-1 before:rounded-full before:bg-[color:var(--accent)] before:content-['']">
-              Frontend developer with <span className="font-bold t-accent">4+ years</span> of commercial development experience.
-              Skilled in <span className="font-semibold t-title">React, Next.js, TypeScript, Node.js</span>, and modern frontend technologies.
-              Passionate about building scalable web applications and continuously learning new technologies.
+              <span className="font-bold t-accent">4+ years</span> of commercial frontend development in{" "}
+              <span className="font-semibold t-title">React, Next.js and TypeScript</span> — and a habit of following a problem
+              past the frontend when that is where it actually lives: into a NestJS API, a Postgres schema, or a render loop
+              with a 16.7-millisecond budget. I would rather ship one thing that holds up under review than five that demo well.
             </p>
             <ul className="gap-x-6 text-sm t-body sm:columns-2">
               {aboutPoints.map((point) => (

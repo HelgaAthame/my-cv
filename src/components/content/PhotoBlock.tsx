@@ -17,6 +17,8 @@ export const PhotoBlock = () => {
   const linkedinInfo = (
     <a
       href="https://www.linkedin.com/in/olga-k-aa9054220"
+      target="_blank"
+      rel="noopener noreferrer"
       className="text-sky-900 hover:text-sky-700"
     >
       My LinkedIn Link
@@ -25,6 +27,8 @@ export const PhotoBlock = () => {
   const githubInfo = (
     <a
       href="https://github.com/HelgaAthame"
+      target="_blank"
+      rel="noopener noreferrer"
       className="cursor-pointer underline text-sky-900 hover:text-sky-700"
     >
       My GitHub Link
