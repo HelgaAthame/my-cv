@@ -1,0 +1,28 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!--
+    Sibling of hr-cv/icon.svg: same amber gradient tile, so the two pages
+    read as one person in a bookmark bar. The mark differs because the tabs
+    must be told apart at 16px — a second "O" would be indistinguishable.
+    This one is the page's subject: a metric line with an outlier spike.
+  -->
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d97706" />
+      <stop offset="50%" stop-color="#f97316" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#g)" />
+  <!-- Baseline series, then the spike. Kept to few, wide segments: at
+       favicon size anything finer collapses into a smudge. -->
+  <path
+    d="M10 42 L20 38 L28 40 L36 16 L44 39 L54 35"
+    fill="none"
+    stroke="#ffffff"
+    stroke-width="5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <circle cx="36" cy="16" r="6" fill="#ffffff" />
+  <circle cx="36" cy="16" r="3" fill="#b45309" />
+</svg>
